@@ -1,0 +1,245 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HW6
+%% Sandeep Koranne
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[10pt]
+\usepackage{a4wide}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{lem}{Lemma}
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+
+\begin{document}
+\title{Fall 2015 MTH 543 Homework 8}
+\author{Sandeep Koranne}
+\maketitle
+
+\section{Problem 37}
+\subsection{Problem 37 (a)}
+Show that if $\{v_1,\ldots,v_n\}$ is an
+orthonormal basis for $V$ then
+\[
+\|v\|^2 = \sum_{j=1}^n |\langle v,v_j \rangle|^2
+\]
+\begin{proof}
+Since $\{v_1,\ldots,v_n\}$ is a basis for $V$, any $v\in V$ can be
+written as:
+\[
+v = a_1v_1 + a_2v_2 + \cdots + a_nv_n
+\]
+We also have $\|v\|^2=\langle v,v \rangle$, using the above
+expansion we have
+\[
+\|v\|^2 = \langle v,v \rangle = \langle (a_1v_1 + \cdots + a_nv_n), (a_1v_1 + \cdots + a_nv_n) \rangle
+\]
+We know $\langle (a+b),c \rangle = \langle a,c \rangle + \langle b,c \rangle$.
+Using this we get:
+\[
+\|v\|^2 = \langle a_1v_1,a_1v_1 \rangle +\cdots+ \langle a_nv_n,a_1v_1 \rangle + 
+          \cdots +
+          \langle a_nv_n,  a_1v_1 \rangle +\cdots+ \langle a_nv_n,a_nv_n \rangle
+\]
+We know inner product is conjugate linerar in the second element, and 
+since $\{v_1,\ldots,v_n\}$ is an orthonormal set $\langle v_i,v_j \rangle = 0$ 
+for $i \ne j$. Using this we get:
+\begin{equation}
+\|v\|^2 = \langle a_1v_1, a_1v_1 \rangle + \cdots + \langle a_nv_n, a_nv_n \rangle
+\label{eqnA}
+\end{equation}
+Since $\{v_1,\ldots,v_n\}$ is an orthonormal set
+\[
+\langle a_1v_1,a_1v_1 \rangle = |\langle v, v_1\rangle|^2
+\]
+Using this in the above Eqn.~\ref{eqnA} we get
+\[
+\|v\|^2 = \sum_{j=1}^n |\langle v,v_j \rangle|^2
+\]
+
+\end{proof}
+\subsection{Problem 37 (b)}
+Show that if $\{v_1,\ldots,v_n\}$ is
+orthonormal but not necessarily a basis for $V$, then we still have
+\[
+\|v\|^2 \ge \sum_{j=1}^n |\langle v,v_j \rangle|^2
+\]
+\begin{proof}
+Since $\{v_1,\ldots,v_n\}$ is not necessarily a basis for $V$, we have
+\[
+v = a_1v_1 + \cdots + a_nv_n + \sum_{k}a_k\beta_k
+\]
+where $\beta$ is the extended basis (since $\{v_1,\ldots,v_n\}$ is
+an orthonormal set, using the replacement theorem we can add elements
+to it to form a basis).
+We consider $\|v\|^2 = \langle v,v\rangle$ as before, and we can use
+Eqn.~\ref{eqnA} to remove the products $\langle v_i,v_j\rangle$ where
+$i \ne j$, since $v_i$ and $v_j$ are orthogonal. Thus,
+\begin{equation}
+\|v\|^2 = \sum_{j=1}^n |\langle v,v_j \rangle|^2 + 
+          \langle (\sum_{k}a_k\beta_k),(\sum_{j=1}^n a_jv_j ) \rangle +
+          \langle (\sum_{j=1}^n a_jv_j )),(\sum_{k}a_k\beta_k) \rangle
+          + \langle (\sum_{k=1}a_k\beta_k),(\sum_{k=1}a_k\beta_k) \rangle
+\label{eqnB}
+\end{equation}
+Since by definition of inner product we have
+\[
+        \langle (\sum_{k}a_k\beta_k),(\sum_{j=1}^n a_jv_j ) \rangle \ge 0,\ 
+        \langle (\sum_{j=1}^n a_jv_j )),(\sum_{k}a_k\beta_k) \rangle \ge 0,\ 
+\langle (\sum_{k=1}a_k\beta_k),(\sum_{k=1}a_k\beta_k) \rangle \ge 0
+\]
+We get from Eqn~\ref{eqnB}:
+\[
+\|v\|^2 \ge \sum_{j=1}^n |\langle v,v_j \rangle|^2
+\]
+\end{proof}
+
+\section{Problem 38} Let $A$ be a non-identity orthogonal $3\times 3$
+matrix over $\RR$ with $\det(A)=1$.
+\subsection{Problem 38 (a)}Show that 1 is an eigenvalue for $A$
+\begin{proof}
+Since $A$ is orthogonal over $\RR$, $A$ is also unitary. 
+From last homework we
+showed using the property $AA^*=I$ if $A$ is unitary and $xx^*=\|x\|^2$, 
+then $\|Ax\|=\|x\|$
+ But consider $x$ to be an eigenvector for $A$, then $\|Ax\|=\|\lambda x\|$.
+Combining these we get $\|x\|=\|\lambda x\| = |\lambda|\|x\|$. Since
+$x$ is an eigenvector, $\|x\|\ne 0$, thus $|\lambda|=1$, as required.
+Moreover since $\det(A)=1$, then the products of the eigenvalues is 1.
+Thus if $|\lambda_i|=1$, since dimension is odd, there cannot be complex
+conjugate pairs for every eigenvalues, this implies one of the eigenvalues
+is real with $|\lambda|=1$. If all the eigenvalues are real, then atleast
+one of them has to be 1 (since dimension is odd), and if two of them are
+complex, then they are of the form $(a+ib),(a-ib)$, and thus their product
+is positive, and thus we can divide $\det(A)$ by their product to see that
+$\lambda=1$, as required.
+\end{proof}
+\subsection{Problem 38 (b)}Let $\textrm{Fix}(A)=\{v \in \RR^3|Av=v\}$. Prove
+that $\dim\textrm{Fix}(A) = 1$.
+\begin{proof}
+The 
+Using Theorem 5.7 of the textbook, we know that
+\[
+1 \le \dim(E_{\lambda}) \le m
+\]
+where $m$ is the algebraic multiplicity of $\lambda$ in the characteristic
+polynomial of $A$. Moreover, $Av=v$, implies 
+$E_{\lambda}=N(T-\lambda I_v)$, since we know
+$\lambda=1$, $\dim\textrm{Fix}(A)=\dim(E_{\lambda})\le m$. Thus we have to
+show that algebraic multiplicity of $\lambda=1$ is exactly 1 for $A$. But
+consider that $A$ is non-identity, thus the other two eigenvalues of $A$
+are distinct from 1, thus the algebraic multiplicity of $\lambda=1$ is exactly
+1, and thus $1\le\dim\textrm{Fix}(A)=\dim(E_{\lambda})\le 1$, as required.
+\end{proof}
+\section{Problem 39} Let $T:V\to V$ be a self-adjoint operator on a finite
+dimensional complex inner product space $V$.
+\subsection{Problem 39 (a)} Prove that all eigenvalues of $T$ are
+real numbers.
+\begin{proof}
+Consider the eigenvalue $\lambda$ of $T$, then we have for some eigenvector
+$x$, $Ax=\lambda x$. This implies
+\[
+x^*Ax = x^*\lambda x = \lambda x^*x = \lambda \|x\| \implies\ 
+\lambda = \frac{x^*Ax}{\|x\|}
+\]
+Take complex conjugate on both sides:
+\[
+\overline{\lambda} = \frac{(x^*Ax)^*}{\|x\|}
+\]
+But $A$ is self-adjoint, thus $(x^*Ax)^*=x^*Ax$, thus 
+$\overline{\lambda}=\lambda$, thus $\lambda$ is real.
+\end{proof}
+\subsection{Problem 39 (b)}
+Prove that all eigenvalues of $T$ are non-negative if and only if
+$\langle T(v),v\rangle\ge 0$ for all $v\in V$.
+\begin{proof}
+Since $T$ is self-adjoint, by Theorem 6.17 of the textbook, there
+exists an orthonormal basis $\beta$ for $V$ consisting of eigenvectors
+of $T$.
+Each vector $v$ can be written as:
+\[
+v=\sum_{i=1}^n a_iv_i
+\]
+where $v_i$ are the orthonormal eigenvectors of $T$ corresponding
+to eigenvalue $\lambda_i$.
+Moreover if $\lambda_i$ is an eigenvalue and $x$ the corresponding
+eigenvector then $T(x)=\lambda_i x$,
+Consider the inner product $\langle T(x),x\rangle$:
+\[
+\langle T(x),x\rangle = \langle \lambda x, x\rangle = 
+\langle (\sum_{i=1}^n\lambda_i a_iv_i),(\sum_{i=1}^n a_iv_i) \rangle
+\]
+Since $v_i$ is an orthonormal basis, we get
+\[
+\langle T(x),x\rangle = \sum_{i=1}^n |a_i|^2 \lambda_i
+\]
+Thus $\lambda_i$ is non-negative if and only if $\langle T(x),x\rangle \ge 0$.
+\end{proof}
+\section{Problem 40}
+Let $A$ be a nonsigular $n\times n$ matrix over $\CC$. Let $\|\cdot\|$ and
+$\langle \cdot,\cdot \rangle$ denote the standard norm and inner product on 
+$\CC$
+\subsection{Problem 40 (a)}
+Show that all eigenvalues of $A^*A$ are positive real numbers.
+\begin{proof}
+First we show that $A^*A$ is Hermitian. Consider $(A^*A)^*$:
+\[
+(A^*A)^* = A^*(A^*)^* = A^*A
+\]
+Thus $A^*A$ is Hermitian. In problem 39(a) we showed that eigenvalues
+of Hermitian matrices are real valued. Consider the inner product:
+\[
+\langle A^*Ax,x \rangle = \langle Ax,Ax \rangle
+\] 
+using $\langle A^*x,y \rangle = \langle x,Ay\rangle$. 
+Since $A$ is nonsigular, $Ax \ne 0$ for $x\ne 0$ and thus $\langle Ax,Ax \rangle \ge 0$, but this implies that $\langle A^*Ax,x \rangle \ge 0$ for all $x$, 
+thus using
+problem 39(b), the eigenvalues of $A^*A$ must be non-negative. Combining, we
+get the required result.
+\end{proof}
+\subsection{Problem 40 (b)}
+Show that
+\[
+\sqrt{\lambda_{\min}}\|v\| \le \|Av\| \le \sqrt{\lambda_{\max}}\|v\|
+\]
+for all $v\in \CC^n$, where $\lambda_{\min}$ is the smallest
+eigenvalue of $A^*A$ and $\lambda_{\max}$ is the largest eigenvalue
+of $A^*A$.
+\begin{proof}
+Consider the SVD of $A$ as $A=U\Sigma V^*$, and let $\sigma_r$ denote the
+smallest singular value and $\sigma_1$ denote the largest singular values.
+We know that $\sigma_1=\sqrt{\lambda_{\max}}$ and $\sigma_r=\sqrt{\lambda_{\min}}$
+where $\lambda_{\min}$ is the smallest
+eigenvalue of $A^*A$ and $\lambda_{\max}$ is the largest eigenvalue
+of $A^*A$.
+Consider the matrix norm $\|A\|$ defined as:
+\[
+\|A\| = \sup_{x\ne 0} \frac{ \|Ax\|}{\|x\|} = \sup_{x\ne 0} \frac{ U\Sigma V^*x}{\|x\|} = \sup_{x\ne 0} \frac{ \Sigma V^*x}{\|x\|} = \sup_{y\ne 0} \frac{ \|\Sigma y\|}{\|Vy\|} = \sup_{y\ne 0} \frac{\left(\sum_{i=1}^r \sigma_i^2|y_i|^2\right)^{\frac{1}{2}}}{\left(\sum_{i=1}^r |y_i|^2\right)^\frac{1}{2}} \le \sigma_1
+\]
+Here we use the fact that $U$ is unitary, thus the matrix norm is not
+changed by multiplication by $U$. Similarly we can define the relationship for
+the smallest singular value:
+\[
+\|Ax\| = \|U\Sigma V^*x\| = \|\Sigma V^*x\| = \|\Sigma y\|
+\]
+for $y=V^*x$. Moreover:
+\[
+\|\Sigma y\| = \left( \sum_{i=1}^r|\sigma_i y_i|^2\right)^\frac{1}{2} \ge \sigma_r
+\]
+where $\sigma_r$ is the smallest singular value.
+Combining, we get:
+\[
+\sigma_r\|x\| = \sqrt{\lambda_{\min}}\|x\| \le \|Ax\| \le \sqrt{\lambda_{\max}}\|x\| = \sigma_1\|x\|
+\]
+for all $x\in \CC^n$.
+\end{proof}
+
+\end{document}
+
+

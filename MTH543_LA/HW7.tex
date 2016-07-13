@@ -1,0 +1,209 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HW6
+%% Sandeep Koranne
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[10pt]
+\usepackage{a4wide}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{lem}{Lemma}
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+
+\begin{document}
+\title{Fall 2015 MTH 543 Homework 7}
+\author{Sandeep Koranne}
+\maketitle
+
+\section{Problem 33}
+As given in the problem, $V=R^3$, $S=\{w_1=(1,0,1),w_2=(0,1,1),w_3(1,3,3)\}$
+and $x=(1,1,2)$. Applying the Gram-Schmidt procedure we have:
+\begin{eqnarray}
+v_1 & = & w_1 \nonumber \\ 
+v_2 & = & w_2 - \frac{\langle w_2,v_1 \rangle}{\|v_1\|^2}v_1 \nonumber \\
+    & = & w_2 -\frac{1}{2}v_1 \nonumber \\
+    & = & (\frac{-1}{2},1,\frac{1}{2}) \nonumber \\
+v_3 & = & w_3 - \frac{\langle w_3,v_1 \rangle}{\|v_1\|^2}v_1 - 
+                \frac{\langle w_3,v_2 \rangle}{\|v_2\|^2}v_2 \nonumber \\
+    & = & w_3 - 2v_1 - \frac{8}{3}v_2 \nonumber \\
+    & = & (\frac{1}{3},\frac{1}{3},\frac{-1}{3}) \nonumber
+\end{eqnarray}
+Now we can normalize $v_1,v_2$ and $v_3$ as:
+\begin{equation}
+u_1 = (\frac{1}{\sqrt{2}},0,\frac{1}{\sqrt{2}}) \nonumber \quad
+u_2 = (\frac{-1}{\sqrt{6}},\frac{2}{\sqrt{6}},\frac{1}{\sqrt{6}}) \quad
+u_3 = (\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}},\frac{-1}{\sqrt{3}}) \nonumber \\
+\end{equation}
+Let $\beta=\{u_1,u_2,u_3\}$, and solve
+\[
+\sum_{i=1}^3 a_iu_i = x
+\]
+to get
+\[
+a_1u_1 + a_2u_2 + a_3u_3 = \begin{pmatrix} 1 \\ 1 \\ 2 \end{pmatrix}
+\]
+Solving, we get $a_1=\frac{3}{\sqrt{2}}$, $a_2=\frac{3}{\sqrt{6}}$
+and $a_3=0$. Thus,
+\[
+x = \frac{3}{\sqrt{2}}u_1 + \frac{3}{\sqrt{6}}u_2 + 0u_3
+\]
+Applying Theorem 6.5 we can also calculate $a_i$ as $\langle x,u_i \rangle$, as:
+\[
+a_1 = \langle (1,1,2),(\frac{1}{\sqrt{2}},0,\frac{1}{\sqrt{2}}) \rangle = \frac{3}{\sqrt{2}}
+\]
+and
+\[
+a_2 = \langle (1,1,2),(\frac{-1}{\sqrt{6}},\frac{2}{\sqrt{6}},\frac{1}{\sqrt{6}}) \rangle = \frac{3}{\sqrt{6}}
+\]
+and
+\[
+a_3 = \langle (1,1,2),(\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}},\frac{-1}{\sqrt{3}}) \rangle =  0
+\]
+As expected, the results match.
+\section{Problem 34}
+Given an $n \times n$ matrix $A$ over $\CC$, and let $A^*$ denote the
+complex conjugate transpose of $A$. Let $\{e_1,\ldots,e_n\}$ denote
+the standard ordered basis of $\CC^n$, 
+\subsection{Problem 34 (a)}
+Show that $\langle Ae_j,e_i \rangle = a_{ij}$ and $\langle e_j,A^*e_i \rangle = a_{ij}$
+\begin{proof}
+We can see that $Ae_j$ will pick the $j$ column of $A$, denoted as $A_j$, and
+the inner product with $e_i$ will be
+\[
+\langle \begin{pmatrix} a_{1j} \\ a_{2j} \\ \vdots \\ a_{ij} \\ \vdots \\ a_{nj} \end{pmatrix}, e_i \rangle = \begin{pmatrix} a_{1j} \\ a_{2j} \\ \vdots \\ a_{ij} \\ \vdots \\ a_{nj} \end{pmatrix} 
+\begin{pmatrix} 0 & 0 & \cdots & e_i^* & \cdots & 0 \end{pmatrix} = 
+a_{ij}
+\]
+Similarly, $(A^*e_i)^*=e_i^*A$ which picks the $i$ row of $A$.
+\[
+\langle e_j,A^*e_i \rangle = e_j 
+  \begin{pmatrix} a_{i1} & \cdots & a_{ij} & \cdots & a_{in} \end{pmatrix} = a_{ij}
+\]
+\end{proof}
+\subsection{Problem 34 (b)}
+Show that $\langle Ax,y \rangle = \langle x,A^*y\rangle$ and 
+$\langle A^*x,y \rangle = \langle x,Ay\rangle$. 
+\begin{proof}
+We use the property that $(xy)^*=y^*x^*$.
+By definition of
+inner product we have
+\[
+\langle Ax,y \rangle = (Ax)y^* = y^*(Ax) = (A^*y)^*x = \langle x,(A^*y) \rangle
+\]
+Similarly, 
+\[
+\langle A^*x,y \rangle = A^*xy^* = y^*A^*x = (Ay)^*x = \langle x,Ay \rangle
+\]
+\end{proof}
+\subsection{Problem 34 (c)}
+If $A$ and $B$ are $n \times n$ complex matrices and if
+$\langle Ax,y \rangle = \langle x,By \rangle$ for all $x,y \in \CC^n$ then
+$B=A^*$, since this is true for all $y\in \CC^n$.
+\begin{proof}
+Using the above parts we have:
+\[
+\langle Ax,y \rangle = \langle x,By\rangle = \langle x,A^*y\rangle
+\]
+Using part (e) of Theorem 6.1 (which states that if 
+$\langle x,y \rangle = \langle x,z \rangle$ for all $x \in \CC^n$ then
+$y=z$), we have $By=A^*y$ which implies $B=A^*$.
+\end{proof}
+\subsection{Problem 34 (d)}
+Let $A\in M_{n \times n}(\CC)$, prove that $A$ is unitary if an only if the 
+set of columns of $A$ is orthonormal.
+\begin{proof}
+First we assume that $A$ is unitary, that implies $AA^*=I$. Expanding
+the matrix products we get
+\[
+I=AA^* = \sum_{i=1}^n \sum_{j=1}^n \langle v_i,v_j\rangle
+\]
+Comparing entrywise we see:
+\[
+\langle v_i,v_i \rangle = 1 \ \textrm{and}\ \langle v_i,v_j \rangle = 0, i \ne j
+\]
+Thus $v_i$ is orthogonal to $v_j$, and moreover $\|v_i\|=1$ (since 
+$\langle v_i,v_i \rangle=1$).
+For the other direction, let the set of columns be orthonormal.
+Then we have
+\[
+\langle v_i,v_i \rangle = 1 \ \textrm{and} \langle v_i,v_j \rangle = 0, i \ne j
+\]
+Thus,
+\[
+\sum_{i=1}^n \sum_{j=1}^n \langle v_i,v_j\rangle = I
+\]
+But this is $AA*$, thus we have $AA^*=I$, as required.
+\end{proof}
+\subsection{Problem 34 (e)}
+Consider $\|Ax\|^2 = \langle Ax,Ax \rangle$, expanding the inner product, we
+get
+\[
+\|Ax\|^2 = (Ax)(Ax)^* = (Ax)(x^*A^*) = Axx^*A^* = \|x\|(AA^*) = \|x\|^2(I) = \|x\|^2
+\]
+Using the property $AA^*=I$ if $A$ is unitary and $xx^*=\|x\|^2$, thus $\|Ax\|=\|x\|$ as
+required.
+\section{Problem 35}
+\subsection{Problem 35 (a)}
+Consider $v\in E$ where $E$ denotes the eigenspace of $T$, then
+we know  $T(v) = \lambda v$. Consider, $T(U(v))$, since $TU=UT$ this is
+equal to $U(T(v))=U(\lambda v)=\lambda U(v)$. But this implies
+$U(v) \in E$, thus $E$ is $U$-invariant, as required. Similarly, we
+can also show (since we need it for part (b)) that if $F$ is an eigenspace
+for $U$ then $F$ is $T$-invariant.
+\subsection{Problem 35 (b)}
+Conclude that there exists  $v \in V$ such that $U$ is an eigenvector
+for both $T$ and $U$.
+
+As written, the conclusion cannot be reached as $U$ is an operator, and cannot
+be an eigenvector.{\it I am assuming that the question intended the following}:
+
+Conclude that there exists  $v \in V$ such that $v$ is an eigenvector
+for both $T$ and $U$.
+We first need a Lemma.
+\begin{lem}
+If $UT=TU$, with $U,T,E,F$ as above, then $U|_X,T|_X$ are simultaneously diagonalizable where $X=E \oplus F$.
+\end{lem}
+\begin{proof}
+The proof follows directly from the $U$-invariance of $E$ and $T$-invariance
+of $F$ (with proper restriction). Consider the direct sum of $E$ and $F$, 
+denoted $X=E\oplus F \subset V$. Since direct sum decomposition is unique
+$x \in X = \sum_E a_ie_i + \sum_F b_jf_j$ and by Theorem 5.11 of the text
+book $U|_E$ and $T|_F$ are diagonalizable, and thus $U|_X$ and $T|_X$ is
+also diagonalizable.
+\end{proof}
+Using this lemma we conclude that there exists a basis $\beta$ such that
+$[T]_\beta$ and $[U]_\beta$ are diagonal. The members of this basis comprise
+of eigenvectors and let $v=\{\beta_1,\ldots,\beta_k\}$ is an eigenvector
+for both $T$ and $U$. As required.
+
+\section{Problem 36}
+We have $A^2=nA$ (by calculation), thus
+\[
+A^2 -nA = 0
+\]
+Using the Cayley-Hamilton theorem:
+\[
+\lambda^2 -n\lambda = \lambda(\lambda -n) = 0
+\]
+where $\lambda$ is an eigenvalue of $A$. We can also verify this
+by oberving that the 0 vector and $(1,\cdots,1)^T$ are the only
+vectors which maintain their direction after multiplying by $A$, since
+multiplying any vector by $A$, the resulting vector is a multiple of
+$(1,\cdots,1)^T$. 
+
+Moreover, $\textrm{tr}(A)=n$, thus the multiplicity of the eigenvalue
+$\lambda=n$ is exactly 1, and the remaining $(n-1)$ eigenvalues
+are 0. Thus the characteristic polynomial is
+\[
+f(t) = t^{n-1}(t-n)
+\]
+\end{document}
+
+
