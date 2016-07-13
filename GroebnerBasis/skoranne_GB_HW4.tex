@@ -1,0 +1,226 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HW4
+%% Sandeep Koranne
+%% Good Luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[12pt]
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{polynom}
+\usepackage{tikz}
+\usepackage{subfigure}
+%\usepackage{mathtools}
+\newtheorem{lem}{Lemma}
+\def\RR{\mathbb R}
+\def\CC{\mathbb C}
+\def\QQ{\mathbb Q}
+\def\FF{\mathbb F}
+\def\ZZ{\mathbb Z}
+\DeclareMathOperator{\sgn}{sgn}
+
+\begin{document}
+\title{Spring 2016 Gr\"obner Basis Homework 4}
+\author{Sandeep Koranne}
+\date{May 27 2016}
+\maketitle
+
+\section*{Problem 1}A polynomial $f\in R=K[x_1,x_2,\ldots,x_n]$ is
+called symmetric if for any permutation $\sigma\in S_n$ (where $S_n$
+denotes the permutation group of $n$), it follows that
+\[
+f(x_1,x_2,\ldots,x_n) = f(x_{\sigma(1)},x_{\sigma(2)},\ldots,x_{\sigma(n)})
+\]
+Use Theorem 2.4.4 to give a method for deciding whether a given
+polynomial $f\in R$ is symmetric.
+\begin{proof}
+Theorem 2.4.4 of the book states that $f\in k[x_1,x_2,\ldots,x_n]$
+is in the image of a map $\phi$, iff, there exists $h\in k[y_1,y_2,\ldots,y_m]$
+such that $f\xrightarrow{G}_+ h$, where $G$ is a reduced Gr\"obner basis
+for $K$ wrt variables $y$ greater than $x$. 
+This gives a method of recognizing symmetric polynomials, since we
+can create a Gr\"obner basis of elementary symmetric polynomials of $n$
+variables, then use Gr\"obner reduction to calculate $h$. If $f$ is symmetric
+then the reduction will be identically 0.
+
+We first discuss elementary symmetric polynomials.
+We first give some preliminary lemmas which are related to the study of
+evaluation maps as ring homomorphism, and the representation of symmetric
+polynomials using \emph{elementary symmetric polynomials}.
+
+\begin{lem}
+Given a field $F$, a ring $R$ containing $F$, and 
+$\alpha_1,\alpha_2,\ldots,\alpha_n \in R$, and a polynomial 
+$f\in R[x_1,x_2,\ldots,x_n]$,
+evaluation map
+\[
+F[x_1,x_2,\ldots,x_n] \to R
+\]
+is defined by 
+\[
+f(x_1,x_2,\ldots,x_n)\mapsto f(\alpha_1,\alpha_2,\ldots,\alpha_n)
+\]
+Moreover, this evaluation map is a ring homomorphism $F[x_1,x_2,\ldots,x_n]\to R$.
+\label{lem:ring-homomorphism}
+\end{lem}
+This follows from results on polynomials that they are closed under
+addition, and multiplication, and we have discussed this in class as well.
+For the second lemma, we introduce elementary symmetric polynomials, which
+are defined as follows. Let $x_1,x_2,\ldots,x_n$ be variables over a field
+$F$, then
+\begin{eqnarray}
+\sigma_1 & = & x_1 + x_2 + \cdots + x_n \nonumber \\
+\sigma_2 & = & \sum_{1 \le i \le j \le n} x_ix_j \nonumber \\
+ & \vdots &  \nonumber \\
+\sigma_n & = & x_1x_2\ldots x_n
+\end{eqnarray}
+
+\begin{lem}
+Let $x_1,x_2,\ldots,x_n$ be variables over a field
+$F$, then given another variable $x$ we have
+\begin{equation}
+(x-x_1)\cdots(x-x_n) = x^n -\sigma_1x^{n-1}+\cdots+(-1)^r\sigma_r x^{n-r}
++\cdots+(-1)^n\sigma_n \label{eqn:eval}
+\end{equation}
+Follows from multiplying out LHS and RHS and comparing the coefficients of each
+power of $x$.
+Now if we evaluate Equation~\ref{eqn:eval} at 
+$x_1=\alpha_1,x_2=\alpha_2,\ldots,x_n=\alpha_n$ we get
+\begin{eqnarray}
+(x-\alpha_1)(x-\alpha_2)\cdots(x-\alpha_n) & = & x^n -\sigma_1(\alpha_1,\alpha_2,\ldots,\alpha_n)x^{n-1} +\cdots+ \nonumber \\
+ & & (-1)^{n-1}\sigma_{n-1}(\alpha_1,\alpha_2,\ldots,\alpha_n)x \nonumber \\
+ & & + (-1)^n\sigma_n(\alpha_1,\alpha_2,\ldots,\alpha_n) \label{eqn:eval2}
+\end{eqnarray}
+\end{lem}
+
+\begin{lem}
+A symmetric polynomial is a polynomial $f\in F[x_1,x_2,\ldots,x_n]$, such that
+its value (at a given point) is independent of the permutation of the variables.
+Any symmetric polynomial in $F[x_1,x_2,\ldots,x_n]$ can be written as 
+a polynomial in $\sigma_1,\sigma_2,\ldots,\sigma_n$ with coefficients in $F$.
+\end{lem}
+This follows from Equation~\ref{eqn:eval2}. And thus, using the
+above two lemmas the evaluation of a symmetric polynomial at roots of
+a monic polynomial in a larger
+field $L$ still remains in the ground field. If $f\in F[x]$ be a monic
+polynomial with roots $\alpha_1,\alpha_2,\ldots,\alpha_n\in L$, then
+given any symmetric polynomial $p(x_1,x_2,\ldots,x_n)$ with coefficients
+in $F$, we have
+\[
+p(\alpha_1,\alpha_2,\ldots,\alpha_n) \in F
+\]
+\label{lem:ring-homomorphism2}
+\begin{proof}
+Using Lemma~\ref{lem:ring-homomorphism} and the above Equations~\ref{eqn:eval}
+and Equation~\ref{eqn:eval2}.
+\end{proof}
+
+Let $G$ denote the reduced Gr\"obner basis of the collection of
+elementary symmetric polynomials of $n$ variables, and $h$ denote
+the remainder after Gr\"obner reduction of $f$ by $G$, then
+using Theorem 2.4.4 and the Lemmas above, we have $f$ is symmetric iff
+$h=0$, identically.
+\end{proof}
+
+
+\section*{Problem 2} Generalize our method to determine whether graphs are
+3-colorable to determine whether graphs are 4-colorable.
+\begin{proof}
+The general idea is same as 3-coloring, with coloring assignments
+being points in varieties; varieties which are represented by ideals;
+and ideals can be computed with Gr\"obner basis.
+We know that a graph $G$ is 4-colorable, if the variety $V(I)\ne 0$.
+Let $x_i$ denote the color assignment for the vertex $i$, then we have
+$x_i^4=x_j^4=1$, since the 4-colors are represented by 4th roots of unity.
+This gives us
+\begin{equation}
+x_i^4-x_j^4 = (x_i-x_j)(x_i+x_j)(x_i^2+x_j^2) = 0 \label{eqn:graph-color}
+\end{equation}
+Since the ring is an integral domain, we have that $x_i\ne x_j$ (as they
+are adjacent in the graph), then we must have $(x_i+x_j)(x_i^2+x_j^2)=0$.
+Note: that $x_i \in \CC$, and in particular $x_i = e^{i\pi/2}$.
+Therefore, given graph $G$, we add $x_i^4=1$, to the collection of
+polynomials (which is an ideal)
+for each vertex, and for each edge, we add a polynomial
+generated by Eqn~\ref{eqn:graph-color}. Thereafter, we compute the
+reduced Gr\"obner basis for this ideal, and using Theorem 2.7.1, we have
+that $G$ is $k$-colorable (with $k=4$, in this case), iff $V(I)\ne 0$, which
+the Gr\"obner basis is not identically $\{1\}$.
+\end{proof}
+
+\section*{Problem 3} Use our Gr\"obner basis to solve the following
+Shidoku puzzle.
+\begin{proof}
+The problem size is 16, thus we have 16 variables, 
+we label them using two dimensional coordinates $x_{ij},1\le i,j \le 4$.
+We solved this using \textsc{Singular}, the code is uploaded.
+\begin{verbatim}
+I[1]=x(44)-1
+I[2]=3*x(43)-x(44)^2+12*x(44)-23
+I[3]=x(42)+x(43)+x(44)-8
+I[4]=x(41)+x(42)+x(43)+x(44)-10
+I[5]=x(34)-2
+I[6]=x(33)+x(34)+x(43)+x(44)-10
+I[7]=x(32)-4
+I[8]=x(31)+x(32)+x(41)+x(42)-10
+I[9]=x(24)+x(34)+x(44)-7
+I[10]=x(23)-1
+I[11]=x(22)+x(23)+x(24)-7
+I[12]=x(21)+x(22)+x(23)+x(24)-10
+I[13]=x(14)+x(24)+x(34)+x(44)-10
+I[14]=x(13)+x(14)+x(23)+x(24)-10
+I[15]=x(12)+x(22)+x(32)+x(42)-10
+I[16]=x(11)+x(12)+x(21)+x(22)-10
+\end{verbatim}
+The Gr\"obner basis computed by \textsc{Singular} is shown, and using this
+the solution is as follows:
+
+\begin{centering}
+\begin{tabular}{|c|c|c|c|}
+\hline
+4 & 1 & 2 & 3\\
+\hline
+3 & 2 & 1 & 4\\
+\hline
+1 & 4 & 3 & 2\\
+\hline
+2 & 3 & 4 & 1\\
+\hline
+\end{tabular}
+\end{centering}
+\end{proof}
+
+
+\section*{Problem 4}
+Use the method of Lemma 2.8.1 (in book) to solve the followin system of
+equations for non-negative integers.
+\begin{eqnarray}
+3\sigma_1 + 2\sigma_2 + \sigma_3 & = & 10 \\ \nonumber
+4\sigma_1 + 3\sigma_2 + \sigma_3 & = & 12
+\end{eqnarray}
+Let us introduce two variables $x_1,x_2$ for the two equations and
+three variables $y_1,y_2,y_3$ for $\sigma_{\{1,2,3\}}$.
+We can then write the above system of equation as
+\begin{eqnarray}
+\QQ[y_1,y_2,y_3,y_4] & \xrightarrow{\phi} & \QQ[x_1,x_2]  \nonumber \\
+y_3 & \mapsto & x_1x_2 \nonumber \\
+y_2 & \mapsto & x_1^2x_2^3 \nonumber \\
+y_1 & \mapsto & x_1^3x_2^4 \nonumber
+\end{eqnarray}
+Let $K=\{y_1-x_1^3x_2^4,y_2-x_1^2x_2^3,y_3-x_1x_2\}$.
+We compute the Gr\"obner basis for $K$ using \textsc{Singular} as
+\begin{verbatim}
+I[1]=y(1)-y(2)*y(3)
+I[2]=x(2)*y(3)^2-y(2)
+I[3]=x(1)*y(2)-y(3)^3
+I[4]=x(1)*x(2)-y(3)
+> reduce(x(1)^10*x(2)^12,I);
+y(2)^2*y(3)^6
+\end{verbatim}
+Thereafter we reduce $x_1^{10}x_2^{12}$ with the Gr\"obner basis, and
+obtain that the solution to the system of equation is $(0,2,6)$, such
+that $\sigma_1=0,\sigma_2=2,\sigma_3=6$, and indeed, we verify that this
+is a solution.
+\end{document}
+

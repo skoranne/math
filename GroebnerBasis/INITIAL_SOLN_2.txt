@@ -1,0 +1,22 @@
+                     SINGULAR                                 /  Development
+ A Computer Algebra System for Polynomial Computations       /   version 4.0.3
+                                                           0<
+ by: W. Decker, G.-M. Greuel, G. Pfister, H. Schoenemann     \   Jan 2016
+FB Mathematik der Universitaet, D-67653 Kaiserslautern        \
+I[1]=x(44)-1
+I[2]=x(43)-4
+I[3]=x(42)+x(43)+x(44)-8
+I[4]=x(41)+x(42)+x(43)+x(44)-10
+I[5]=x(34)-2
+I[6]=x(33)+x(34)+x(43)+x(44)-10
+I[7]=x(32)-4
+I[8]=x(31)+x(32)+x(41)+x(42)-10
+I[9]=x(24)+x(34)+x(44)-7
+I[10]=x(23)-1
+I[11]=x(22)+x(23)+x(24)-7
+I[12]=x(21)+x(22)+x(23)+x(24)-10
+I[13]=x(14)+x(24)+x(34)+x(44)-10
+I[14]=x(13)+x(14)+x(23)+x(24)-10
+I[15]=x(12)+x(22)+x(32)+x(42)-10
+I[16]=x(11)+x(12)+x(21)+x(22)-10
+Auf Wiedersehen.

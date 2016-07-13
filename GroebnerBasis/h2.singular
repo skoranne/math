@@ -1,0 +1,64 @@
+// Example search
+ring R = 0,(x,y),lp;
+
+// now create a F set
+//ideal I = (xy); // works for multiplication
+ideal I = (x7,x2y5,x5y2,y7);
+I = std( I );
+print(I);
+
+// Multiplication
+//poly f = x-y;
+//poly g = x2+y2;
+
+poly f = (x+y)^7-x5-y5;
+//poly g = x2+3x-y2+2y-1;
+poly g = x+y2;
+
+poly f_plus_g = f+g;
+print("f+g = ");
+print(f_plus_g);
+
+poly f_times_g = f*g;
+print("f*g = ");
+print(f_times_g);
+
+
+print("Reduce f");
+poly delf = reduce( f, I );
+print(delf);
+print("Reduce g");
+poly delg = reduce( g, I );
+print(delg);
+
+poly del_f_plus_del_g = delf+delg;
+print("del f + del g");
+print(del_f_plus_del_g);
+
+poly del_f_times_del_g = delf*delg;
+print("del f * del g");
+print(del_f_times_del_g);
+
+
+poly del_fplusg = reduce( f_plus_g, I );
+print("red(f+g) = ");
+print(del_fplusg);
+
+poly del_ftimesg = reduce( f_times_g, I );
+print("red(f*g) = ");
+print(del_ftimesg);
+
+
+poly expected_delta = del_f_plus_del_g - del_fplusg;
+print("Should be NON 0 ** ");
+print(expected_delta);
+
+print("Now checking times");
+poly times_expected_delta = del_f_times_del_g - del_ftimesg;
+print("Should be NON 0 ** ");
+print(times_expected_delta);
+
+
+exit;
+
+
