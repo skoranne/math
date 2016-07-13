@@ -1,0 +1,248 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HW3 for Measure Theory
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{polynom}
+
+\newtheorem{lem}{Lemma}
+\def\RR{\mathbb R}
+\def\CC{\mathbb C}
+\def\QQ{\mathbb Q}
+\def\FF{\mathbb F}
+\def\ZZ{\mathbb Z}
+
+\begin{document}
+\title{HW3 for MTH513 Real Analysis}
+\author{ Sandeep Koranne}
+\maketitle
+
+\section*{Problem 7.9} Suppose $f:\RR\to\RR$ is integrable, $a\in \RR$ and
+we define
+\[
+F(x) = \int_a^x f(y) dy
+\]
+Show that $F$ is a continuous function.
+\begin{proof}
+Using the fundamental theorem of calculus, we have
+\[
+F(x)-F(a) = \int_a^x f(y) dy
+\]
+Since $f$ is integrable, the RHS is finite, moreover we can write $|f(x)|\le M$
+over the real line (otherwise the function would not be integrable). Thus we have
+\[
+-\int_a^x M dy \le \int_a^x f(y) dy \le \int_a^x M dy
+\]
+Integrating the constant $M$, we get
+\[
+-M(x-a) \le \int_a^x f(y) dy \le M(x-a)
+\]
+Substituting from the fundamental theorem, we get
+\[
+-M(x-a) \le F(x)-F(a) \le M(x-a) \implies |F(x)-F(a)|\le M|(x-a)|
+\]
+This implies that $\lim_{x\to a} F(x)=F(a)$, which implies continuity of $F$.
+\end{proof}
+
+\section*{Problem 7.11}Find the limit
+\[
+\lim_{n\to\infty} \int_0^n \left( 1 + \frac{x}{n}\right)^{-n} \log(2+\cos(x/n)) dx
+\]
+\begin{proof}
+Consider $f_n(x) = \left( 1 + \frac{x}{n}\right)^{-n} \log(2+\cos(x/n))$.
+As $n\to\infty$, clearly $f_n(x)\to \log(2)/e^x$, therefore let us write
+$g(x)=\log(2)/e^x$. 
+Then we observe that
+\[
+|f_n(x)| \le g(x)=\frac{\log(2)}{e^x}
+\]
+We can verify that $g(x)$ is integrable, and thus we
+can use the dominated convergence theorem, thus
+\[
+\lim_{n\to\infty} \int_0^n \left( 1 + \frac{x}{n}\right)^{-n} \log(2+\cos(x/n)) dx
+ = \int_0^\infty e^{-x}\log(2) dx = \log(2)
+\]
+\end{proof}
+
+\section*{Problem 7.13}Prove that the limit exists and find its value
+\[
+\lim_{n\to\infty} \int_0^1 \frac{1+nx^2}{(1+x^2)^n} \log(2+cos(x/n)) dx 
+\]
+\begin{proof}
+Using Bernoulli's inequality we have $(1+x^2)^n > 1+nx^2$, therefore if
+we use $f_n$ to denote the function inside the integral, we observe that
+$\lim_{n\to\infty} f_n=0$. Therefore we can define $g(x)=\log(3)$, and 
+use the dominated convergence theorem to conclude that the limit exists, and
+is 0.
+\end{proof}
+
+\section*{Problem 7.15}Let $g:\RR\to\RR$ be integrable and let $f:\RR\to\RR$
+be bounded, measurable and continuous at 1. Prove that
+\[
+\lim_{n\to\infty} \int_{-n}^n f\left( 1 + \frac{x}{n^2}\right) g(x) dx
+\]
+exists and determine its value.
+\begin{proof}
+First we observe that $f_n=f\left( 1 + \frac{x}{n^2}\right)$, then
+as $n\to\infty$, $f_n\to f(1)$, therefore we can use the dominated convergence
+theorem with $f(1)$ playing the role of the usual $g(x)$ for domination.
+Since $f(1)$ is constant, it is certainly integrable, and thus we 
+can interchange the order of the limits for $f_n$ also, and we get
+\[
+\lim_{n\to\infty} \int_{-n}^n f\left( 1 + \frac{x}{n^2}\right) g(x) dx =
+\int_{-\infty}^\infty f(1)g(x) dx =
+f(1)\int_{-\infty}^\infty g(x) dx
+\]
+Now since $g(x)$ is known to be integrable, the above limit exists, and
+since nothing else about $g(x)$ is known, we conclude that this is the limit,
+and is finite.
+\end{proof}
+
+\section*{Problem 7.25}Let $(X,A,\mu)$ be a measure space and let $f$ be 
+non-negative and integrable. Define $\nu$ on $A$ by
+\[
+\nu(A) = \int_A f d\mu
+\]
+\subsection*{Problem 7.22(a)} Prove that $\nu$ is a measure.
+\begin{proof}
+If $A=\emptyset$, then by definition of integral (cf., integral over
+a set is the integral multiplied by the characteristic function of the set),
+is 0, and thus $\nu(\emptyset)=0$. For the countable additivity, we instead
+note that by problem 7.9 above, we have shown that $\nu(A)$ is indeed
+continuous function, and continuous functions are subadditive (as discussed
+in class this hint to prove measure criteria using continuity).
+
+\end{proof}
+\subsection*{Problem 7.22(b)} Prove that if $g$ is integrable with respect
+to $\nu$, then $fg$ is integrable with respect to $\mu$ and 
+\[
+\int g\ d\nu = \int fg\ d\mu
+\]
+\begin{proof}
+We write $\int g d\nu$ using the definition of $\nu(A)$ as
+\[
+\int g\ d\nu = \int_{A} g\ d\nu = \int_{A} g f\ d\mu
+\]
+Now since $g$ is known to be integrable w.r.t $\nu$, we can 
+exchange the order to get
+\[
+\int g d\nu = \int_A fg\ d\mu
+\]
+As required.
+\end{proof}
+
+\section*{Problem 8.5}Suppose that $f$ is non-negative integrable
+function on a measure space $(X,A,\mu)$. Prove that
+\[
+\lim_{t\to\infty} t \mu(\{x : f(x) \ge t\})=0
+\]
+\begin{proof}
+Since $f$ is integrable, that implies that it can be written as
+\[
+\int_A f d\mu < \infty = \int_{f(x)< t} f d\mu + \int_{f(x)\ge t} f d\mu
+\]
+This implies that
+\[
+\int_{f(x)< t} f d\mu + \int_{f(x)\ge t} f d\mu < \infty
+\]
+In particular, then since $|f(x)|\le M$ for some $M$, we have
+\[
+\int_{f(x)\ge t} f\ d\mu = \int_{f(x)\ge t} f \chi_{(f(x)\ge t)}\ d \mu
+\]
+Combining the above we get
+\[
+\int_{f(x)\ge t} f\ d\mu \le Mt \implies t \mu(\chi_{(f(x)\ge t)}) \le M
+\]
+Taking limit $t\to\infty$ gives the result. Here we essentially
+use the fact that if $f(x)$ is bounded then $\mu(\chi(X))\to 0$
+as $t\to\infty$.
+\end{proof}
+
+
+\section*{Problem 11.9} Prove that
+\[
+\int_0^1 \int_0^1 \frac{x^2-y^2}{(x^2+y^2)^{3/4}}\log(4 + \sin x)\ dy dx =
+\int_0^1 \int_0^1 \frac{x^2-y^2}{(x^2+y^2)^{3/4}}\log(4 + \sin x)\ dx dy
+\]
+\begin{proof}
+We use Fubini's theorem, by writing $dA=dydx = dxdy$, we have
+\[
+\int_0^1 \int_0^1 \frac{x^2-y^2}{(x^2+y^2)^{3/4}}\log(4 + \sin x)\ dA
+\]
+Since the inner integral can be shown to converge, as follows:
+\[
+F_1(x) = \int_0^1 \left(\frac{x^2-y^2}{(x^2+y^2)^{3/4}}\log(4 + \sin x)\right)\ dy
+= \log(4+\sin x) \int_0^1 \frac{x^2-y^2}{(x^2+y^2)^{3/4}} \ dy
+\]
+Therefore our original integral is
+\[
+\int_0^1 F_1(x) dx
+\]
+Which if we expand we get the required expression.
+\end{proof}
+
+\section*{Problem 11.10} Let $X=Y=[0,1]$ and let $B$ be the 
+Borel $\sigma$-algebra. Let $m$ be the Lebesgue measure and
+$\mu$ be counting measure on $[0,1]$.
+\subsection*{Problem 11.10(a)}If $D=\{(x,y): x=y\}$, show that
+$D$ is measurable with respect to $B\times B$.
+\begin{proof}
+Consider $D=\{(x,y): x=y\}$ is either a point, in which case
+it is measurable with measure 0, or it is a line segment, which
+can be put in one-to-one correspondence with a segment on the
+unit interval, which we know is in $B$, and thus $B$ measurable.
+Thus $D$ is $B\times B$ measurable.
+\end{proof}
+
+\subsection*{Problem 11.10(b)} Show that
+\[
+\int_X \int_Y \chi_D(x,y)\mu(dy)m(dx) \ne \int_Y \int_X \chi_D(x,y)m(dx)\mu(dy)
+\]
+Why does this not contradict Fubini's theorem.
+\begin{proof}
+We can see that the counting measure of a single point is 1, while
+the Borel measure (which defines the Lebesgue meaure) is 0.
+Thats why the above relation is not an equality.
+Depending on the order, the non-zero measure might be multiplied
+by the number of the points, while in the other case, a zero valued
+measure is multiplied.
+It does not contradict Fubini's theorem as 
+the counting measure $\mu$ defined is not $\sigma$-finite, and hence
+Fubini's theorem actually does not apply in this case.
+\end{proof}
+
+\section*{Problem 11.11}Let $X=Y=\RR$ and let $B$ be the Borel
+$\sigma$-algebra. Define
+\[
+f(x,y) = \left\{ \begin{array}{cc}
+1 & x\ge 0\ \mbox{and}\ x\le y< x+1\\
+-1 & x\ge 0\ \mbox{and}\ x+1 \le y < x+2\\
+0 & \mbox{otherwise}
+\end{array} \right.
+\]
+Then show that
+\[
+\int \int f(x,y)\ dy\ dx \ne \int \int f(x,y)\ dx\ dy
+\]
+Why does this not contradict Fubini's theorem.
+\begin{proof}
+Consider the absolute value of $|f(x,y)|$, then we note that
+the absolute integral is not finite, and therefore the order of
+the integral can change the value. 
+The integral is not finite, because for every value of $x$ we have
+$y$ such that $|f(x,y)|\ne 0$, and thus the integral over $\RR$ is not
+finite.
+This does not contradict Fubini's
+theorem, as Fubini's theorem is not applicable in situations where
+the absolute value of $|f(x,y)|$ is not integrable.
+\end{proof}
+
+
+
+
+
+\end{document}

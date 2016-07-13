@@ -1,0 +1,188 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MTH512 HW1 TeX source
+%% Author : Sandeep Koranne
+%% Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{breqn}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+\usepackage[mathscr]{euscript}
+\usepackage{enumerate}
+\setlength{\textwidth}{16.5cm}
+\setlength{\oddsidemargin}{-0.1cm}
+\setlength{\evensidemargin}{-0.1cm}
+\setlength{\textheight}{23cm}
+\setlength{\topmargin}{-1.3cm}
+\newtheorem{lem}{Lemma}
+\newtheorem{proof}{Proof}
+% Some handy shortcuts. 
+\def\ge{\geqslant}
+\def\le{\leqslant}
+\def\phi{\varphi}
+\def\to{\rightarrow}
+\def\mapsto{\longmapsto}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\Aut{\operatorname{Aut}}
+\def\diam{\operatorname{diam}}
+\def\Image{\operatorname{Image}}
+\def\Ker{\operatorname{Ker}}
+\def\GL{\operatorname{GL}}
+\def\SL{\operatorname{SL}}
+\def\Perm{\operatorname{Perm}}
+\def\nor{\vartriangleleft}
+\def\nnor{\vartriangleright}
+\def\lcm{\operatorname{lcm}}
+\def\gcd{\operatorname{gcd}}
+\def\li{\operatorname{li}}
+\def\min{\operatorname{min}}
+\def\max{\operatorname{max}}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\pagestyle{myheadings}
+\begin{document}
+
+% Replace Name. This is for the headers on all but the first page.
+\markright{\hspace{10pt} Math 512 - Winter 2016 \hspace{100pt} Homework 8 - Sandeep Koranne }
+\thispagestyle{empty}
+
+\textbf{Math 512 - Winter 2016 \hfill Real Analysis  \hfill Instructor: Ossiander}
+
+\hrulefill 
+\medskip 
+
+% Replace Name. This is for the first page header.
+ {Sandeep Koranne \hfill Assignment 1 \hfill Due: Januay 11, 2016}
+\medskip
+
+\section*{(I1)  Give an example of a metric space that is bounded but not totally bounded.  Verify both assertions.}
+Consider the space $\RR'$ with the discrete metric, defined as
+\[
+d(x,y) = \begin{cases} 
+0 & x=y \\
+1 & x\ne y
+\end{cases}
+\]
+Now obviously this metric space is bounded (since $\sup d(x,y)\le 1$) 
+for any $x,y \in \RR'$, but it is not totally bounded since for
+$\epsilon=1/2$, there is no finite cover for $\RR'$.
+
+Another example is the unit sphere in $l_2$ defined as
+$\sum_{i=1}^\infty x_i^2 = 1$
+is bounded, but not totally bounded as the points
+$e_1=(1,0,0,\ldots)$ and $e_2=(0,1,0,\ldots)$ (in general
+the $i$ coordinate of $e_i$ is 1, and the rest 0) lie on the unit
+sphere but the distance between $e_1$ and $e_2$ or any other 
+pair is $\sqrt{2}$. Thus the unit sphere cannot have a finite
+$\epsilon$-net or cover with $\epsilon \le \sqrt{2}/2$.
+
+\section*{(I2)}
+  Let \(\Omega = \{0,1\}^{\bf N}\).  Fix \(w \in (0,1)^{\bf N}\) with \( \sum_{k=1}^\infty w_k =1\) and define \(d_w: \Omega \times \Omega \to {\bf R}\) as
+\[d_w (x,y) = \sum_{k=1}^\infty w_k |x_k-y_k|.\]
+Note:  you can think of \(w\) as a vector of weights that generates \(d_w\).
+\begin{enumerate}[a)]
+\item Verify that \((\Omega, d_w)\) is a metric space.
+\begin{proof}
+We verify the conditions of metric space.
+\begin{enumerate}
+\item $d_w(x,y)=0$ iff $x=y$. The reverse direction is obvious
+since if $x=y$ then $|x_k-y_k|=0\ \forall k$. The forward direction
+can be inferred by the fact that $|x_k-y_k|$ is non-negative and
+$w_k\in (0,1)$ is also positive, thus if $d_w(x,y)=0$ then 
+$x_k=y_k\ \forall k$, which implies $x=y$.
+
+\item $d_w(x,y) = d_w(y,x)$. Immediate consequence from
+$|x_k-y_k|=|y_k-x_k|$.
+\item $d_w(x,z) \le d_w(x,y) + d_w(y,z)$. From the definition of $d_w$
+\begin{eqnarray}
+d_w (x,z) & =  & \sum_{k=1}^\infty w_k |x_k-z_k| \nonumber \\
+          & =  & \sum_{k=1}^\infty w_k ( |x_k-y_k + y_k-z_k|) \nonumber \\
+          & \le & \sum_{k=1}^\infty w_k ( |x_k-y_k|+|y_k-z_k|)  \nonumber \\
+          & = & \sum_{k=1}^\infty w_k |x_k-y_k| + \sum_{k=1}^\infty w_k |y_k-z_k|  \nonumber \\
+         & = & d_w(x,y) + d_w(y,z)
+\end{eqnarray}
+\end{enumerate}
+\end{proof}
+\item  Find diam \(\Omega\) in \(d_w\).
+Note that diameter is defined as $\sup d_w(x,y), x,y\in \Omega$, and that
+$|x_k-y_k|$ is maximum (and equal to 1) when $y=\widetilde{x}$, where $\widetilde{x}$ is the bitwise
+complement. Thus $\diam\Omega=\sup d_w(x,y) = \sum_{k=1}^\infty w_k=1$.
+Thus diam in $d_w$ of $\Omega=1$.
+\item  For \( k \geq 0\), let \(\Omega_k = \{x \in \Omega : x_j=0\) for \(j >k \}\). Find card \(\Omega_k\).
+Since $x_j=0$ for $j>k$ this implies that $\Omega_k$ can be put in bijection
+with $2^k$, thus card $\Omega_k$ is $2^k$.
+
+\item For \( k \geq 0\), let \(\epsilon_k= \sum_{j>k} w_j\).  Show that for any \(\epsilon > \epsilon_k\), 
+\(\Omega_k\) is an \(\epsilon\)-net for \((\Omega, d_w)\).
+
+For $\Omega_k$ to be an $\epsilon$-net for $\Omega,d_w$ we have to show
+that for any $x\in\Omega$ there exists atleast one point $y\in\Omega_k$ such
+that $d_w(x,y)\le\epsilon$ for $\epsilon > \epsilon_k$. Note that the distance
+function is defined as:
+\begin{eqnarray}
+d_w(x,y) & = & \sum_{i=1}^\infty w_i|x_i-y_i| \nonumber \\
+         & = & \sum_{i=1}^k w_i|x_i-y_i| + \sum_{i=k+1}^\infty w_i|x_i-y_i|\nonumber\\
+ & = & \sum_{i=1}^k w_i|x_i-y_i| + \sum_{i=k+1}^\infty w_i x_i \nonumber \\
+ & \le & \sum_{i=1}^k w_i|x_i-y_i| + \epsilon_k \nonumber \\
+\end{eqnarray}
+This follows from $y\in\Omega_k$, thus $y_i=0$ for $i>k$, and thus
+$|x_i-y_i|=x_i$, moreover $x_i=\{0,1\}$ thus $\sum_{i=k}^\infty w_i x_i \le \epsilon_k$. Finally, $\sum_{i=1}^k w_i|x_i-y_i|$ can be made arbitrarily small by
+choosing $w_i=(\epsilon_k-\epsilon)$ and $x_i\ne y_i$ for fixed $i$ and
+$x_j=y_j\ \forall j\ne i <k$. Thus $d_w(x,y)\le \epsilon$ as required.
+
+\item Prove or disprove:  \((\Omega, d_w)\) is totally bounded. Immediate
+consequence from the existence of $\Omega_k$. Every cover of $\Omega$ will
+have $\Omega_k$ as a finite subcover and thus $\Omega$ is countably compact. 
+We know any countably compact metric space is totally bounded, thus
+$\Omega$ is totally bounded.
+
+\item Prove or disprove:  \((\Omega, d_w)\) is complete. $\Omega$ is complete
+follows from the fact that $\Omega$ is compact and totally bounded. This 
+follows from the fact that if $\Omega$ has a Cauchy sequence $\{x_n\}$ with
+no limit then $\{x_n\}$ has no limit points in $\Omega$.
+
+
+\item Recall that two metrics are equivalent if they generate the same convergent sequences.  (See page 48 of your text.)  Let \(d_w\) and \(d_v\) be metrics on \(\Omega\) generated respectively by the weight vectors \(w\) and \(v\) where \(w \neq  v\) with 
+both \(w, v \in (0,1)^{\bf N}\).  Show that \(d_w\) and \(d_v\) are equivalent.
+\begin{proof}
+Consider the definition of $w$ and $v$ as
+\[
+\sum_{i=1}^\infty w_i = \sum_{i=1}^\infty v_i = 1
+\]
+Consider the partial sums of $w$ and $v$ we note that both series are
+monotonically decreasing and bounded below as $w_i\in(0,1)$ thus
+$w_1 = 1-\sum_{i=2}^\infty w_i$, thus $s_n=\sum_{i=n}^\infty w_i$ is monotonically
+decreasing to zero. Consider $x_n \in\ \Omega$ with $x_n \to x'$ in $d_w$ and
+$x_n\to x''$ in $d_v$. Let $\epsilon > 0$, then $\exists N_0>0$ such that
+$d_w(x_{N_0},x') \le \epsilon$ and $\exists N_1>0$ such that 
+$d_v(x_{N_1},x'') \le \epsilon$. Choose $N=\max(N_0,N_1)$, then
+since $\sum_{k=N}^\infty w_i$ and $\sum_{k=N}^\infty v_i$ are convergent, thus
+$\sum_{k=N}^\infty w_i|x_n-x'|$ is Cauchy and 
+$\sum_{k=N}^\infty v_i|x_n-x''|$ is Cauchy. Therefore, if both sequences are
+Cauchy, they converge and must converge to the same limit, thus the two
+weight vectors generate the same convergent sequences.
+
+
+\end{proof}
+\item In (g) we required that the weight vectors \(w,v\) be in \( (0,1)^{\bf N}\) 
+with \( \sum_{k=1}^\infty w_k = \sum_{k=1}^\infty v_k =1\).  If we instead relax this requirement to \(v, w \in [0,1]^{\bf N}\) 
+with \( \sum_{k=1}^\infty w_k = \sum_{k=1}^\infty v_k =1\), will \(d_w\) and \(d_v\) still be equivalent for any such \(v \neq w\)?
+\begin{proof}
+If we allow $v,w\in [0,1]^{\bf N}$, then the partial sums of $\sum w_i$ are
+not Cauchy, neither is the series for $\sum v_i$. Thus if $w_i$ and $v_i$
+can be 0 for some $i$, then $x_n$ need not converge to the same limit
+in $d_w$ and $d_v$.
+\end{proof}
+\end{enumerate}
+
+\end{document}  

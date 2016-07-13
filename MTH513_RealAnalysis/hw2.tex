@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\title{HW2}
+\author{ Sandeep Koranne \& Arpita Mukherjee}
+\maketitle
+
+\section{Problem 4.6}
+Note that we can write $B=\cap_{n=1}^\infty \cup_{k=n}^\infty A_k$.
+Then $x\in \cap_{n=1}^\infty \cup_{k=n}^\infty A_k$ if and only if
+$x\in \cup_{k=n}^\infty A_k$ for all $n$. If there was a $n$ such
+that $x$ was only in finitely many sets $A_i$ upto $n$, then
+$x\not\in A_{n+1}$, and thus $x\not\in \cap_{n+1}^\infty$ and thus
+$x\not\in B$. Thus $B$ is exactly a set which is closed under
+countable unions and countable intersections. But that implies
+that $B$ is part of $\sigma$-algebra, and thus $B$ is Lebesgue
+measurable (using Proposition 4.9).
+
+\subsection{Problem 4.6(a)}
+In general it suffices to show that
+\[
+m^*(E) \ge m^*(E\cap B) + m^*(E\cap B^c)
+\]
+\subsection{Problem 4.6(b)}
+By the given condition, $m(A_n)>\delta>0$ for each $n$, and
+by definition $B=\cap_{n=1}^\infty \cup_{k=n}^\infty A_k$.
+As $n\to\infty$, we have $m(B)=\lim_{n\to\infty}m(\cup A_n)$
+%% This is still TODO
+\[
+m(A_n)
+\]
+\subsection{Problem 4.6(c)}
+By convergence of series, if $\sum_{n=1}^\infty m(A_n) < \infty$, that
+implies that $\exists N_0\in N$ such that $m(A_n)=0, n>N_0$.
+By Lebesgue measurable property, $m(A_n)=0 \implies A_n=\phi$, but
+then $B=\cap_{n=N_0}^\infty \cup_{k=n}^\infty=\phi$, and thus $m(B)=0$.
+
+\subsection{Problem 4.6(d)}
+We can think of $A_n=\{e_n\}$, the unit vectors in the Hilbert space.
+Then $A_n$ is Lebesgue measurable and $\sum_{n=1}^\infty m(A_n)=\infty$
+but $m(B)=0$, since no point is in more than one $A_n$, by construction.
+
+\subsection{Problem 4.6(d): Alternate}
+Use $A_n=\{1/n\}$. Then $\sum a_n = \infty$, but since $\lim_{n\to\infty} a_n\to 0$, we have $m(B)=0$.
+\end{document}

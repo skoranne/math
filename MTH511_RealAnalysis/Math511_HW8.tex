@@ -1,0 +1,457 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MTH511 HW8 TeX source
+%% Author : Sandeep Koranne
+%% Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{breqn}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+\usepackage[mathscr]{euscript}
+\setlength{\textwidth}{16.5cm}
+\setlength{\oddsidemargin}{-0.1cm}
+\setlength{\evensidemargin}{-0.1cm}
+\setlength{\textheight}{23cm}
+\setlength{\topmargin}{-1.3cm}
+\newtheorem{lem}{Lemma}
+
+% Some handy shortcuts. 
+\def\ge{\geqslant}
+\def\le{\leqslant}
+\def\phi{\varphi}
+\def\to{\rightarrow}
+\def\mapsto{\longmapsto}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\Aut{\operatorname{Aut}}
+\def\diam{\operatorname{diam}}
+\def\Image{\operatorname{Image}}
+\def\Ker{\operatorname{Ker}}
+\def\GL{\operatorname{GL}}
+\def\SL{\operatorname{SL}}
+\def\Perm{\operatorname{Perm}}
+\def\nor{\vartriangleleft}
+\def\nnor{\vartriangleright}
+\def\lcm{\operatorname{lcm}}
+\def\gcd{\operatorname{gcd}}
+\def\li{\operatorname{li}}
+\def\min{\operatorname{min}}
+\def\max{\operatorname{max}}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\pagestyle{myheadings}
+\begin{document}
+
+% Replace Name. This is for the headers on all but the first page.
+\markright{\hspace{10pt} Math 511 - Fall 2015 \hspace{100pt} Homework 8 - Sandeep Koranne }
+\thispagestyle{empty}
+
+\textbf{Math 511 - Fall 2015 \hfill Real Analysis  \hfill Instructor: Ossiander}
+
+\hrulefill 
+\medskip 
+
+% Replace Name. This is for the first page header.
+ {Sandeep Koranne \hfill  Homework 8 \hfill Due: December 7, 2015}
+ \begin{center}
+Ch.~16(1*,5*,6*,8,16,17*,18,22,40,42(a),45,47*,48*,49*,52*,53) and
+Ch.~18(3,4,10,11,38)
+ \end{center}
+\medskip
+
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item (Car. 16.1) Let $f$ be a nonnegative bounded function
+on $[a,b]$ with $0 \le f\le M$. Let
+\[
+E_{n,k} = \left\{\frac{kM}{2^n} \le f < \frac{(k+1)M}{2^n} \right\}
+\]
+for each $n=1,2,\ldots$ and $k=0,1,\ldots,2^n$, and set
+$\phi_n = \sum_{k=0}^{2^n} (kM/2^n) \chi_{E_{n,k}}$. Prove that
+$0 \le \phi_n \le \phi_{n+1} \le f$ and that $0 \le f-\phi_n \le 2^{-n}M$
+for each $n$. Thus $(\phi_n)$ converges uniformly to $f$ on $[a,b]$.
+
+\textbf{Solution:} We have
+\[
+E_{n,k} = \left\{\frac{kM}{2^n} \le f < \frac{(k+1)M}{2^n} \right\} = E_{n+1,2k} \bigcup E_{n+1,2k+1}
+\]
+On $E_{n+1,2k}$, we have $\phi_n=(kM)/2^n = (2kM)/2^(n+1) = \phi_{n+1}$.
+On $E_{n+1,2k+1}$ also we have $\phi_n<\phi_{n+1}$, because
+\[
+\phi_n = (kM)/2^n < (2k+1)M/2^{(n+1)} = \phi_{n+1}
+\]
+Combining,
+it is obvious that
+$\phi_n \le \phi_{n+1}$. To show $\phi_{n+1}\le f$, consider the
+definition of $E_{n,k}$. Moreover, if $f(x) < \infty$, then
+\[
+0 \le f(x) -\phi_n(x) < \frac{(k+1)M}{2^n} - \frac{kM}{2^n} = \frac{M}{2^n}
+\]
+Thus $f(x) \ge \phi_n(x)$ and as $n\to\infty$, 
+$(\phi_n)$ converges uniformly to $f$ on $[a,b]$.
+
+\item (Car. 16.5) If we define $rE = \{ rx: x \in E\}$, what is
+$m^*(rE)$ in terms of $m^*(E)$.
+
+\textbf{Solution:} Using the definition of $m^*(E)$
+\[
+m^*(E) = \inf\ \left\{ \sum_{n=1}^\infty \ \ell(I_n) : E \subset \bigcup_{n=1}^\infty I_n \right\}
+\]
+With the scaling of $rE$, each $\ell(I_n)=r\ell(I_n)$. Thus
+$m^*(rE)=r\ m^*(E)$.
+
+\item (Car. 16.6) If $E$ has non-empty interior, show that $m^*(E)>0$.
+
+\textbf{Solution:} Use the definition of interior of $E$ such that
+there exists an open ball of radius $\epsilon>0$ such that 
+$U_\epsilon(x), x\in E$ is completely contained in $E$, thus 
+$\diam U_\epsilon(x)>0$ and thus $m^*(E)>2\epsilon>0$.
+
+\item (Car. 16.8) Given $\delta>0$, show that $m^*(E) = \inf 
+\ \sum_{n=1}^\infty\ \ell(I_n)$, where the infemum is taken over
+all coverings of $E$ by sequences of intervals $(I_n)$, where each
+$I_n$ has diameter less than $\delta$.
+
+\textbf{Solution:} By the definition of \textbf{outer measure}
+we know $m^*(E)$ is defined as:
+\[
+m^*(E) = \inf\ \left\{ \sum_{n=1}^\infty \ \ell(I_n) : E \subset \bigcup_{n=1}^\infty I_n \right\}
+\]
+where the infemum is taken over all coverings of $E$ by countable union
+of intervals. By definition of the infemum, we know there exists
+a disjoint set of intervals $J_n$ such that $E \subseteq \cup J_n$. Moreover,
+if we partition $J_n$ further into disjoint intervals $I_n$,
+where each
+$I_n$ has diameter less than $\delta$ then 
+\[
+m^*(E) = m^*((J_n)) = \sum_n m^*(J_n) = \sum_n m^*(I_n) = m^*((I_n))
+\]
+as the measure does not change as long as the intervals are disjoint.
+
+\item (Car. 16.16) If $m^*(E)=0$, show that $m^*(E\cup A) = m^*(A) = m^*(A\setminus E)$ for any $A$. 
+
+\textbf{Solution:} We know that $m^*(E\cap A) \le m^*(E)$, thus if 
+$m^*(E)=0$, $m^*(E\cap A)=0$. We can write $m^*(E\cup A)$ as
+\[
+m^*(E\cup A) = m^*(E) + m^*(A) - m^*(E\cap A) = 0 + m^*(A) - 0
+\]
+thus $m^*(E\cup A) = m^*(A)$. Also,
+\[
+m^*(A\cup E) = m^*(E \cup A\setminus E ) = m^*(E) + m^*(A\setminus E) - m^*(E \cap A\setminus E)
+\]
+Since $(E \cap A\setminus E)=\emptyset$, we get using the previous result
+and $m^*(E)=0$,
+\[
+m^*(A\cup E) = m^*(A) = m^*(A\setminus E)
+\]
+
+\item (Car. 16.17-optional)
+
+\textbf{Solution:} 
+
+\item (Car. 16.18) If $E$ is a compact set with $m^*(E)=0$, and if $\epsilon>0$, prove that
+  $E$ can be covered by finitely many open intervals, $I_1,\ldots,I_n$, satisfying $\sum_{j=1}^n m^*(I_j) < \epsilon$.
+
+\textbf{Solution:} By definition of the measure we know there exist
+a set of intervals $(I_n)$ such that $E\subseteq \bigcup_n I_n$ and
+\[
+\sum_{j=1}^n m^*(I_j) < m^*(E) + \epsilon 
+\]
+With $m^*(E)=0$ as given in the problem to get the required result.
+
+\item (Car. 16.22) Let $E=\bigcup_{n=1}^\infty E_n$. Show that $m^*(E)=0$ if and only if $m^*(E_n)=0$ for every $n$.
+
+\textbf{Solution:} Consider the definition of measure
+\[
+m^*(E) = m^*(\bigcup_{n=1}^\infty E_n) \le \sum_{n=1}^\infty m^*(E_n)
+\]
+The backward direction of the proof is obvious, since if each $m^*(E_n)=0$,
+their sum is zero, thus $m^*(E)=0$. To show the forward direction
+consider another set $F$ defined as 
+ $F_1 = E_1$, $F_2 = E_2\setminus E_1$ and in general
+\[
+F_n = E_n \bigcap_{i=1}^{n-1} E_i^c
+\]
+Then $F_i \cap F_j = \emptyset$ for $i\ne j$ and $F_n \subseteq E_n$
+and $\bigcup_{i=1}^\infty F_n = \bigcup_{j=1}^\infty E_n$.
+Then we can write $m^*(E)$ as
+\[
+m^*(\bigcup E_n) = m^*(\bigcup F_n) = \sum m^*(F_n) \le \sum m^*(E_n)
+\]
+Thus if $m^*(E)=0$ then each $m^*(F_n)=0$, and using nonnegativity of
+$E_n$ and $F_n$, this implies that each $E_n=0$.
+ 
+\item (Car. 16.40) If $A$ and $B$ are measurable sets, show that $m(A\cup B)+m(A\cap B)=m(A)+m(B)$.
+
+\textbf{Solution:} We can write $(A\cup B)=A\cup (B\setminus A)$ and
+$B = (A \cap B) \cup (B\setminus A)$.
+Thus we have
+\[
+m(A\cup B) = m(A\cup (B\setminus A)) = m(A) + m(B\setminus A) - m( A \cap ( B \setminus A ) ) = m(A) + m(B\setminus A) + m(\emptyset)
+\]
+and
+\[
+m(B) = m(A\cap B) + m(B\setminus A) 
+\]
+Here we have used the fact that the partition of $B$ above is disjoint.
+Combining and eliminating $m(B\setminus A)$ we get 
+\[
+m(A\cup B) - m(A) = m(B) - m(A\cap B)
+\]
+Rearrange to get the required result.
+
+\item (Car. 16.42(a)) Suppose that $E$ is measurable with $m(E)=1$. Show that:
+  \begin{enumerate}
+    \item There is a measurable set $F \subset E$ such that $m(F)=1/2.$.
+  \end{enumerate}
+
+  \textbf{Solution:} As the hint specifies, consider the function
+  \[
+  f(x) = m(E\cap (-\infty,x])
+  \] Since $f(x)$ is continuous and also we can scale $f$ such that 
+$f(x_0)=m(\emptyset)=0$ and $f(x_1)=m(E)=1$, then by the indermediate value theorem and
+using Theorem 16.23 of the textbook, there
+exist $x$ such that $f(x)=1/2$, and thus there exist $F\subset E$ 
+such that $m(F)=1/2$.
+
+\item (Car. 16.45) Let $f: X\to Y$ be any function:
+  \begin{enumerate}
+  \item If $\mathcal{B}$ is a $\sigma$-algebra of subsets of $Y$, show that $\mathcal{A} = \{f^-1(B):
+    B \in \mathcal{B}\}$ is a $\sigma$-algebra of subsets of $X$.
+
+\textbf{Solution:}     
+Let $E\subset Y$ such that $f^-1(E) \subseteq X$. 
+Since $\mathcal{B}$ is a $\sigma$-algebra of subsets of $Y$, it contains
+the emptyset and the complete set, thus the inverse image in $X$
+also contains the emptyset and $f^-1(E)$. 
+We have $f^-1(Y) = X$, and $f^-1(Y-A) = X - f^-1(A)$. Also, 
+\[
+f^-1( \bigcup_{i=1}^\infty A_i ) = \bigcup_{i=1}^\infty f^-1(A_i) 
+\]
+Thus $\mathcal{A}$ is closed under countable union, and thus
+$\mathcal{A}$ is a $\sigma$-algebra of subsets of $X$.
+
+  \item If $\mathcal{A}$ is a $\sigma$-algebra of subsets of $X$, show that $\mathcal{B} = \{B: f^-1(B)
+    \in \mathcal{A}\}$ is a $\sigma$-algebra of subsets of $Y$.
+
+\textbf{Solution:}     
+We have $f^-1(Y) = X$, and $f^-1(Y-A) = X - f^-1(A)$. Also, 
+\[
+f^-1( \bigcup_{i=1}^\infty A_i ) = \bigcup_{i=1}^\infty f^-1(A_i) 
+\]
+because $\mathcal{A}$ is a $\sigma$-algebra of subsets of $X$.
+Hence,
+$\emptyset,Y$ belong to $\mathcal{B}$, and also it is closed under
+countable union, thus $\mathcal{B}$ is a $\sigma$-algebra of subsets of $Y$.
+
+    \end{enumerate}
+
+\item (Car. 16.47) Given that $\{\emptyset,\RR\}$ and $\mathcal{P}(\RR)$
+are both $\sigma$-algebras. 
+
+\textbf{Solution:} Using the definition of $\sigma$-algebra we know
+that any other $\sigma$-algebra must contain $\emptyset$ and $\RR$.
+Moreover, since it comprises of subsets of $\RR$ it must be contained
+in $\mathcal{P}(\RR)$.
+
+\item (Car. 16.48) Let $\mathcal{E}$ be any collection of subsets of $\RR$.
+Show that there is always a smallest $\sigma$-algebra $\mathcal{A}$ 
+containing $\mathcal{E}$
+
+\textbf{Solution:} 
+%Since $\mathcal{E}\subseteq \mathcal{P}(\RR)$ we know
+%that $\mathcal{E}\ne\emptyset$. 
+Let $\mathcal{A}=\bigcap \mathcal{S}$,
+where $\mathcal{S}$ is the set of all $\sigma$-algebras of subsets of
+$\RR$ containing $\mathcal{E}$. Since $\mathcal{P}(\RR)$ is one
+such $\sigma$-algebra, we know atleast one $\mathcal{S}$ is not empty.
+Using the definition of $\sigma$-algebra that it is closed under
+complementation, countable union and using DeMorgan's law
+\[
+(x \cap y)^c = x^c \cup y^c
+\]
+if $x,y\in\mathcal{S}$, then $x\cap y \in \mathcal{S}$. Thus
+$\mathcal{A}=\bigcap\mathcal{S}$ is the smallst $\sigma$-algebra
+containing $\mathcal{E}$.
+
+\item (Car. 16.49) The smallest $\sigma$-algebra containing
+$\mathcal{E}$ is called \textbf{the $\sigma$-algebra generated by}
+$\mathcal{E}$ and is denoted $\sigma(\mathcal{E})$. 
+If $\mathcal{E}\subset\mathcal{F}$, prove that
+$\sigma(\mathcal{E})\subset \sigma(\mathcal{F})$.
+
+\textbf{Solution:} Since by definition $\sigma(\mathcal{E})$ is
+the smallest $\sigma$-algebra containing $\mathcal{E}$, any other
+$\sigma$-algebra on the subsets of $\RR$ which contains $\mathcal{E}$
+must also contain $\sigma(\mathcal{E})$ (this is 
+because $\sigma(\mathcal{E})$ is defined using set intersection).
+
+\item (Car. 16.52) 
+\textbf{Solution:}
+
+
+\item (Car. 16.53) The \textbf{Borel $\sigma$-algebra} $\mathcal{B}$ is defined to be the smallest
+  $\sigma$-algebra of subsets of $\RR$ containing the open sets; equivalently, $\mathcal{B}$ is the
+  $\sigma$-algebra generated by the (open) intervals. The elements of $\mathcal{B}$ are called the
+  \textbf{Borel sets}. Notice that closes sets, $G_\delta$-sets, $F_\sigma$-sets, $G_{\delta\sigma}$-sets, and so
+  on, are all Borel sets. From Corollaries 16.17 and 16.20, every Borel set is measurable; that
+  is $\mathcal{B} \subset \mathcal{M}$. Show that $\mathcal{B}$ is generated by each of the following:
+  \begin{enumerate}
+  \item The open intervals $\mathcal{E}_1=\{(a,b): a<b\}$
+
+    \textbf{Solution:} The open interval $(a,b)$ can be written as
+\[
+(a,b) = \bigcup_{n_0}^\infty \left[ a+\frac{1}{n}, b-\frac{1}{n} \right]
+\]
+where $\frac{1}{n_0} < (b-a)$. This contains the empty set and the complete
+set and it closed under countable union, thus is a $\sigma$-algebra
+generated by open intervals.
+     
+\item The closed intervals $\mathcal{E}_2=\{[a,b]: a<b\}$
+
+  \textbf{Solution:} The closed interval $[a,b]$ can be written as
+\[
+[a,b] = \{a\} \bigcup (a,b) \bigcup \{b\}
+\]
+thus $\mathcal{E}_1 \subset \mathcal{E}_2$, as required, and thus
+is contained in $\sigma(\mathcal{E}_2)$.
+\item The half-open intervals $\mathcal{E}_3=\{(a,b],[a,b): a<b\}$
+
+    \textbf{Solution:} The half-open 
+intervals $\mathcal{E}_3=\{(a,b],[a,b): a<b\}$ can be written as
+\[
+\{(a,b]: a<b\} = (a,b) \bigcup \{b\}
+\]
+and similarly for $[a,b\}=\{a\} \bigcup (a,b)$, thus
+$\mathcal{E}_1 \subset \mathcal{E}_3$, as required, and thus
+is contained in $\sigma(\mathcal{E}_3)$.
+
+  \item The open rays $\mathcal{E}_4=\{(a,\infty),(-\infty,b): a,b\in \RR\}$
+
+    \textbf{Solution:} Set $b=\infty$ and similarly set $a=-\infty$, to get
+$\mathcal{E}_1 \subset \mathcal{E}_4$, as required, and thus
+is contained in $\sigma(\mathcal{E}_4)$.
+  \item The closed rays $\mathcal{E}_5=\{[a,\infty),(-\infty,b]: a,b\in \RR\}$.
+
+    \textbf{Solution:}     
+Set $b=\infty$ and then $\mathcal{E}_5 = \{a\}\bigcup (a,b)$, similarly
+set $a=-\infty$ and then $\mathcal{E}_5 = (a,b)\bigcup \{b\}$. Thus
+$\mathcal{E}_1 \subset \mathcal{E}_5$, as required, and thus
+is contained in $\sigma(\mathcal{E}_5)$.
+  \end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item (Car. 18.3) Prove that $\int_1^\infty (1/x)\ dx = \infty$ (as a Lebesgue integral).
+
+\textbf{Solution:} We define a simple function
+\[
+\phi_n (x) = \sum_{i=1}^N \frac{1}{i+1} \chi_{i,i+1} (x)
+\]
+we can easily verify that $\phi_n(x) \le f(x)$ where $f(x)=1/x$.
+Moreover $\phi$ is simple, nonnegative and integrable, 
+and then use the definition of Lebesgue integral
+\[
+\int_1^\infty (1/x)\ dx = \sup \left\{ \int \phi : 0 \le \phi \le f \right\}
+\]
+Thus
+\[
+\int_1^\infty (1/x)\ dx \ge \sum_{i=1}^N \frac{1}{i+1} \chi_{i,i+1} (x)
+\]
+We know $m(\chi_{i,i+1}(x))=1$, but the series $\sum_{i=1}^N \frac{1}{i+1}$
+diverges to $\infty$, thus the Lebesgue integral is $\infty$ as well.
+
+\item (Car. 18.4) Find a sequence $(f_n)$ of nonnegative measurable functions such that
+  $\lim_{n\to\infty} f_n=0$, but $\lim_{n\to\infty}\int f_n=1$. In fact, show that $(f_n)$ can be
+  chosen to converge \emph{uniformly} to 0.
+
+\textbf{Solution:} Consider the function $f_n(x)=\frac{2}{\pi}\frac{n}{1+n^2x^2}$, then
+$\lim_{n\to\infty} f_n=0$. Next consider the integral
+\[
+ \int  \frac{2}{\pi}\frac{n}{1+n^2x^2} \ dx
+\]
+We know
+\[
+ \int  \frac{2}{\pi}\frac{n}{1+n^2x^2} \ dx = \frac{2}{\pi}\arctan(nx)
+\]
+And,
+\[
+\lim_{n\to\infty} \frac{2}{\pi}\arctan(nx) = \frac{2}{\pi}\arctan({\infty}) = 
+\frac{2}{\pi}\frac{\pi}{2}=1
+\]
+As required. 
+
+To show uniform convergence, we have to show that 
+for any $\epsilon>0$, there is an integer $N$
+such that 
+\[
+|f_n(x) - f(x)| < \epsilon
+\] for all $x\in\RR$ and $n>N$. Since the question is asking the conditions
+for an arbitrary $f_n$, we have to give conditions for uniform
+convergence for arbitrary $f_n$. If $f_n$ was uniformly continuous, then
+$N$ could be chosen to be independent of $x$ near 0.
+
+
+\item (Car. 18.10) If $f$ is nonnegative and measurable, show that $\int_{-\infty}^\infty f = \lim_{n\to\infty}
+  \int_{-n}^n f = \lim_{n\to\infty} \int_{\{f \ge (1/n)\}} f$.
+
+\textbf{Solution:} Since $f$ is nonnegative and measurable we can write
+it as the limit of an increasing sequence of integrable simple functions
+$0 \le \phi_1 \le \phi_2 \le \cdots \le f$ such that 
+$f=\lim_{n\to\infty} \phi_n$ and moreover $\int f=\lim_{n\to\infty}\int\phi_n$
+using Corollary 18.8 of the textbook. Thus
+\[
+\int_{-\infty}^\infty f = \lim_{n\to\infty}\int_{-\infty}^\infty  \phi_n = \lim_{n\to\infty}\int_{-n}^n f
+\]
+Since $f>0$, the support of $f$ can be written as:
+\[
+\{f>0\}=\bigcup_{i=1}^\infty \{ f\ge(1/n)\}
+\]
+Using this $\phi_n=\sum_{i=1}^n f^{-1}(\chi_i)m(\chi_i)$ where $\chi_i$ is the
+above mentioned support. 
+Thus $f_n$ is increasing, and we can use the monotone convergence theorem.
+Combining this with the previous result we get:
+\[
+\lim_{n\to\infty}\int_{-n}^n f = \lim_{n\to\infty} \int_{\{f\ge(1/n)\}} f
+\]
+
+\item (Car. 18.11) If $f$ is nonnegative and integrable, show that $\int_{-\infty}^\infty f = \lim_{n\to\infty}
+  \int_{\{f\le n\}} f$.
+
+\textbf{Solution:} Since $f$ is nonnegative we can use the $\phi_n$ we
+used in the previous problem as well as the fact that $f_n$ is increasing
+we can use the monotone convergence theorem; 
+moreover since $f$ is also integrable, we know
+it is finite a.e. Thus, the support can be modified to 
+be $\{f>0\} = \bigcup_{i=1}^\infty \{f\le i\}$. Thus using the previous problem,
+\[
+\int_{-\infty}^\infty f = \lim_{n\to\infty}\int_{-n}^n  f_n = \lim_{n\to\infty} \int_{\{f\le n\} } f
+\]
+
+\item (Car. 18.38) If $f\in L_1[0,1]$, show that $x^nf(x) \in L_1[0,1]$ for $n=1,2,\ldots$ and compute
+  $\lim_{n\to\infty} \int_0^1 x^n f(x) dx$.
+
+\textbf{Solution:} Since the series $\sum_{i=1}^\infty x^i$ converges for 
+$x\in [0,1)$, we can use Lebesgue integration since $f\in L_1[0,1]$ also.
+Since $x^n$ can be dominated by the constant function $g(x)=1,x\in[0,1]$, 
+we can dominate
+$x^nf(x)$ by $f(x)$, which is in $L_1[0,1]$, thus using the dominated
+convergence theorem (18.19) we have $x^nf(x)\in L_1[0,1]$.
+Moreover since $\lim_{n\to\infty} x^n=0$ for $x<1$, thus the computed 
+limit for   $\lim_{n\to\infty} \int_0^1 x^n f(x) dx$ is $f(1)$.
+
+
+\end{enumerate}
+\end{document}
+

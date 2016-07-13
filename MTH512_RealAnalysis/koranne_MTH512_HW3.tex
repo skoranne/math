@@ -1,0 +1,382 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MTH512 HW3 TeX source
+%% Author : Sandeep Koranne
+%% Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{breqn}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+%\usepackage{graphicx}
+\usepackage[mathscr]{euscript}
+\usepackage{enumerate}
+\setlength{\textwidth}{16.5cm}
+\setlength{\oddsidemargin}{-0.1cm}
+\setlength{\evensidemargin}{-0.1cm}
+\setlength{\textheight}{23cm}
+\setlength{\topmargin}{-1.3cm}
+\newtheorem{lem}{Lemma}
+\newtheorem{proof}{Proof}
+% Some handy shortcuts. 
+\def\ge{\geqslant}
+\def\le{\leqslant}
+\def\phi{\varphi}
+\def\to{\rightarrow}
+\def\mapsto{\longmapsto}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\Aut{\operatorname{Aut}}
+\def\diam{\operatorname{diam}}
+\def\Image{\operatorname{Image}}
+\def\Ker{\operatorname{Ker}}
+\def\GL{\operatorname{GL}}
+\def\SL{\operatorname{SL}}
+\def\Perm{\operatorname{Perm}}
+\def\nor{\vartriangleleft}
+\def\nnor{\vartriangleright}
+\def\lcm{\operatorname{lcm}}
+\def\gcd{\operatorname{gcd}}
+\def\li{\operatorname{li}}
+\def\min{\operatorname{min}}
+\def\max{\operatorname{max}}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\pagestyle{myheadings}
+\begin{document}
+
+% Replace Name. This is for the headers on all but the first page.
+\markright{\hspace{10pt} Math 512 - Winter 2016 \hspace{100pt} Homework 3 - Sandeep Koranne }
+\thispagestyle{empty}
+
+\textbf{Math 512 - Winter 2016 \hfill Real Analysis  \hfill Instructor: Ossiander}
+
+\hrulefill 
+\medskip 
+
+% Replace Name. This is for the first page header.
+ {Sandeep Koranne \hfill Homework 3 \hfill Due: Januay 29, 2016}
+\medskip
+
+%% Chapter 6 : 5,6,7,9,13,24 : Optional 2,10,14,17,25,26
+
+\section{Chapter 7 Problem 28} Suppose that every \emph{countable},
+ \emph{closed} subset of $M$ is complete. Prove that $M$ is 
+complete.
+\begin{proof}
+Let $A=\{x_1,x_2,\ldots,\}=\{x_i\}_{i> 0}$ be a Cauchy sequence. 
+Note that $A$ is countable.
+Since $A$ is Cauchy, it has at most one limit point, and adding that
+limit point to $A$ we get $\bar{A}$ which is also countable.
+Moreover, $\bar{A}$ is closed, and thus as given in the problem
+$\bar{A}$ is complete (since it is a countable, closed subset of $M$).
+Thus $\{x_n\}\to x\in \bar{A} \in M$. Hence $M$ is complete (as we
+have shown that all Cauchy sequences converge to a limit in $M$).
+
+\end{proof}
+
+\section{Chapter 7 Problem 29}
+Prove that $M$ is complete if and only if, for each $r>0$, the closed
+ball $\{y\in M:d(x,y)\le r\}$ is complete.
+\begin{proof}
+$\implies$
+We can use Theorem 7.9 of the textbook which states that a subset
+$A$ of a complete metric space $M$ is complete if and only if $A$
+is closed in $M$. Since the closed ball $B(x,r)$ is closed in $M$,
+certainly if $B(x,r)$ is not complete, then $M$ is not complete.
+
+
+$\impliedby$
+For the other direction, consider a Cauchy (thus bounded)
+sequence $\{x_n\}\in B(x,r)$ for some $r$. Since the closed ball
+$B(x,r)$ is complete $\{x_n\}\to x\in B(x,r)\in M$. Thus $M$ is
+also complete.
+
+\end{proof}
+\section{Chapter 7 Problem 33}
+Let $s$ denote the vector space of all finitely nonzero real sequences;
+that is, $x=(x_n)\in s$ if $x_n=0$ for all but finitely many $n$. Show
+that $s$ is \emph{not} complete under the $\sup$ norm 
+$\| x\|_\infty = \sup_n|x_n|$.
+\begin{proof}
+In a normed vector space, the distance produced by the norm
+can be written as
+\[
+d(x,y) = \| x-y\|_\infty = \sup_n | x_n - y_n|
+\]
+where $x$ and $y$ are finitely nonzero sequences.
+Consider sequences of the form $x_i=\{0,0,1/i^2,0,\ldots\}$.
+Clearly $x_i\in s$ since only one term is non-zero, and moreover
+$\|x_i\|_\infty=\sup_n |x_{i_n}|=1/i^2$. 
+Now consider a sequence of sequences
+\[
+y = x_1 + x_2 + \cdots + x_n + \cdots
+\]
+Clearly $y$ is a Cauchy sequence, since $d(x_m,x_n)=\|x_m-x_n\|_\infty$
+which is $\sup|x_m-x_n|$. For any $\epsilon>0$, we can find
+$N\in \NN$ such that for $m,n>N$, $|1/m^2 - 1/n^2|<\epsilon$. But if
+we look at the limit of $y$ as $n\to\infty$, we can see that 
+$y^*=\lim_{n\to\infty} y\not\in s$, 
+since $y^*$ has infinitely many non-zero terms (since it was defined
+to be pointwise addition of $x_i$, each of which have 1 non-zero term).
+Thus $y$ converges to a limit point not in $s$, thus $s$ is not complete. 
+
+
+\end{proof}
+\section{Chapter 7 Problem 35} Prove that a normed vector space $X$
+is complete if and only if its closed unit ball $B=\{x\in X:\|x\| \le 1\}$
+is complete.
+\begin{proof}
+Since $B$ is a closed subset of $X$, we have shown in Problem 29 that
+$B$ is complete if $X$ is complete and moreover $X$
+is not complete if $B$ is not complete. 
+To show the other direction, 
+consider a Cauchy sequence $(x_n)\in X$.
+Moreover, since the sequence is Cauchy it must be bounded we 
+know $\exists M: (x_k)< M, \ \forall k$; thus we can scale $(x_n)$ by $M$
+to get a new sequence $(y_n)=(x_n/M)$ such that $\|y_k\|\le 1, \forall k$.
+Thus $(y_n)\in B$, and since $B$ is complete $(y_n)\to y\in B\implies y\in X$.
+Thus $My\in X$, and we have shown that all Cauchy sequences in $X$
+converge to a limit in $X$, that implies $X$ is complete, as required.
+\end{proof}
+
+\section{Chapter 7 Problem 36} The function $f(x)=x^2$ has two obvious
+fixed points: $p_0=0$ and $p_1=1$. Show that there is a $0<\delta<1$
+such that $|f(x)-p_0|<|x-p_0|$ whenever $|x-p_0|<\delta, x\ne p_0$.
+Conclude that $f^n(x)\to p_0$ whenever $|x-p_0|<\delta, x\ne p_0$.
+This means that $p_0$ is an \emph{attracting} fixed point for $f$; every
+orbit that starts out near 0 converges to 0. In contrast, find a $\delta>0$
+such that if $|x-p_1|<\delta, x\ne p_1$, then $|f(x)-p_1|>|x-p_1|$.
+This means that $p_1$ is a \emph{repelling} fixed point for $f$;
+orbits that start out near 1 are pushed away from 1. In fact, given any
+$x\ne 1$, we have $f^n(x)\not\to 1$.
+\begin{proof}
+We first analyze the point $p_0$.
+Consider $\delta=0.5$, then let $x=p_0+\delta$, then
+$f(x)=x^2=(p_0+\delta)^2=\delta^2 < x$. Thus
+$|f(x)-p_0|<|x-p_0|$. Hence, any value of $0<\delta<1$ results
+in $f(x)$ moving closed to $p_0$.
+ For $p_1$, clearly we have to consider $|x|\ge 1$, 
+as otherwise $|x-p_0|<\delta$
+for some $0<\delta<1$ (and we would be in the first case). For any $|x|\ge 1$
+we can consider any $\delta>0$, such as $\delta=0.3$. Then
+consider $x=p_1+\delta/2$, then clearly $|x-p_1|=\delta/2<\delta$.
+\[
+f(x)=x^2=(1+\delta/2)^2=1+\delta^2/4+\delta
+\]
+Thus $|f(x)-1|=|\delta^2/4+\delta| > |(1+\delta)-1|=|\delta|$.
+
+\end{proof}
+\section{Chapter 7 Problem 41}
+Let $M$ be complete  and let $f:M\to M$ be continuous. If
+$f^k$ is a strict contraction for some integer $k>1$, show that $f$
+has a unique fixed point.
+\begin{proof}
+We know $\exists x_0\in M: f^n(x_0)=x_0, n\ge k$, 
+using the contraction mapping theorem.
+ Moreover $f(f^n(x_0))=x_0$. Compose both
+sides by $f^{-1}$ which we know is well defined as $f$ is continuous
+and $x_0$ is closed in $M$, thus $f^{-1}(x_0)$ is closed.
+We get $f^n(x_0)=x_0=f^{-1}(x_0)$. But this implies
+$f(x_0)=x_0$, as required.
+\end{proof}
+
+\section{Chapter 7 Problem 42}
+Define $T: C[0,1]\to C[0,1]$ by $(T(f))(x)=\int_0^x f(t)dt$.
+Show that $T$ is \emph{not} a strict contraction while $T^2$ is.
+What is the fixed point of $T$ ?
+\begin{proof}
+Let use define the metric on $C[0,1]$ using the $\infty$-norm.
+Then $T(f)(x) = \int_0^x f(t)dt$, for any functions $f,g\in C[0,1]$
+we can define 
+\[
+d(T(f),T(g)) = \|\int_0^x f(t)dt - \int_0^x g(t)dt\|_\infty \le 
+\int_0^x \|f(t)-g(t)\|_\infty dt \le \|f-g\|_\infty
+\]
+Hence,
+\[
+|Tf - Tg| \le \|f-g\|_\infty
+\]
+But, consider $f=e^x$ and $g=0$ (constant function). 
+Then $T(f)(x)=\int_0^x e^tdt=e^x=f(x)$.
+Then
+$d(Tf-0)=\|f-0\|_\infty$, thus $T$ is not a strict contraction. However,
+consider $T(T(f))$ using Fubini's Theorem:
+\[
+(T(T(f)))(x) = \int_0^x f(x_1)(x-x_1)dx
+\]
+In general
+\[
+(T^n(f))(x) = \frac{1}{(n-1)!} \int_0^x f(t)(x-t)^{n-1} dt
+\]
+Thus 
+\begin{eqnarray}
+d(((T^n)(f))(x), ((T^n)(g))(x)) & \le & \frac{1}{(n-1)!} 
+\left(\int_0^x (x-t)^{n-1} dt\right) \|f-g\|_\infty \nonumber \\
+  & = & \frac{x^n}{(n-1)!} \|f-g\|_\infty \nonumber \\
+  & \le & \frac{1}{(n-1)!} \|f-g\|_\infty \nonumber 
+\end{eqnarray}
+since the domain is $C[0,1]$. Thus $T^n, n\ge 2$ is always
+a strict contraction.
+As we showed above $f(x)=e^x$ is a fixed point for $T$.
+\end{proof}
+
+\section{Chapter 7 Problem 47} A function $f:(M,d)\to (N,\rho)$
+is said to be {\bf uniformly continuous} if $f$ is continuous
+and if, given $\epsilon>0$, there is always a single $\delta>0$
+such that $\rho(f(x),f(y))<\epsilon$ for any $x,y\in M$ with
+$d(x,y)<\delta$. That is $delta$ is allowed to depend on $f$ and
+$\epsilon$ but not on $x$ or $y$. Prove that any Lipschitz map
+is uniformly continuous.
+\begin{proof}
+Note that a function is Lipschitz if
+\[
+d(f(x),f(y)) \le L d(x,y)
+\]
+for some constant $L>0$. Let $\epsilon>0$ and 
+choose $\delta(\epsilon)=\epsilon/L$, then for $d(x,y)<\delta(\epsilon)$
+\[
+d(f(x),f(y)) \le L d(x,y) \le L \delta(\epsilon) = L \epsilon/L = \epsilon
+\]
+As required.
+\end{proof}
+
+\section{Chapter 7 Problem 48} Prove that a uniformly
+continuous map sends Cauchy sequences into Cauchy sequences.
+\begin{proof}
+Let $(x_n)$ be a Cauchy sequence. Since $f$ is uniformly
+continuous, given $\epsilon>0$, there is always a single $\delta>0$
+such that $\rho(f(x),f(y))<\epsilon$ for any $x,y\in M$ with
+$d(x,y)<\delta$. Since $(x_n)$ is Cauchy, we know $\exists N(\delta)\in \NN$
+such that $d(x_m,x_n)<\delta, m,n>N(\delta)$. But then
+\[
+m,n>N(\delta) \implies d(x_m,x_n)<\delta \implies \rho(f(x_m),f(x_n)) < \epsilon 
+\]
+Therefore, $\exists N(\delta)\in\NN$ such that $\rho(f(x_m),f(x_n))<\epsilon$,
+therefore $f$ sends Cauchy sequences into Cauchy sequences, as required.
+\end{proof}
+\section{Optional Chapter 7 Problem 30} If $(M,d)$ is complete, prove
+that every open subset $G$ of $M$ is homeomorphic
+to a complete metric space.
+\begin{proof}
+Let $F=M\setminus G$ and consider the metric
+\[
+\rho(x,y) = d(x,y) + |(d(x,F))^{-1} - (d(y,F))^{-1}|
+\]
+on $G$. Note that $d(x,F)$ is defined as the infemum of the distance
+between $x$ and any $y\in F$. Thus $d(x,F)$ is close to zero near
+the boundary of $F$, and thus $\rho(x,y)\to\infty$ for $x$ or $y$
+close to the boundary. Now consider a sequence $(x_n)\in G$
+with limit not in $G$. We show that $(x_n)$ cannot be Cauchy.
+For $\epsilon>0$, for $n,m> N\in\NN$, $\rho(x_n,x_m)$ is given by
+\[
+\rho(x_n,x_m) = d(x_n,x_m) + | (d(x_n,F))^{-1} - (d(x_m,F))^{-1}|
+\]
+Let $(x_n)\to x^* \not\in G\implies x^*\in F$, thus
+$\rho(x_n,x^*)>\epsilon$, and thus $(x_n)$ is not Cauchy. The converse
+follows immediately, that if $(x_n)$ is Cauchy and $(x_n)\to x^*\in G$ then
+$\rho(x_m,x_n)<\epsilon$, this implies that Cauchy sequences in $G$
+have limits in $G$, and thus $G$ is complete.
+\end{proof}
+
+\section{Optional Chapter 7 Problem 37} Suppose that $f:(a,b)\to(a,b)$
+has a fixed point $p$ in $(a,b)$ and that $f$ is differentiable at
+$p$. If $|f'(p)|<1$, prove that $p$ is an attracting fixed point
+for $f$. If $|f'(p)|>1$, prove that $p$ is a repelling fixed point for $f$.
+\begin{proof}
+Consider a sequence $(x_{n+1})=f(x_n)$, and let $(x_n)\to x^*$ (using
+the fixed point assumption)
+consider the difference
+between $x_{n+1}$ and $p$. We can write
+\[
+x_{n+1}-p = f(x_n)-f(p) = f'(x_0)[x_n-p]
+\]
+where $x_0$ is an arbitrary point, using the Mean Value Theorem.
+Thus if $f'(p)<1$, then as $x_n\to p$ we get $f(x_n)\to f(p)$. This
+is because as $(x_n)\to p$ we have $f'(x_n)\to f'(p)$.
+\end{proof}
+\section{Optional Chapter 7 Problem 39}
+The cubic $x^3-x-1$ has a unique real root $x_0$ with $1<x_0<2$.
+
+%% \begin{figure}[htb]
+%% \begin{center}
+%% \includegraphics[width=8cm]{banach_cube.eps}
+%% \caption{Application of Banach contraction mapping principle.}
+%% \label{fig:banach_cube}
+%% \end{center}
+%% \end{figure}
+
+\begin{proof}
+We write $x^3-x-1=0$ as $x=\sqrt[3]{x+1}$, since we want our
+iterative approximations to stay within the interval. If we choose
+to write the approximation as $x=x^3-1$, it is possible that the 
+function iterates will not stay contained within the interval.
+
+Using $x=\sqrt[3]{x+1}$ and starting value of $x=1.5$ we get
+the first approximation as shown in Table~\ref{tab:root_difference}.
+Hence the root is approximately 1.32472.
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|r|r|r|}
+\hline
+Iteration & $x$ & $\sqrt[3]{x+1}$ & $x^3-x-1$ \\
+\hline
+\hline
+0	& 1.5	& 1.35721	& 0.875 \\
+1	& 1.35721	& 1.33086	& 0.142791 \\
+2	& 1.33086	& 1.32588	& 0.0263478 \\
+3	& 1.32588	& 1.32494	& 0.00497718 \\
+4	& 1.32494	& 1.32476	& 0.000944411 \\
+5	& 1.32476	& 1.32473	& 0.000179352 \\
+6	& 1.32473	& 1.32472	& 3.40661e-05 \\
+7	& 1.32472	& 1.32472	& 6.47069e-06 \\
+8	& 1.32472	& 1.32472	& 1.22909e-06 \\
+9	& 1.32472	& 1.32472	& 2.33461e-07 \\
+\hline
+\end{tabular}
+\caption{Fixed point iterations for root finding.}
+\label{tab:root_difference}
+\end{center}
+\end{table}
+
+
+\end{proof}
+
+\section{Optional Chapter 7 Problem 49} Suppose that
+$f:\QQ\to\RR$ is Lipschitz. Prove that $f$ extends uniquely
+to a continuous function $g:\RR\to\RR$.
+\begin{proof}
+We only need that $\QQ$ be dense in $\RR$, thus consider a 
+Cauchy sequence $(x_n)$
+of points in $\QQ$ converging to a limit $c\in\RR$.
+Since we proved above in problem 48 that uniformly continuous
+functions send Cauchy sequences into Cauchy sequences, we know
+that $f(x_n)$ is also Cauchy, and thus converges to a limit,
+say $L\in\RR$. Indeed, $L$ depends only on $c$ and not on $(x_n)$.
+Let there be another sequence $(y_n)\to c$, then the combined 
+sequence $(x_n,y_n)\to c$ as well. This implies that the sequence
+$\{f(x_n),f(y_n)\}\to L$
+but this implies that the subsequence 
+$f(y_n)\to L$, also. Thus the limit $L$
+is unique and well defined. Thus, let us construct a new function
+$g:\RR\to\RR$ such that $g(c)=L$, and $g(x)=f(x), x\in\QQ$ as $f$
+is continuous.
+
+To show uniqueness of this extension, consider two functions
+$g,h$ which are extensions of $f$. Consider a
+sequence $(x_n)\in\QQ\to c\in\RR$, since both $g$ and $h$
+are continuous extensions of $f$ we get $g(x_n)\to g(c)$
+as well as $h(x_n)\to h(c)$ as $\lim n\to\infty$. However, due
+to the extension, $g(x_n)=h(x_n), \forall n\in\NN$, and we have
+previously shown that a continuous functions which agrees on rational
+points are equal. Thus the extension is unique.
+\end{proof}
+\end{document}  

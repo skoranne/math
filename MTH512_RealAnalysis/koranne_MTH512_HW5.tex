@@ -1,0 +1,298 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MTH512 HW5 TeX source
+%% Author : Sandeep Koranne
+%% Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{breqn}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+%\usepackage{graphicx}
+\usepackage[mathscr]{euscript}
+\usepackage{enumerate}
+\setlength{\textwidth}{16.5cm}
+\setlength{\oddsidemargin}{-0.1cm}
+\setlength{\evensidemargin}{-0.1cm}
+\setlength{\textheight}{23cm}
+\setlength{\topmargin}{-1.3cm}
+\newtheorem{lem}{Lemma}
+\newtheorem{proof}{Proof}
+% Some handy shortcuts. 
+\def\ge{\geqslant}
+\def\le{\leqslant}
+\def\phi{\varphi}
+\def\to{\rightarrow}
+\def\mapsto{\longmapsto}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\Aut{\operatorname{Aut}}
+\def\diam{\operatorname{diam}}
+\def\Image{\operatorname{Image}}
+\def\Ker{\operatorname{Ker}}
+\def\GL{\operatorname{GL}}
+\def\SL{\operatorname{SL}}
+\def\Perm{\operatorname{Perm}}
+\def\nor{\vartriangleleft}
+\def\nnor{\vartriangleright}
+\def\lcm{\operatorname{lcm}}
+\def\gcd{\operatorname{gcd}}
+\def\li{\operatorname{li}}
+\def\min{\operatorname{min}}
+\def\max{\operatorname{max}}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\pagestyle{myheadings}
+\begin{document}
+
+% Replace Name. This is for the headers on all but the first page.
+\markright{\hspace{10pt} Math 512 - Winter 2016 \hspace{100pt} Homework 5 - Sandeep Koranne }
+\thispagestyle{empty}
+
+\textbf{Math 512 - Winter 2016 \hfill Real Analysis  \hfill Instructor: Ossiander}
+
+\hrulefill 
+\medskip 
+
+% Replace Name. This is for the first page header.
+ {Sandeep Koranne \hfill Homework 5 \hfill Due: Feb 8, 2016}
+\medskip
+
+% chapter 8 (57,67,68,83,86) optional (54,59,70,76,84)
+% chapter 9 (34,41,44) optional (17,22,27,28)
+
+\section{Chapter 8 Problem 57}
+A function $f:\RR \to \RR$ is said to satisfy a Lipschitz
+condition of order $\alpha$ where $\alpha > 0$ if there is a
+constant $K < \infty$ such that $|f(x)-f(y)|\le K|x-y|^\alpha$
+for all $x,y$. Prove that such a function is uniformly continuous.
+\begin{proof}
+We have addressed the condition where $\alpha>1$ later in this homework
+where we show that $f'(x)=0$ implying that $f$ is a constant function.
+Thus we only consider the case when $0<\alpha\le 1$. In this case
+let $\epsilon>0$ and let $\delta=(\frac{\epsilon}{K})^{1/\alpha}$. Then
+we are given
+\[
+|x-y|< \delta \implies |f(x)-f(y)|\le K|x-y|^\alpha \le K\delta^\alpha = K(\epsilon)/K = \epsilon
+\]
+This proves that $f$ is uniformly continuous (as the choice of $\delta$
+does not depend on $x,y$).
+\end{proof}
+
+\section{Chapter 8 Problem 67} Define $f:l_2\to l_1$ by $f(x)=(x_n/n)_{n=1}^\infty$.
+Show that $f$ is uniformly continuous.
+\begin{proof}
+Since $f:l_2\to l_1$, it is a function mapping sequences from $l_2$ into
+sequences in $l_1$. Note that the metric in $l_2$ is Euclidean, while
+in $l_1$ we use $\sum_{n=1}^\infty x_n$ as the metric. Consider a Lipschitz
+condition on $f$, if we can verify that $f$ is actually Lipschitz, then
+it would imply that $f$ is uniformly continuous. To verify that $f$
+is Lipschitz consider two sequences $\{x_n\},\{z_n\}$:
+\begin{equation}
+\|f(x)-f(z)\|_1 = \sum_{n=1}^\infty |\frac{x_n}{n} - \frac{z_n}{n}| =
+\sum_{n=1}^\infty \frac{1}{n}|x_n - z_n| \label{eqn1}
+\end{equation}
+While on the other hand consider the $l_2$ distance between $\{x_n\}$
+and $\{z_n\}$
+\[
+d(x,z) = \sqrt{\sum_{n=1}^\infty (x_n - z_n)^2}
+\]
+We know $|x|_1 \le \sqrt{n}|x|_2$, and we use this to multiply
+each term in Equation~\ref{eqn1} by $n$
+\[
+\sum_{n=1}^\infty |x_n - z_n| = |f(x)-f(z)|_1 \le |x-z|_2
+\]
+This shows that $f$ is Lipschitz and hence uniformly continuous.
+\end{proof}
+
+\section{Chapter 8 Problem 68}
+Fix $y\in l_\infty$ and define $g:l_1\to l_1$ by $g(x)=(x_ny_n)_{n=1}^\infty$.
+Show that $g$ is uniformly continuous.
+\begin{proof}
+The proof follows the same technique as the previous problem.
+If we are able to show that $g$ is Lipschitz, then we know
+$g$ is uniformly continuous. 
+To verify that $f$
+is Lipschitz consider two sequences $\{x_n\},\{z_n\}$:
+\[
+|g(x)-g(z)|_1 = \sum_{n=1}^\infty | g(x)_n - g(z)_n| = 
+\sum_{n=1}^\infty | x_ny_n - z_ny_n| = \sum_{n=1}^\infty |y_n||x_n-z_n| \le
+y |x-z|_1
+\]
+Here we have used the fact that $y$ is fixed in $l_\infty$. Thus
+we have Lipschitz condition and thus $g$ is uniformly continuous.
+\end{proof}
+
+\section{Chapter 8 Problem 83}
+If $V$ is any normed vector space, show that $B(V,\RR)$ is always
+complete. [Hint: use Banach's characterization, Theorem 7.12.]
+\begin{proof}
+Consider $S_1, S_2, S_3,\ldots \in B(V,\RR)$ and $x\in V$ we claim that
+$S_1x, S_2x,\ldots$ is Cauchy in $\RR$. If $x=0$, there is nothing to
+show, so consider $x\ne 0$. Since $S$ is Cauchy in $B(V,\RR)$ we have 
+for $n,m>N$ $\|S_n-S_m\| < \frac{\epsilon}{\|x\|}$. Thus
+\[
+|S_nx-S_mx| \le \|S_n-S_m\|\|x\| \le \epsilon
+\]
+This shows $S_jx$ is Cauchy in $\RR$. Let $S:V\to\RR$ we will show
+that $\lim_{n\to\infty} S_nx= Sx$. We know that $S$ is linear since
+\[
+S(\alpha x+y) = \lim_{n\to\infty} (S_n\alpha x+ S_ny) = \alpha \lim_{n\to\infty} S_nx 
++ \lim_{n\to\infty} S_ny = \alpha Sx + Sy
+\]
+Next we shown that $S_n\to S$ as $n\to\infty$, consider
+\[
+\|S_n-S_m\| < \frac{1}{2}\epsilon\qquad n,m > N
+\]
+This implies
+\[
+|S_nx - S_mx| \le \frac{1}{2}\epsilon\|x\| \implies
+|Sx -S_nx| = |\lim_{j\to\infty}(S_jx-S_nx)| \le \lim_{j\to\infty} |S_jx-S_nx| \le
+\lim_{j\to\infty} |S_j-S_n|\|x\| \le \frac{1}{2}\epsilon \|x\|
+\]
+Therefore
+\[
+|Sx| \le |S_nx| + |Sx - S_nx| \le (\|S_n\| + \frac{1}{2}\epsilon)\|x\|
+\]
+This implies
+\[
+\|S-S_n\| < \frac{1}{2}\epsilon \forall n > N \implies S_n \to S \in B(V,\RR)
+\]
+Thus $B(V,\RR)$ is complete as we have showed that Cauchy sequences
+have a limit in the metric space.
+\end{proof}
+
+\section{Chapter 8 Problem 86}
+If $(V,\|\cdot\|)$ is an $n$-dimensional normed vector space, show that
+there is a norm $|||\cdot|||$ on $\RR^n$ such that $(\RR^n,|||\cdot|||)$
+is linearly isometric to $(V,\|\cdot\|)$.
+\begin{proof}
+Consider a linear function $f$ from $V\to\RR^{n}$.
+Consider the norm on $\RR^n$ given by $|||x||| = \|f^{-1}(x)\|$.
+Since $f$ is linear, this is well defined, and we know linear functions
+preserve distances, thus there is an isometry.
+\end{proof}
+
+\section{Chapter 8 Optional Problem 54}
+Let $E$ be a bounded, noncompact subset of $\RR$. Show that
+there is a continuous function $f:E \to \RR$ that is not
+uniformly continuous.
+\begin{proof}
+
+\end{proof}
+
+\section{Chapter 8 Optional Problem 59}
+The Lipschitz condition is only interesting only for $\alpha \le 1$;
+show that a function satisfying a Lipschitz condition of order $\alpha>1$
+is constant.
+\begin{proof}
+Note that the Lipschitz condition states:
+\[
+|f(x)-f(y)| \le K|x-y|^\alpha \forall x,y\qquad K < \infty
+\]
+We can rewrite the above as
+\[
+\frac{|f(x)-f(y)|}{|x-y|} \le K|x-y|^{\alpha-1}
+\]
+As $x\to y$, the right hand side approaches 0, and the left side
+is $f'(x)$. Thus if $f'(x)=0$, then the function is a constant.
+\end{proof}
+\section{Chapter 8 Optional Problem 70}
+\begin{proof}
+
+\end{proof}
+
+\section{Chapter 8 Optional Problem 76}
+\begin{proof}
+
+\end{proof}
+
+\section{Chapter 8 Optional Problem 84}
+\begin{proof}
+If you see our proof of 83, we have not used any property of $\RR$
+except that the $S_1x,S_2x,\ldots$ is Cauchy and thus converges
+to a limit. But this is true even when the metric is complete. As required.
+\end{proof}
+
+\section{Chapter 9 Problem 34}
+Let $M$ be complete, and let $E$ be an $F_\sigma$ set in $M$. Prove
+that $E$ is a first category set in $M$ if an only if $E^c$ is dense
+in $M$.
+\begin{proof}
+Consider $G_\delta = \bigcap_n G_n$ each $G_n$ open, dense in $M$.
+By the Baire Category Theorem since $M$ is complete then $G_\delta$
+is not only non-empty, it is also dense in $M$. Next we show that
+every meager set has empty interior. If $F_\sigma$ has non-empty
+interior then $\exists G$ such that $G\in F_\sigma$ and $G\cap G_\delta=\emptyset$.
+But this is a contradiction, thus we know $F_\sigma$ has empty interior.
+We also know that interior of $A^c$ is the complement of the closure
+of $A$. But if $\bar{A}^c=\emptyset$, then $\bar{A}=M$, which implies
+that $A$ is dense in $M$. We have shown above that if $E=F_\sigma$ is a
+meager set (first category) then the complement of the closure of 
+$(M\setminus E)$ is empty, which is the same as stating that $E^c$ is
+dense in $M$ (as we showed with $A$).
+
+In the other direction assume that $E^c$ is dense in $M$. Let
+$G_\delta = \bigcap_n G_n$ and $F_\sigma=(G_\delta)^c = \bigcup_n F_n$.
+Since $E^c$ is dense, that implies that $E$ is nowhere dense, and thus
+$E=F_\sigma$ is meager, as required.
+\end{proof}
+
+\section{Chapter 9 Problem 41}
+Let $M$ be a complete metric space. Prove that if $(E_n)$ is a sequence
+of closed sets in $M$, each having empty interior, then $\bigcup_{n=1}^\infty E_n$
+has empty interior.
+\begin{proof}
+If $\bigcup_n E_n$ had non-empty interior, then consider 
+$G \subset F_\sigma \cap G_\delta=\emptyset$, but we are given that $M$
+is complete, thus, this is not possible, hence the interior has to be
+empty.
+\end{proof}
+
+\section{Chapter 9 Problem 44}
+If $M$ is complete, show that the conclusion of Baire's theorem holds
+for any \emph{open} subsets of $M$. [Hint: See Exercise 7.30.]
+\begin{proof}
+Consider $A\subset M$ is nowhere dense in $M$ if every open set
+$S\subset M$ contains $S'\subset S$ such that $S'\cap A=\emptyset$.
+Given any open set $S$ in $M$, Baire's Theorem is valid because
+to show $A\subset S$ is nowhere dense, it is sufficient to consider
+$S$ itself, and by definition of open sets, and the diameter of $A$, there
+will always exist $\epsilon = \diam(S)-\diam(A)$ and we can construct
+another open set of radius $\epsilon$ in $S$. Thus the theorem
+holds for any open subset of $M$.
+\end{proof}
+
+\section{Chapter 9 Optional Problem 17}
+Prove that a complete metric space without any isolated points
+is uncountable. In particular this gives another proof that
+$\Delta$ is uncountable.
+\begin{proof}
+
+\end{proof}
+
+\section{Chapter 9 Optional Problem 22}
+\begin{proof}
+
+\end{proof}
+
+\section{Chapter 9 Optional Problem 27}
+\begin{proof}
+
+\end{proof}
+
+\section{Chapter 9 Optional Problem 28}
+\begin{proof}
+
+\end{proof}
+
+
+\end{document}  

@@ -1,0 +1,351 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MTH512 HW2 TeX source
+%% Author : Sandeep Koranne
+%% Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{breqn}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+\usepackage[mathscr]{euscript}
+\usepackage{enumerate}
+\setlength{\textwidth}{16.5cm}
+\setlength{\oddsidemargin}{-0.1cm}
+\setlength{\evensidemargin}{-0.1cm}
+\setlength{\textheight}{23cm}
+\setlength{\topmargin}{-1.3cm}
+\newtheorem{lem}{Lemma}
+\newtheorem{proof}{Proof}
+% Some handy shortcuts. 
+\def\ge{\geqslant}
+\def\le{\leqslant}
+\def\phi{\varphi}
+\def\to{\rightarrow}
+\def\mapsto{\longmapsto}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\Aut{\operatorname{Aut}}
+\def\diam{\operatorname{diam}}
+\def\Image{\operatorname{Image}}
+\def\Ker{\operatorname{Ker}}
+\def\GL{\operatorname{GL}}
+\def\SL{\operatorname{SL}}
+\def\Perm{\operatorname{Perm}}
+\def\nor{\vartriangleleft}
+\def\nnor{\vartriangleright}
+\def\lcm{\operatorname{lcm}}
+\def\gcd{\operatorname{gcd}}
+\def\li{\operatorname{li}}
+\def\min{\operatorname{min}}
+\def\max{\operatorname{max}}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\pagestyle{myheadings}
+\begin{document}
+
+% Replace Name. This is for the headers on all but the first page.
+\markright{\hspace{10pt} Math 512 - Winter 2016 \hspace{100pt} Homework 2 - Sandeep Koranne }
+\thispagestyle{empty}
+
+\textbf{Math 512 - Winter 2016 \hfill Real Analysis  \hfill Instructor: Ossiander}
+
+\hrulefill 
+\medskip 
+
+% Replace Name. This is for the first page header.
+ {Sandeep Koranne \hfill Homework 2 \hfill Due: Januay 22, 2016}
+\medskip
+
+%% Chapter 6 : 5,6,7,9,13,24 : Optional 2,10,14,17,25,26
+
+\section{Chapter 6 Problem 5}
+If $E$ and $F$ are connected subsets of $M$ with $E\bigcap F\ne \emptyset$,
+show that $E\bigcup\ F$ is connected.
+
+We first need a general Lemma.
+\begin{lem}
+\label{lem1}
+Let $C_i$ be a family of connected non-empty subsets of $M$ such that
+$\bigcap_{i\in I} C_i\ne\emptyset$, where $I$ is an indexing set; then
+$\bigcup_{i\in I} C_i$ is connected.
+\end{lem}
+\begin{proof}
+Let $A=\bigcup_{i\in I} C_i$. If $A$ is not connected then $\exists G_1,G_2$ 
+disjoint open sets $(G_1\bigcap G_2=\emptyset)$, 
+such that $A\subset G_1 \bigcup G_2$ and $A\bigcap G_1\ne\emptyset$ and
+$A\bigcap G_2\ne\emptyset$. Consider one $C_i$ for some $i\in I$, since
+$A\subset G_1 \bigcup G_2\implies C_i\subset G_1\bigcup G_2$.
+Since $C_i$ is connected, $C_i\bigcap G_1=\emptyset$ or $C_i\bigcap G_2=\emptyset$, otherwise
+$C_i$ itself would be disconnected. But this implies that either $C_i\subset G_1$
+or $C_i\subset G_2$. But since $\bigcap_{i\in I}C_i \ne\emptyset$, all of $C_i$
+are either in $G_1$ or all of $C_i$ are contained in $G_2$. But therefore all of $A$
+is contained either in $G_1$ or $G_2$. But this is in contradiction to our assumption
+that $A$ is not connected. Hence, $A=\bigcup_{i\in I}C_i$ is connected.
+\end{proof}
+Now we use the above Lemma to prove the particular case at hand.
+\begin{proof}
+Use the above lemma (Lemma~\ref{lem1}) with $E=C_1$ and $F=C_2$. Since $E\bigcap F\ne\emptyset$
+the criteria for non-empty intersection is met and thus $E\bigcup F$
+is connected.
+\end{proof}
+\section{Chapter 6 Problem 6}
+More generally, if $C$ is a collection of connected subsets of $M$, 
+all having a point in common, prove that $\bigcup\ C$ is connected. Use this
+to give another proof that $\RR$ is connected.
+\begin{proof}
+Use the above Lemma (Lemma~\ref{lem1}) to immediately prove
+the first part that $\bigcup C$ is connected.
+ To show that $\RR$ is connected, partition
+$\RR=(-\infty,x]\bigcup[x,\infty)$ where the two intervals are connected, and
+their intersection is $x$ and thus non-empty, thus $\RR$ is connected.
+\end{proof}
+\section{Chapter 6 Problem 7}
+If every pair of points in $M$ is contained in some connected set, show
+that $M$ is itself connected.
+\begin{proof}
+We prove by contradiction. Let $M$ be not connected, then there exists
+two open non-empty disjoint sets $G_1$ and $G_2$ such that $M\subset G_1 \bigcup G_2$.
+Since $G_1$ and $G_2$ are both non-empty, there is a point $x\in G_1$ and
+$y\in G_2$. But as given, every pair of points in $M$ is connected, this
+implies that $G_1$ and $G_2$ are connected. But since $G_1$ and $G_2$ are
+open, this implies that $G_1\bigcap G_2\ne\emptyset$. This is a
+contradiction to our assumption that $G_1$ and $G_2$ are disjoint. Thus $M$
+is connected.
+\end{proof}
+
+\section{Chapter 6 Problem 9}
+If $A\subset B \subset \bar{A} \subset M$, and if $A$ is
+connected, show that $B$ is connected. In particular, $\bar{A}$
+is connected.
+\begin{proof}
+Assume that $B$ is not connected, then there exist two non-empty disjoint
+open sets $G_1$ and $G_2$ such that
+\[
+G_1\bigcap G_2=\emptyset, \ \ B\subset G_1\bigcup G_2,\ \ B\bigcap G_1\ne\emptyset,\ \ B\bigcap G_2\ne\emptyset
+\]
+This implies $A\subset G_1\bigcup G_2$.
+Since $B\bigcap G_1\ne\emptyset, \ \exists x\in B\bigcap G_1$ such that $\exists r>0$
+$B(x,r)\subset G_1$. Since $B\subset\bar{A}$, $B(x,r)\bigcap A\ne\emptyset$.
+Let $y\in B(x,r)\bigcap A$, thus $y\in A$ as well as $y\in G_1$.
+Thus $A\bigcap G_1\ne\emptyset$. Similarly, since $B\bigcap G_2\ne\emptyset$ we can show
+that $A\bigcap G_2\ne\emptyset$. But this implies that $A$ itself is not connected.
+Which is a contradiction.
+
+For the second part, just take $B=\bar{A}$, then if $A$
+is connected $\bar{A}$ is connected, as required.
+\end{proof}
+\section{Chapter 6 Problem 13}
+If $f:[a,b]\to [a,b]$ is continuous, show that $f$ has a fixed point; that
+is, show that there is some point $x$ in $[a,b]$ with $f(x)=x$.
+
+We first need a Lemma which is a generalization of the one given
+in the textbook.
+\begin{lem}
+Given a metric space $(X,d)$, a subset $A\subset X$ is 
+connected if and only if, $a,b\in X,\ a<b \implies [a,b] \subset X$.
+Moreover this implies $[f(a),f(b)]\subset f([a,b])$.
+\end{lem}
+\begin{proof}
+Use Theorem 6.6 of the textbook, and we know $[a,b]$ is connected
+in $X$, thus $[f(a),f(b)]$ is connected (written assuming $f(a)<f(b)$,
+but this can be assumed without loss of generality).
+\end{proof}
+
+Thus $f([a,b])$ is connected.
+Now that we have the above Lemma, we also assume without loss of
+generality that $f(a) < y < f(b)$, and we can write $f([a,b])=[f(a),f(b)]$.
+Let $S=\{x|x\in [a,b]; f(x) < y\}$.
+Now $S\ne\emptyset$ since $a\in S$. Let $L=[a,x)$ and $U=(x,b]$.
+Note that $L\bigcap U=\emptyset$ and $L\ne\emptyset$ since $f(a)\in L$,
+similarly $U\ne\emptyset$ since $f(b)\in U$.
+Let $A=f([a,b])\bigcap L$ and $B=f([a,b])\bigcap U$.
+Thus $f([a,b])= A\bigcup B$. Now suppose there does not exist a point
+$x\in [a,b]$ such that $f(x)=y$, then $A$ and $B$ would be separated, which
+would contradict the fact that $[f(a),f(b)]$ is connected. Thus 
+$\exists x\in [a,b]: f(x)=y\in [f(a),f(b)]$.
+This is the \emph{intermediate value theorem} for general metric spaces.
+We use this to prove the \emph{fixed point} theorem.
+\begin{proof}
+Consider the auxiliary function $g(x)=x-f(x)$, then
+$g(a)=a-f(a)$ and $g(b)=b-f(b)$, since $f:[a,b]\to [a,b]$ this
+implies $g(a) \le 0 \le g(b)$. Using the intermediate value theorem
+we know $\exists x\in [a,b]: g(x)=0$, but this implies $\exists x\in [a,b]$
+such that $f(x)=x$ as required.
+\end{proof}
+
+\section{Chapter 6 Problem 24}
+Show that $(0,1)\times(0,1)$, although an open set in $\RR^2$,
+cannot be written as a disjoint union of open balls in $\RR^2$.
+
+Here it is important to note that the metric remains fixed, in
+other words, we are not allowed to
+ demonstrate a single $\infty$-norm metric ball
+which covers $(0,1)\times(0,1)$.
+\begin{proof}
+We prove by contradiction. Assume that $\RR^2$ is disconnected
+and thus can be partitioned into two disjoint open balls
+in $\RR^2$.
+Let $U,V \in \RR^2$ such that $\RR^2 \subset U \bigcup V$ and
+$U\bigcap V=\emptyset$. Let $x=(x_1,x_2)\in U$ and similarly
+$y=(y_1,y_2)\in V$. Consider a function 
+\[
+f(t)=((tx_1+(1-t)y_1), (tx_2+(1-t)y_2))
+\] where $f:[0,1]\to \RR^2$. Obviously $f(t)$ is continuous
+since
+\[
+|t_1-t_2|< \delta \implies d(f(t_1),f(t_2)) = 
+\frac{|t_1-t_2|}{\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}} \le \epsilon
+\]
+where $\delta = \frac{\epsilon}{\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}}>0$.
+
+Once we know $f$ is continuous, we can
+evaluate $f(0)=(y_1,y_2)\in V$ and $f(1)=(x_1,x_2)\in U$.
+Thus $f[(0,1)]$ is disconnected as $U\bigcap V=\emptyset$.
+Now since $[0,1]$ is connected, $f$ is continuous, $f([0,1])$
+should also be connected; this is a contradiction. Thus $\RR^2$
+is connected and thus cannot be written as a disjoint union of
+open balls in $\RR^2$.
+\end{proof}
+
+\section{Optional Chapter 6 Problem 2}
+Show that the only nonempty connected subsets of $\Delta$ are
+singletons. (We would say that $\Delta$ is \emph{totally 
+disconnected}.)
+
+We first need a Lemma.
+\begin{lem}
+If $A\subset \RR$, then $A$ is connected if and only if $A$
+is an interval.
+\end{lem}
+
+\begin{proof}
+Suppose $A$ is connected, but is not an interval, then 
+$\exists (x,y,z)\in \RR$ such that $x<z<y$ and $x,y\in A$ but
+$z$ not in $A$. Then we can construct two disjoint sets $G_1=(-\infty,z)$
+and $G_2=(z,\infty)$, and thus $A\subset G_1\bigcup G_2$ and
+moreover $x\in G_1$ and $y \in G_2$, thus $A$
+is not connected. A contradiction.
+\end{proof}
+\begin{proof}
+Using the above Lemma we know that the only connected subsets of $\RR$
+are intervals. Since $\Delta$ is also a subset of $\RR$, the above
+lemma is applicable, and moreover we know that no intervals are
+present in $\Delta$. Singletons are connected by definition, thus
+the only nonempty connected subsets of $\Delta$ are
+singletons.
+
+\end{proof}
+
+\section{Optional Chapter 6 Problem 10}
+True or false? If $A\subset B \subset C \subset M$, where
+$A$ and $C$ are connected, then $B$ is connected.
+\begin{proof}
+False. If $A\subset B \subset C$ and $A$ and $C$ are connected, then
+there can still exist $A\subset B\subset C$ such that $B$ is not connected.
+Consider $A$ to be a singleton contained in $B_1$;
+while $B_2$ is disjoint from $B_1$, and
+$B=(B_1\bigcup B_2)\subset C$. Then we have met all the criteria, but $B$ is disconnected.
+\end{proof}
+\section{Optional Chapter 6 Problem 14}
+Let $f:[0,2]\to \RR$ be continuous with $f(0)=f(2)$. Show that
+there is some $x$ in $[0,1]$ such that $f(x)=f(x+1)$.
+\begin{proof}
+Since $f(0)=f(2)$, $f$ is not monotone, thus there exist at least some
+$x\in[0,2]$ such that $f(x)=y$ is repeated. Define \emph{girth} of
+a set $X$ as $\inf d(a,b):a,b\in X$, or in other words the infemum
+of the pairwise distances between the points of the set. This
+is the logical inverse of the \emph{diameter}. Define a function
+$g(y)=girth(f^{-1}(y))$.  Note that $g$ is continuous.
+
+Note that $g(f(0))=2$ since $f(0)=f(2)$. Now since $f$ is not
+monotone, it has either a maximum or minimum value in the domain.
+At this extrema, let the value of $f(x_0)=y_0$, then $g(y_0)=0$.
+Thus $g$ takes value at least between $[0,2]$, and thus using the
+intermediate value theorem, $\exists y_1:g(y_1)=1$. But if the
+distance between points for $f^{-1}(y_1)$ is 1, 
+this implies $y_1=f(x)=f(x+1)$, as
+required. Note that above we have assumed that $y=f(0)=f(2)$ is not
+taken on by $f$ at other points. But this can be remedied by modifying
+$f$ to take $f(0)+\epsilon$ at $x\ne 0$ and $x\ne 2$, if $f(x)=f(0)$.
+
+\end{proof}
+\section{Optional Chapter 6 Problem 17}
+Prove that there does not exist a continuous function
+$f:\RR \to \RR$ satisfying $f(\QQ)\subset \RR\setminus\QQ$ and
+$f(\RR\setminus\QQ) \subset \QQ$.
+\begin{proof}
+We prove by contradiction. Let us assume that such an $f$ exists, then
+consider $g:[0,1]\to\RR$ defined as
+\[
+g(x) = f(x)-x
+\]
+We consider three possibilities, (i) $g(x)\in \QQ$, (ii) $g(x)\in\RR\setminus\QQ$
+and (iii) $g(x)=c$ constant function. If $g(x)\in\QQ$, then for $x\in[0,1]$
+we get if $x\in\QQ$ then $g(x)+x\in\QQ\implies f(x)\in\QQ\implies x\in\RR\setminus \QQ$.
+A contradiction. Similarly, if $x\in\RR\setminus\QQ$ then $g(x)-f(x)\in\QQ\implies x\in\QQ$.
+A contradiction.
+
+If we assume that $g([0,1])\in\RR\setminus\QQ$, then since $f$ is continuous, 
+$g$ is also continuous, we can use the intermediate value theorem to
+specify the existence of a rational $r\in[\min g,\max g]$ such that $g(x)=r,x\in[0,1]$.
+But this is a contradiction since we assumed $g(x)$ was irrational. Thus let us
+consider $g(x)=c$, but then $f(x)=c+x$ and for $f(c)=2c$ is also irrational, which
+contradicts the conditions of the map $f$. Thus, no such $f$ can exist.
+\end{proof}
+
+\section{Optional Chapter 6 Problem 25}
+\begin{enumerate}[(a)]
+\item{Give an example of a continuous function having a
+connected range but a disconnected domain}:
+\begin{proof}
+Consider a constant function $f:[a,b]\setminus\{c\}=1$. Since it is a constant
+function it is continuous, and since its range is a singleton it is
+connected, and its domain is disconnected as it has a point $c$
+removed from the interval $[a,b]$.
+\end{proof}
+
+\item{Let $D\subset \RR$, and let $f:D\to\RR$ be continuous. Prove
+that $D$ is connected if $\{(x,f(x)):x\in D\}$, the graph of $f$,
+is a connected subset of $\RR^2$}:
+\begin{proof}
+Since $\{(x,f(x))\}$ is connected, a parametric representation of
+$f(x)=(t\in[0,1],f(t))$ is also connected, thus $f(t)$ is connected, and since
+$f$ is continuous, this implies $f^{-1}(x)$ is also connected, but 
+this immediately implies that the domain is connected, as required.
+\end{proof}
+
+\end{enumerate}
+\section{Optional Chapter 6 Problem 26}
+Let $f:[0,1]\to\RR$ be defined by $f(x)=\sin(1/x)$ for $x\ne 0$ and
+$f(0)=0$. Show that although $f$ is not continuous, the graph of $f$
+is a connected subset of $\RR^2$.
+
+Let us write $S(x,y)=(x,f(x))$ as the union of two parts $S_+(x,y)$
+where $x\ne 0$ and $y=sin(1/x)$ and $S_0(x,y)=(0,0)$.
+Note that $S_+(x,y)$ is connected as $\sin(1/x)$ is continuous in
+the domain.
+ Next we need a Lemma.
+\begin{lem} The closure of $S_+$ in $\RR^2$ is $S$.
+\end{lem}
+\begin{proof}
+Since $(1/x_n)$ and $\sin(1/x_n)$ both tend to 0 when $n\to\infty$,
+it is clear that $(0,0)$ is a limit point of $S_+$ and thus $S=S_++S_0$
+is the closure of $S$.
+\end{proof}
+
+Now that we have $S_+(x,y)\subset S(x,y)$ and $S(x,y)$ is the closure
+of $S_+(x,y)$ we can use our previous result which states that if
+$A\subset B\subset\bar{A}$, and $A$ is connected, then $\bar{A}$
+as well as $B$ are also connected. This implies that $S$ is connected
+as well.
+
+\end{document}  

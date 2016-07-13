@@ -1,0 +1,252 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MTH512 HW1 TeX source
+%% Author : Sandeep Koranne
+%% Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{breqn}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+\usepackage[mathscr]{euscript}
+\usepackage{enumerate}
+\setlength{\textwidth}{16.5cm}
+\setlength{\oddsidemargin}{-0.1cm}
+\setlength{\evensidemargin}{-0.1cm}
+\setlength{\textheight}{23cm}
+\setlength{\topmargin}{-1.3cm}
+\newtheorem{lem}{Lemma}
+\newtheorem{proof}{Proof}
+% Some handy shortcuts. 
+\def\ge{\geqslant}
+\def\le{\leqslant}
+\def\phi{\varphi}
+\def\to{\rightarrow}
+\def\mapsto{\longmapsto}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\Aut{\operatorname{Aut}}
+\def\diam{\operatorname{diam}}
+\def\Image{\operatorname{Image}}
+\def\Ker{\operatorname{Ker}}
+\def\GL{\operatorname{GL}}
+\def\SL{\operatorname{SL}}
+\def\Perm{\operatorname{Perm}}
+\def\nor{\vartriangleleft}
+\def\nnor{\vartriangleright}
+\def\lcm{\operatorname{lcm}}
+\def\gcd{\operatorname{gcd}}
+\def\li{\operatorname{li}}
+\def\min{\operatorname{min}}
+\def\max{\operatorname{max}}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\pagestyle{myheadings}
+\begin{document}
+
+% Replace Name. This is for the headers on all but the first page.
+\markright{\hspace{10pt} Math 512 - Winter 2016 \hspace{100pt} Homework 1 - Sandeep Koranne }
+\thispagestyle{empty}
+
+\textbf{Math 512 - Winter 2016 \hfill Real Analysis  \hfill Instructor: Ossiander}
+
+\hrulefill 
+\medskip 
+
+% Replace Name. This is for the first page header.
+ {Sandeep Koranne \hfill Homework 1 \hfill Due: Januay 15, 2016}
+\medskip
+
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item (Car. 5.45) Prove that $\NN$ (with its usual metric) is
+homeomorphic to $\{(1/n): n \ge 1\}$ (with its usual metric).
+
+\textbf{Solution:} Consider the function $f:\NN \to \RR$ defined
+as $f(n) = 1/n$. Clearly $f$ is continuous for $n\ne 0$, and it is
+one-to-one since $1/x'=1/x''$ implies $x'=x''$. Moreover, $f$ is
+onto as for every $y\ne 0, f(1/(1/y))=y$. The inverse of $f, f^{-1}$
+is also continuous since $f^{-1}(x)=f(x)=1/x$. Thus $f$ is an
+homeomorphism, and thus $\NN$ is homeomorphic to 
+$\{(1/n): n \ge 1\}$, as required.
+
+\item (Car. 5.53) Suppose that we are given a point $x$ and a
+sequence $(x_n)$ in a metric space $M$, and suppose that $f(x_n)\to f(x)$
+for every continuous real valued function $f$ on $M$. Prove that
+$x_n\to x$ in $M$.
+
+\textbf{Solution:} Note that the metric space $M$ has an associated
+distance function, let us call it $d$ which is also real valued
+and continuous. Thus, if $f(x_n)\to f(x)$ for every continuous
+function, then $d(x_n)\to d(x)$ where $d(x)$ is defined as $d(x,0)$.
+Thus given $\delta>0, \exists n>0$ such that $d(f(x_n),f(x)) < \delta$.
+But now we use the fact that $f$ and $d$ are continuous, thus
+for the given $\epsilon>0$ there exists $\delta>0$ such that
+\[
+d(f(x_n),f(x)) < \delta \implies d(x_n,x) \le \epsilon
+\]
+As required.
+
+
+\item (Car. 5.56) Give example of a continuous function that is not open.\\
+\textbf{Solution:} Consider the function $f(x)=x^2$ on the open set
+$(-1,1)$ whose image is $[0,1)$ and is thus not open, but obviously
+$f(x)=x^2$ is continuous.
+
+(b) Give example of open function that is not continuous.\\
+\textbf{Solution:} Here we have to use $(N,\rho)$ and assume that
+$(N,\rho)$ has some discrete structure. Consider the \textbf{sgn}
+function $sgn(x):\RR\to N$ which maps $\RR$ to +1,0 and -1. This function
+maps open sets to open sets (any finite discrete set is open), but
+this function is not continuous.
+
+(c) Give example of continuous map that is not closed\\
+\textbf{Solution:}  Consider the linear projection operator function
+$f(x,y)=x$ for $f:\RR^2\to \RR$. This function is continuous, as it
+is a linear mapping between two finite dimensional vector spaces. 
+However, it does not map the closed set. This can be shown by
+considering that $f(U)$ is open for $U\in\RR^2$, where $U$ is an open
+set in $\RR^2$.
+
+(d) Give example of closed map that is not continuous\\
+\textbf{Solution:} The \emph{floor} function from $\RR\to \ZZ$ is
+closed but not continuous.
+
+
+\item (Car. 5.57) Let $f:(M,d)\to (N,\rho)$ be one-to-one and onto.
+Show that the following are equivalent: (i) $f$ is open, (ii) $f$
+is closed, and (iii) $f^{-1}$ is continuous. Consequently, $f$
+is an homeomorphism if and only if both $f$ and $f^{-1}$ are 
+open (closed).
+
+\textbf{Solution:} Let us first write down the definition
+of continuity of $f$ using metric distances:
+\[
+\forall \epsilon > 0, \exists \delta > 0\ \textrm{s.t.} \forall x \in M\ \
+d(x,y) < \delta \implies \rho(f(x),f(y)) \le \epsilon
+\]
+Topologically, $x$ belongs to the the open ball $B(y,\delta)$
+and $f(x)$ belongs to the open ball $B(f(y),\epsilon)$, which is
+same as $f(B(y,\delta)) \subseteq B(f(y),\epsilon)$.
+\begin{lem}
+Let $(M,d)$ and $(N,\rho)$ be metric spaces then $f:M\to N$
+be continuous if and only if $f^{-1}(G)$ is open in $M$ for
+every open set $G\in N$.
+\end{lem}
+\begin{proof}
+Use Theorem 5.1 (iv) of the textbook.
+\end{proof}
+We use this to first prove (iii) is equivalent to (i)
+\begin{proof}
+Since $f^{-1}$ is continuous, then $(f^{-1})^{-1}=f$ preserves open sets from
+$M$ to $N$. Here we use the fact that if $f$ is continuous, then $f^{-1}$
+preserves open sets. 
+The converse is also true, and we use that to show (i) implies (iii).
+Since $f$ is open, $f^{-1}$ is continuous.
+Proof of (i) equivalent to (ii) follows from
+the fact that complement of open sets are closed in $M$ and $N$.
+That is $f^{-1}(U')=(f^{-1}(U))'$ where $U'$ denotes the complement
+of $U$ in the appropriate metric space.
+\end{proof}
+Thus if both $f$ and $f^{-1}$ are open, then their inverses are
+continuous and preserve open sets, thus $f$ is an homeomorphism.
+
+\item (Optional Car. 4.10) Given $y=(y_n)\in H^\infty, N\in \NN$, and
+$\epsilon>0$, shown that $x=(x_n)\in H^\infty: |x_k-y_k|<\epsilon, k=1,\ldots,N$
+is open in $H^\infty$.
+\begin{proof}
+Since $H^\infty$ is a metric space we can define an open ball $U$ in $H^\infty$
+containing $x=(x_n)$. Since $|x_k-y_k|<\epsilon$ we can 
+find $z=(z_n)\in H^\infty$ such that $|x_k-z_k|=|x_k-y_k|/2 \le \epsilon/2$.
+Then the ball $B(z,\epsilon/2)$ is open in $H^\infty$ and is contained in 
+$x=(x_n)$ thus $x$ is open.
+\end{proof}
+
+\item (Optional Car. 5.51) Let $(M,\rho)$ be a separable metric space
+with a countable dense subset. Show that:
+\begin{enumerate}
+\item{Prove that $f$ is one-to-one and continuous. In fact 
+$d(f(x),f(y)) \le \rho(x,y)$
+where $d$ is the metric on $H^\infty$.}
+\begin{proof}
+Consider $f(x)$ and $f(y)$ where $x\ne y$, then it is clear that
+$(\rho(x,x_n))_k \ne (\rho(y,x_n))_k$ for any $k$, and thus
+$(\rho(x,x_n))_{n=1}^\infty \ne (\rho(y,x_n))_{n=1}^\infty$. Thus $f$ is
+one-to-one. Each of $(\rho(x,x_n))_k$ is continuous since $\rho$ is
+a metric and thus continuous. But then $(\rho(x,x_n))_{n=1}^\infty$
+is continuous since a vector valued function which is coordinatewise
+continuous is continuous.
+\end{proof}
+\item{Show that $f^{-1}$ is continuous, by showing that if we let 
+$\epsilon>0, \ \exists \delta>0,\ \rho(x,y)<\epsilon$ whenever
+$d(f(x),f(y))<\delta$.
+}
+\begin{proof}
+Consider a open set $U\in H^\infty$ such that $x\in U$, then by the
+hypothesis, $\rho(x,y)<\epsilon$ and thus $B_\epsilon(x)$ is open, and thus
+$f^{-1}$ is continuous since it maps open sets in $H^\infty$ to $M$.
+\end{proof}
+\end{enumerate}
+
+\item (Optional Car. 5.64) Given $n\in \NN$ and $f,g \in C(\RR)$, let
+$d_n(f,g)=\max_{|t|\le n}|f(t)-g(t)|$. Then $d_n$ defines a pseudo-metric
+on $C(\RR)$.\\
+\textbf{Solution:} It is clear that $\max |f(t)-g(t)|$ is a metric, 
+to show that the restriction to finite $n$ makes it 
+a pseudo-metric note that with $\max_{|t|\le n}|f(t)-g(t)|$ it is
+possible for $f(k)\ne g(k)$ for $k\ge n$, but $d_n(f,g)=0$. Thus
+$d_n(f,g)$ is a pseudo-metric.
+
+To show $d(f,g)=\sum_{n=1}^\infty 2^{-n}\frac{d_n(f,g)}{1+d_n(f,g)}$
+is a metric. We need a lemma to show that if $d_n$ is a metric then
+$\frac{d_n}{1+d_n}$ is also a metric.
+\begin{lem}
+If $d(x,y)$ is a metric on $M$ then $d'(x,y)=\frac{d(x,y)}{1+d(x,y)}$
+is also a metric on $M$.
+\end{lem}
+\begin{proof}
+Since $d(x,y)\ge 0 \implies d'(x,y)\ge 0$ and moreover $d'(x,y)=0$
+only when $d(x,y)=0$. Similarly, $d'(y,x)=d'(x,y)$ based on definition.
+Consider a function $F(t)=\frac{t}{1+t}$. Since 
+\[
+F'(t)=\frac{1}{1+t} - \frac{t}{(1+t)^2} \ge 0
+\]
+$F(t)$ is an increasing function. Thus $d'(x,y)=F(d(x,y))$ is also
+an increasing function, which implies
+\begin{eqnarray}
+d'(x,y)=F(d(x,y)) & \le & F(d(x,z)+d(z,y)) \nonumber \\
+                  & = & \frac{d(x,z)+d(z,y)}{1+d(x,z)+d(z,y)} \nonumber \\
+                  & = & \frac{d(x,z)}{1+d(x,z)+d(z,y)} + \frac{d(z,y)}{1+d(x,z)+d(z,y)} \nonumber \\
+                  & \le & F(d(x,z)) + F(d(z,y)) \nonumber \\
+                  & = & d'(x,z) + d'(z,y) 
+\end{eqnarray}
+Thus $d'(x,y)$ is a metric on $M$ as required.
+\end{proof}
+Now we use this Lemma to show that $d(f,g)$ is a metric.
+\begin{proof}
+Let $D_n(f,g)=\frac{d_n(f,g)}{1+d_n(f,g)}$, we have shown above that $D_n$ is
+a metric. Next, consider $d(f,g)=\sum_{n=1}^\infty 2^{-n}D_n(f,g)$, clearly
+since $D_n \ge 0$ and $2^{-n}\ge 0$, $d(f,g)\ge 0$ and $d(f,g)=0$ only
+when $D_n(f,g)=0$. Similarly, $D_n(f,g)=D_n(g,f)$. Consider the triangle
+inequality
+\[
+d(f,h)+d(h,g) = \sum_{n=1}^\infty 2^{-n} D_n(f,h) + \sum_{n=1}^\infty 2^{-n} D_n(h,g)  = 
+\sum_{n=1}^\infty 2^{-n}( D_n(f,h) + D_n(h,g)) \ge
+\sum_{n=1}^\infty 2^{-n}( D_n(f,g)) = d(f,g)
+\]
+Since $D_n$ is a metric.
+\end{proof}
+
+\end{enumerate}
+
+\end{document}  

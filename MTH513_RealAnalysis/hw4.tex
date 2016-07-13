@@ -1,0 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File    : skoranne_MTH513_HW4.tex
+%% Author  : Sandeep Koranne
+%% Purpose : Real Analysis III HW4
+%%         : Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[12pt]
+\usepackage{amsmath,amssymb}
+\newtheorem{lem}{Lemma}
+\newtheorem{proof}{Proof}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\begin{document}
+\title{Real Analysis MTH 513 HW5}
+\date{May 20 2016}
+\author{ Ricardo Noe Gerardo Reyes Grimaldo \& Sandeep Koranne}
+\maketitle
+\section*{Problem 8.9}
+Recall that a function $f:\RR\to \RR$ is \emph{convex} if
+\[
+f(\lambda x+(1-\lambda)y) \le \lambda f(x) + (1-\lambda)f(y)
+\]
+(NB: we are using the definition of convex as given in this question,
+even though a more appropriate definition might be to stipulate that
+the secant line lies on one side of the graph, as convex functions
+are also defined when the graph lies completely above the line, with equality
+defined similarly.
+
+\subsection*{Problem 8.9(a)}
+Prove that if $f$ is convex and $x\in\RR$, there exists a real number $c$ such that
+$f(y)\ge f(x)+c(y-x)$ for all $y\in \RR$. Graphically, this says that the graph of $f$
+lies above the line with slope $c$ that passes through the point $(x,f(x))$.
+
+\begin{proof}
+Consider points on $x$-axis such that $a<s<t<u<b$, then if $f$ is convex we 
+can show the following:
+\[
+f(t) \le \left(\frac{t-s}{u-s}\right)f(u) + \left(\frac{u-t}{u-s}\right)f(s)
+\]
+Where we are using the notation, $f(a,b)=\frac{f(b)-f(a)}{b-a}$.
+
+Using the definition of convex function we can write 
+\[
+(u-s)f(t) \le (t-s)f(u) + (u-t)f(s)
+\]
+which is the same as
+\[
+(u-s)(f(t)-f(s))\le (t-s)(f(u)-f(s))
+\]
+This gives us the required result, $f(y)\ge f(x)+c(y-x)$.
+Geometrically this means that for $t\in (x,y)$, the slope of $xt \ge xy$, for
+all $t$, thus the curve lies above the secant line joining $x$ and $y$.
+The converse is also true.  
+\end{proof}
+
+
+\subsection*{Problem 8.9(b)}Jensen's Inequality.Let $(X,A,\mu)$ be a measure space, suppose $\mu(X)=1$,
+and let $f:\RR\to\RR$ be convex. Let $g:X\to\RR$ be integrable. Prove Jensen's inequality
+\[
+f(\int g d\mu) \le \int_X f\circ g d\mu
+\]
+\begin{proof}
+Actually we can show that $g$ must be integrable, by putting $t=\int fd\mu$.
+Thus $a<t<b$ since $\mu(X)=1$, and calculating the sup over 
+all $(a,b)\subset X$, but it is given that $g$ is integrable. By part (a)
+there exists $c$ such that
+\[
+c \le (f(u)-f(t))/(u-t)
+\]
+Thus $c(t-u) \ge f(t)-f(u)$ for $u\in [t,b)$. So we have a $\gamma\in (a,b)$
+where
+\[
+f(\gamma) \ge f(t) + c(\gamma-t)
+\]
+Now put $\gamma=g(x)$ for each fixed $x$ to get
+\[
+(f \circ g)(x) \ge f(t) + c(g(x)-t)
+\]
+Now $g$ is measurable and $f$ is continuous, therefore $f\circ g$ is
+measurable, but the above RHS is integrable, so we can integrate the above
+inequality. Note that $\int g d\mu$ is simply a number, and $f(t)$ bounds 
+this value. 
+Thus we get the required result
+\[
+f(\int g d\mu) \le \int_X f\circ g d\mu
+\]
+
+
+\end{proof}
+
+
+\subsection*{Problem 8.9(c)}Deduce that $(\int g)^2 \le g^2$ and $e^{\int g} \le \int e^g$
+\begin{proof}
+  Consider $g(x)=e^x$, then
+  \[
+  e^{\int g}
+  \]
+  
+\end{proof}
+
+
+\subsection*{Problem 8.9(d)}Prove that if $g$ is convex and $a_1,\ldots,a_n\in \RR$, then
+\[
+g(\frac{1}{n} \sum_{i=1}^n a_i ) \le \frac{1}{n} \sum_{i=1}^n g(a_i)
+\]
+
+\begin{proof}
+We use induction, for $n=2$, this is clear because $g$ is convex.
+Let it be true for $n$, then
+\[
+g(\frac{1}{n} \sum_{i=1}^n a_i ) \le \frac{1}{n} \sum_{i=1}^n g(a_i)
+\]
+
+Let us extend it to $n+1$, as follows
+\[
+g(\frac{1}{n+1} \sum_{i=1}^{n+1} a_i ) = 
+g(\lambda_1 a_1 + (1-\lambda_1)\sum_{i=2}^{n+1} \frac{\lambda_i}{1-\lambda_1}a_i)
+\le \lambda_1 g(a_1) + (1-\lambda_1)g(\sum_{i=2}^{n+1} \frac{\lambda_i}{1-\lambda_1}a_i)
+\]
+This follows from
+\[
+\sum_{i=2}^{n+1} \frac{\lambda_i}{1-\lambda_1}=1
+\]
+Now we can use the inductive hypothesis for the second term (since
+the number of terms is $n$), and we get the result.
+\end{proof}
+
+
+
+\end{document}
