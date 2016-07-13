@@ -1,0 +1,320 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File   : skoranne_complex_hw3.tex
+%% Author : Sandeep Koranne
+%% Purpose: HW3 for complex analysis, good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[12pt]
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{a4wide}
+%\usepackage[margin=1.5in]{geometry}
+\usepackage{tikz}
+\newtheorem{lem}{Lemma}
+\def\RR{\mathbb R}
+\def\QQ{\mathbb Q}
+\def\Aut{\mathrm{Aut}}
+\def\Inn{\mathrm{Inn}}
+\def\Out{\mathrm{Out}}
+\def\CC{{\mathbb C}}
+\def\ZZ{{\mathbb Z}}
+\def\Fix{\mathrm{Fix}}
+\def\Spec{\mathrm{Spec}}
+\def\D{\mathrm{d}}
+\def\nsub{{\trianglelefteq}}
+\DeclareMathOperator{\sign}{sign}
+\begin{document}
+\title{Spring 2016 Complex Analysis HW3}
+\author{Sandeep Koranne}
+\date{April 20, 2016}
+\maketitle
+
+
+\section*{Problem 1}
+Let $f$ be an entire function, and let $a_n(w)$ denote the
+coefficient of $(z-w)^n$ in the power series expansion of $f$
+centered at $w$. Assume that for each $w\in \CC$ there is at
+least one $n$ (which may depend on $w$) such that $a_n(w)=0$. Prove
+that $f$ must be a polynomial.
+\begin{proof}
+  It is given that $f$ is expressed as a power series around $w$
+  \[
+  f(z) = \sum_{n=0}^\infty a_n (z-w)^n
+  \]
+  and the $a_n$ are denoted $a_n(w)$ (to show dependence on $w$). We can
+  also write $a_n$ as
+  \begin{equation}
+  a_n = \frac{f^{(n)}(w)}{n!}  \label{eqn:1a}
+  \end{equation}
+  Thus $a_n=0\implies f^{(n)}(w)=0$.
+  Since $f$ is entire, in a small disk around $w$, $f(z)$ is given
+  by the same unique power series (using the Uniqueness Theorem).
+  Then using analytic continuation, we have that this power series
+  representation is unique over $\CC$. Thus, if there exists $n$ such that
+  $a_n(w)=0$, then $a_n(z)=0, \forall z\in \CC$. The nth-derivative $f^{(n)}(z)$ of
+  $f$ is also analytic, and thus by analytic continuation argument
+  similar to above, $f^{(n)}(w)=0\implies f^{(n)}(z)=0, \forall z\in \CC$.
+  This implies that $f^{(n)}=0$, which in turn implies that $f^{(n+k)}=0, k\ge 0$.
+  Thus $a_n(z)=0\forall z\in \CC\implies a_n=0$, and 
+  using Equation~\ref{eqn:1a} and the above argument, we have
+  $a_{n+k}=0, k\ge 0$. Thus $f(z)=\sum_{k=0}^{n-1} a_k(z-w)^n$, which is a polynomial.
+\end{proof}
+\section*{Problem 2(a)} Evaluate $\int_\gamma \frac{\bar{z}}{z-w}\,\D z$,
+where $\gamma$ is the unit circle traversed once in the counterclockwise
+direction, and $w$ is a point inside the unit disk.[Hint: On the unit disk,
+  $|z|^2=1$.]
+\begin{proof}
+  We can write the integral as
+  \[
+  \int_\gamma \frac{\bar{z}}{z-w}\,\D z = \int_\gamma \frac{z\bar{z}}{z(z-w)}\,\D z =
+  \int_\gamma \frac{1}{z(z-w)}\,\D z =
+  \int_\gamma \left( \frac{1}{w(z-w)} -\frac{1}{wz}\right)\,\D z
+  \]
+  Now we can integrate these separately as:
+  \begin{eqnarray}
+    & = &\int_\gamma  \frac{1}{w(z-w)}\,\D z -\int_\gamma \frac{1}{wz} \,\D z \nonumber \\
+    & = &\frac{1}{w} \int_\gamma  \frac{1}{(z-w)}\,\D z -\frac{1}{w}\int_\gamma \frac{1}{z} \,\D z \nonumber \\
+   & = & \frac{2\pi i}{w} - \frac{2\pi i}{w} = 0 \label{eqn:2a}
+  \end{eqnarray}
+  Where Equation~\ref{eqn:2a} is based on Cauchy's integral theorem which
+  specifies that $\oint_\gamma \frac{1}{z-a}\, \D z = 2\pi i$, when $a$ lies
+in the circle.
+\end{proof}
+\section*{Problem 2(b)}Evaluate $\int_\gamma \frac{\overline{z-w}}{z-w}\,\D z$,
+where $\gamma$ is the unit circle traversed once in the counterclockwise
+direction, and $w$ is a point inside the unit disk.[Hint: On the unit disk,
+  $|z|^2=1$.]
+\begin{proof}
+  We can write the integral as
+  \[
+  \int_\gamma \frac{\overline{z-w}}{z-w}\,\D z =
+  \int_\gamma \frac{\bar{z}-\bar{w}}{z-w}\,\D z =
+  \int_\gamma \frac{\bar{z}}{z-w}\,\D z -  \int_\gamma \frac{\overline{w}}{z-w}\,\D z =
+  0 - \int_\gamma \frac{\overline{w}}{z-w}\,\D z 
+  \]
+  based on part~(a) of this problem. We can evaluate the second term as:
+  \[
+    \int_\gamma \frac{\overline{w}}{z-w}\,\D z = \overline{w} \int_\gamma \frac{1}{z-w}\,\D z =
+    \bar{w}2\pi i
+  \]
+  Thus the integral is $-2\bar{w}\pi i$.
+\end{proof}
+
+\section*{Problem 3} Let $\gamma$ be a $C^1$ closed contour, and let
+$g$ be a $C^1$ real valued function. Using the chain rule, the fundamental
+theorem of calculus, and some manipulation, show that
+$\int_\gamma \frac{\partial}{\partial z}g\,\D z$ is pure imaginary. Conclude
+as a special case that if $f$ is holomorphic, then $\int_\gamma \bar{f}f'(z)\,\D z$
+is pure imaginary
+\begin{proof}
+  %% Let $g(z)=\frac{f(z)+\overline{f(z)}}{2}$, where $f(z)$ is a complex
+  %% valued function. Then the integral can be written as:
+  %% \[
+  %% \int_\gamma \frac{\partial}{\partial z}g\,\D z =
+  %% \int_\gamma \frac{\partial}{\partial z}\frac{f(z)+\overline{f(z)}}{2}\,\D z
+  %% \]
+  %% Note the Real Fundamental Theorem of Calculus, which asserts that:
+  %% \[
+  %% \int_a^b F'(t)\,\D t = F(b) - F(a)
+  %% \]
+  %% The complex analogue of this would be:
+  %% \[
+  %% \int_\gamma F'(z)\,\D z = F(\gamma(1)) - F(\gamma(0))
+  %% \]
+  %% This follows from the real fundamental theorem and the chain rule.
+  %% Also note that the contour integral is defined as:
+  %% \begin{equation}
+  %% \int_\gamma f(z)\,\D z = \int_0^1 f(\gamma(t))\gamma'(t)\, \D t \label{eqn:3a}
+  %% \end{equation}
+  We also know that for $g(x,y)=u(x,y)+iv(x,y)$, where $u,v$ are real
+  valued functions, we have:
+  \[
+  \frac{\partial g}{\partial z}(z) = \frac{1}{2}\left(\frac{\partial u}
+       {\partial x}(z) + \frac{\partial v}{\partial y}(z)\right) + \frac{i}{2}
+       \left(\frac{\partial v}{\partial x}(z) - \frac{\partial u}{\partial y}(z)
+       \right)
+       \]
+       Since we know $g$ is real valued, here $v=0$, and we have:
+       \[
+  \frac{\partial g}{\partial z}(z) = \frac{1}{2}\left(\frac{\partial u}
+       {\partial x}(z) -i\frac{\partial u}{\partial y}(z)
+       \right)
+       \]
+       In particular, $\frac{\partial g}{\partial z}$ is also real valued,
+       and thus:
+       \begin{equation}
+         \frac{\partial g}{\partial z}(z) =
+         \frac{1}{2}\frac{\partial u}{\partial x}(z) \label{eqn:3b}
+       \end{equation}
+       Substituting Equation~\ref{eqn:3b}, we get:
+       \begin{equation}
+         \int_\gamma \frac{\partial}{\partial z}g\,\D z =
+         \int_\gamma  \frac{1}{2}\frac{\partial u}{\partial x}(z) \,\D z 
+       \end{equation}
+       It should be noted, that $u$ is real valued.
+       We can use Cauchy's integral theorem, which asserts that the
+       integral over $\gamma$ is equal to the same integral taken over
+       an arbitrarily small circle $C$ around $z_0$.
+       Now using the parameterization of the circle
+       as $\gamma=e^{it}$, we can write the above equivalent integral as:
+         \[
+         \frac{1}{2}\int_0^{2\pi} \frac{\partial u}{\partial x}(\gamma(t))\gamma'(t)\, \D t=
+         \frac{1}{2}\int_0^{2\pi} \frac{\partial u}{\partial x}(\gamma(t))e^{it}i\, \D t =
+         \frac{i}{2}\int_0^{2\pi}\frac{\partial u}{\partial x}(\gamma(t))e^{it}\, \D t =
+         \frac{i}{2}\int_0^{2\pi}|\frac{\partial u}{\partial x}(\gamma(t))|e^{it}\, \D t
+         \]
+       which is pure-imaginary, because, $u$ is a real-valued function, and
+       integral of $e^{it}\,\D t$ is also real-valued from $0$ to $2\pi$.
+
+       {\bf Conclusion}:~conclude as a special case that if $f$ is
+       holomorphic, then $\int_\gamma \bar{f}f'(z)\,\D z$ is pure imaginary.
+       Consider $g(z)=|f(z)|^2=(\bar{f}(z)f(z))$, which is a real valued
+       function, with real valued derivative. Now consider, $\bar{f}f'$,
+       \[
+       \bar{f}\frac{\partial}{\partial z} f(z) =g'(z)- f(z)\bar{f}'(z)
+       \]
+       Since $f$ is holomorphic, we have $f(z)\bar{f}'(z)=0$. Thus,
+       the term on the left is real valued, and thus
+       $\int_\gamma \bar{f}f'(z)\,\D z$ can
+       be written as $\int_0^{2\pi} |\bar{f}f'(\gamma(t))|\gamma'(t)\,\D t$
+       which is pure imaginary, as we proved above.
+
+       
+\end{proof}
+
+\section*{Problem 4}Let $f$ be holomorphic on the unit disk $D$, and let
+$\delta$ be the diameter of the image of the unit disk $f$, that is,
+$\delta=\sup_{z,w \in D}|f(z)-f(w)|$. Using that
+\begin{equation}
+2f'(0) = \frac{1}{2\pi i} \int_{|z|=r} \frac{f(z)-f(-z)}{z^2}\, \D z\label{eqn:4a}
+\end{equation}
+prove that
+\[
+2|f'(0)| \le \delta
+\]
+\begin{proof}
+  We need the following result on diameteric opposite points on the
+  unit disk, which we proved in HW1. In that, $\overline{w}z=-1$,
+  is necessary and sufficient condition for $|z-w|$ to be maximal.
+  Rearranging we have, $\overline{w}=\frac{-1}{z}$, taking conjugates,
+  $w=\frac{-1}{\overline{z}}=-z$, when $|z|=1$. 
+  Therefore, the above result for opposing
+  points holds for Equation~\ref{eqn:4a} also, and we have:
+  \begin{equation}
+    \delta|_{|z|=r}=\frac{|f(z)-f(-z)|}{r^2} \label{eqn:4b}
+  \end{equation}
+  This is because
+  on the image of the unit disk $D$, for the diameter $\delta$, the points
+  $z$ and $w$ (which form the diameter), also lie on a circle of radius
+  $\delta/2$.
+  Next we use Cauchy's theorem:
+  \begin{equation}
+    C_\gamma \phi(z) = \frac{1}{2\pi i} \int_\gamma \frac{\phi(w)}{w-z}\,\D z \label{eqn:cauchy}
+  \end{equation}
+  Let $z=0$, and $\gamma$ be a contour $|z|=r$ around 0.
+  \begin{equation}
+    C_\gamma \phi(0) = \frac{1}{2\pi i} \int_\gamma \frac{\phi(w)}{w}\,\D z \label{eqn:cauchy2}
+  \end{equation}
+  
+  Next we use Cauchy's Transform Theorem:
+  \[
+  \frac{\D}{\D z} C_\gamma \phi(z) = \frac{1}{2\pi i} \int_\gamma
+  \frac{\phi(w)}{(w-z_0)^2}\,\D w
+  \]
+  Let $z_0=0$,$\gamma:=\{|z|=r\}$,
+  and $\phi(z)=f(z)-f(-z)$, and substituting above we have:
+  \[
+  2f'(0) = \phi'(0) = 
+  \frac{1}{2\pi i} \int_{|z|=r} \frac{f(z)-f(-z)}{z^2}\,\D z
+  \]
+  In the class it was discussed that we can assume $r\le 1$, and thus
+  we have to consider $0 \le r \le 1$, and we note on $\gamma, |z|=r$.
+  Thus we get by taking modulus on both sides an inequality:
+  \[
+  2|f'(0)| \le \frac{1}{2\pi} \int_{|z|=r} \frac{|f(z)-f(-z)|}{|z|^2}\,\D z =
+  \frac{2 \pi r\delta }{2\pi r^2}  = \frac{\delta}{r}
+  \]
+  The result follows by letting $r$ converge to 1.
+
+\end{proof}
+
+\section*{Problem 5} Suppose that $f$ is $C^1$ on the region $\Omega$ and
+that for every circle $C$ lying in $\Omega$ it holds that $\int_C f\,\D z=0$.
+Prove that $f$ is holomorphic.
+\begin{proof}
+Instead of proving the existence of a single valued primitive $F$ of $f$ defined
+by 
+\[
+F(z) = \int_{z_0}^z f(s)\,\D s
+\]
+where $z_0$ is some fixed point in $\Omega$ and the integral is taken over
+any rectifiable curve joining $z_0$ to $z$,
+we use the hint given to consider
+the complex Green's theorem and look at limits of 
+the average values over small disks of shrinking radius. 
+Fix $z_0\in \Omega$ and then
+according to the hypothesis we have
+\[
+0 = \int_{C(z_0,r)} f(s)\,\D s
+\]
+
+We know the real form of Green's theorem is defined as
+\[
+\int_\Gamma P\,\D x + Q\,\D y = \int \int_\Omega \left( 
+\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}
+\right) \,\D x\, \D y
+\]
+where $\Omega$ is a domain with boundary $\Gamma$, and $P$ and
+$Q$ are continuous functions defined on a larger set, which contains
+both $\Omega$ and $\Gamma$.
+Let the complex function $f(z)=u(x,y)+iv(x,y)$, then we can write
+$\int_\Gamma f(s)\,\D s$. Expanding this:
+\[
+\int_\Gamma f(s)\,\D s = \int_\Gamma u\,\D x - v\,\D y + i\int_\Gamma v\,\D x + u\,\D y
+\]
+Applying the real form of Green's theorem to the two integrals on the right:
+\[
+= - \int \int_\Omega \left( 
+\frac{\partial v}{\partial x} + \frac{\partial u}{\partial y}
+\right) \,\D x\, \D y + \int \int_\Omega \left( 
+\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}
+\right) \,\D x\, \D y
+\]
+Since $f$ is holomorphic, the two integrals on the right are identically
+zero, which confirms $\int_\Gamma f(s)\,\D s=0$.
+The above Green's Theorem, can be written in compact notation as
+follows.
+The complex form of Green's theorem, we have
+\begin{equation}
+0 = \int_{C(z_0,r)} f(s)\,\D s = 2i\int\int_{D(z_0,r)\in C(z_0,r)} 
+\frac{\partial f}{\partial \overline{z}} \,\D x\,\D y \label{eqn:50}
+\end{equation}
+where the differential operator for $\bar{z}$ is defined as usual by
+\[
+\frac{\partial f}{\partial \overline{z}} = \frac{1}{2}\left( 
+\frac{\partial f}{\partial z}+i\frac{\partial f}{\partial y}\right)
+\]
+Dividing Equation~\ref{eqn:50} by $2i\pi r^2$ we get:
+\begin{equation}
+\frac{1}{\pi r^2} \int\int_{D(z_0,r)\in C(z_0,r)} 
+\frac{\partial f}{\partial \overline{z}} \,\D x\,\D y = 0 \label{eqn:5a}
+\end{equation}
+This is the average of the continuous function $\frac{\partial f}{\partial \overline{z}}$ over the disk $D(z_0,r)$, and is equal to zero.
+Essentially, this completes the argument, as by letting $r\to 0$ we have
+\[
+\lim_{r\to 0}\ \frac{\partial f}{\partial \overline{z}}(z_0)=0
+\]
+Since this holds for each point $z_0\in \Omega$, we have
+$\frac{\partial f}{\partial \overline{z}}=0$ identically in $\Omega$.
+We know this is identical to Cauchy-Riemann condition, and demonstrates
+that $f$ is holomorphic in $\Omega$. Since $f\in C^1$, it is sufficient
+to show that $\frac{\partial f}{\partial \overline{z}}$ is identically zero
+on a dense set, and for each point of $\Omega$ we have met this criteria
+by using a disk shrinking (with the limit of $r\to 0$) to it (the point).
+%[This proof of Morera's theorem 
+%is based in part on the 1974 paper by Lawrence Zalcman, ``Real
+%Proofs of Complex Theorems''].
+\end{proof}
+
+\end{document}

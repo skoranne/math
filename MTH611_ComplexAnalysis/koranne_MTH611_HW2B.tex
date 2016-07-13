@@ -1,0 +1,185 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MTH611 Complex Analysis HW2B TeX source
+%% Author : Sandeep Koranne
+%% Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[12pt]
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{breqn}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+%\usepackage{graphicx}
+\usepackage[mathscr]{euscript}
+\usepackage{enumerate}
+%% \setlength{\textwidth}{16.5cm}
+%% \setlength{\oddsidemargin}{-0.1cm}
+%% \setlength{\evensidemargin}{-0.1cm}
+%% \setlength{\textheight}{23cm}
+%% \setlength{\topmargin}{-1.3cm}
+\newtheorem{lem}{Lemma}
+\newtheorem{proof}{Proof}
+% Some handy shortcuts. 
+\def\ge{\geqslant}
+\def\le{\leqslant}
+\def\phi{\varphi}
+\def\to{\rightarrow}
+\def\mapsto{\longmapsto}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\Aut{\operatorname{Aut}}
+\def\diam{\operatorname{diam}}
+\def\Image{\operatorname{Image}}
+\def\Ker{\operatorname{Ker}}
+\def\GL{\operatorname{GL}}
+\def\SL{\operatorname{SL}}
+\def\Perm{\operatorname{Perm}}
+\def\nor{\vartriangleleft}
+\def\nnor{\vartriangleright}
+\def\lcm{\operatorname{lcm}}
+\def\gcd{\operatorname{gcd}}
+\def\li{\operatorname{li}}
+\def\min{\operatorname{min}}
+\def\max{\operatorname{max}}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\pagestyle{myheadings}
+\begin{document}
+
+\title{Complex Analysis Spring 2016 Homework 1}
+\author{Sandeep Koranne}
+\date{}
+%\maketitle
+
+%\section{Problem 4}
+\subsection*{Problem 4(a)}
+Suppose that for each $n$, $\sum_k a_k^{(n)}z^k$ converges on $D(0,r)$ and let
+$f_n(z)$ denote the sum. Suppose also that $\sum_n f_n(z)$ converges uniformly
+on compact subsets of $D(0,r)$, and let $F(z)$ denote the sum.
+\subsection{Problem 4(a)}
+Supposing that $F(z)$ has a convergent power series expansion on
+$D(0,r): F(z) = \sum b_kz^k$. Prove that $b_k=\sum_n a_k^{(n)}$.
+\begin{proof}
+Since it is given that $f_n(z)$ denotes the sum of a convergent
+power series, we can calculate the coefficients using a Taylor expansion
+at $(z=0)$,
+to get:
+\begin{equation}
+a^{(n)}_k = \frac{1}{k!} \frac{d^k}{dz^k}f_n(z) \label{eqn:4a1}
+\end{equation}
+It is also given that $F(z)$ is a convergent power series
+\[
+F(z) = \sum_n f_n(z)
+\]
+which has an expansion using $b_k$ as coefficients, we can expand them
+using Taylor series as well, to get:
+\begin{equation}
+b_k = \frac{1}{k!} \frac{d^k}{dz^k}F(z) \label{eqn:4a2}
+\end{equation}
+Using the definition of $F(z)$ and $f_n(z)$ 
+in Equation~\ref{eqn:4a2}, we have:
+\begin{equation}
+b_k = \frac{1}{k!} \frac{d^k}{dz^k}\sum_{k=0}^\infty \sum_{n=0}^\infty a^{(n)}_kz^k
+\label{eqn:4a3}
+\end{equation}
+Since the series for $F(z)$ on the right is uniformly convergent, 
+we can interchange the order of summation to get:
+\[
+b_k = \frac{1}{k!} \frac{d^k}{dz^k} \sum_{n=0}^\infty  \sum_{k=0}^\infty a^{(n)}_kz^k
+\]
+We can move the first summation outside the differentiation:
+\[
+b_k = \sum_{n=0}^\infty \frac{1}{k!} \frac{d^k}{dz^k} \sum_{k=0}^\infty a^{(n)}_kz^k
+\]
+Thereafter, we can carry out the term-by-term differentiation inside the
+first summation, which can be rearranged to get:
+\[
+b_k = \sum_{n=0}^\infty \frac{1}{k!} \frac{d^k}{dz^k} f_n(z)
+\]
+But using Equation~\ref{eqn:4a1} we can simplify this to:
+\[
+b_k = \sum_{n=0}^\infty a^{(n)}_k
+\]
+As required.
+\end{proof}
+
+\subsection*{Problem 4(b)}Show that $\sum \frac{z^n}{1-z^n}$ converges
+uniformly on compact subsets of the unit disk, and determine the
+coefficients of its power series representation (centered at $z=0$).
+What is the number-theoretic interpretation of the coefficients?
+\begin{proof}
+Let us denote the original series by $L=\sum \frac{z^n}{1-z^n}$.
+Obviously, for every $z$ such that $1-z^n$ is zero, $L$ is
+not defined, thus we exclude the boundary (circumference) of the
+unit disk, even though $L$ may converge at $z^n\ne \pm 1$ on the
+circumference, these are excluded as the boundary is not a compact
+subset.
+
+Consider the series $\sum z^n$ which is convergent only for $|z|<1$,
+and is equivalent to 
+\[
+\sum z^n = \sum \frac{z^n}{1-z^n} (1-z^n)
+\]
+Using this series we can write the $L$ as a series of the product
+of two terms $z^n$ and $\frac{1}{1-z^n}$.
+Using Abel's partial sum test, we have to establish convergence of
+\[
+\sum |(1-z^{n+1})-(1-z^n)| = |1-z|\sum |z^n|
+\]
+which is convergent on the unit disk.
+The second series to be verified is
+\[
+\sum |\frac{1}{1-z^{n+1}} - \frac{1}{1-z^n}| = |1-z|\sum 
+\frac{|z^n|}{|(1-z^{n+1})(1-z^n)}|
+\]
+For large $n$, we have $|1-z^n|>\frac{1}{2}$, thus the above series
+is also convergent. Now we have verified the Abel's test, and thus
+$L$ is convergent.
+
+To show uniform convergence, consider the fact that all terms of $L$
+are analytic functions regular in $|z|<1$, and as such for every $\rho < 1$, 
+the series is uniformly convergent in $|z|<\rho$, which includes all
+compact subsets of the unit disk.
+
+\subsubsection{Coefficients of $L$ as a power series}
+Note that we have
+\[
+\frac{1}{1-z} = 1 + z + z^2 + \cdots
+\]
+for $|z|<1$. For $z^n$, we have
+\[
+\frac{1}{1-z^n} = 1 + z^n + z^{2n} + \cdots
+\]
+for $|z^n|<1$.
+It is instructive to look at the first few terms of $L$, as $z^n(1-z^n)^{-1}$:
+\begin{eqnarray}
+\frac{z}{1-z} & = & z + z^2 + z^3 + z^4 + \cdots + \nonumber \\
+\frac{z^2}{1-z^2} & = & \quad + z^2 + \quad + z^4 + \quad + z^6 + \cdots +\nonumber \\
+\frac{z^3}{1-z^3} & = & \quad \quad \quad z^3 + \quad \quad \quad \quad z^6 + \cdots + \nonumber \\
+\end{eqnarray}
+We can add these term by term.
+In the $k$th row, a given power of $z^n$ will occur if and only if $n$ is
+a multiple of $k$.
+Formally,
+\[
+L = \sum \frac{z^n}{1-z^n} = \sum_{m=1}^\infty z^m \sum_{n=1}^\infty z^n =  
+\sum_{m=1}^\infty\sum_{n=1}^\infty z^{mn} = \sum_{m=1}^\infty 1 \sum_{n:m|n}^\infty z^n
+\]
+Since we have shown the series is convergent, we can interchange the summation
+order to get:
+\[
+L = \sum_{n=1}^\infty z^n \sum_{m|n}^\infty 1 = \sum_{n=1}^\infty \mbox{d}(n) z^n
+\]
+where $d(n)$ is the function which is known as the divisor function in
+number theory. Given $n$, it returns the number of divisors of $n$.
+Note that such series are called Lambert series.
+\end{proof}
+
+\end{document}  

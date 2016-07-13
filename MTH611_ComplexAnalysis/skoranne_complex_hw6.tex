@@ -1,0 +1,280 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File   : skoranne_complex_hw3.tex
+%% Author : Sandeep Koranne
+%% Purpose: HW6 for complex analysis, good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[12pt]
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{a4wide}
+\usepackage{polynom}
+
+%\usepackage[margin=1.5in]{geometry}
+\newtheorem{lem}{Lemma}
+\def\RR{\mathbb R}
+\def\QQ{\mathbb Q}
+\def\Aut{\mathrm{Aut}}
+\def\Inn{\mathrm{Inn}}
+\def\Out{\mathrm{Out}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\Fix{\mathrm{Fix}}
+\def\Spec{\mathrm{Spec}}
+\def\D{\mathrm{d}}
+\def\nsub{{\trianglelefteq}}
+\DeclareMathOperator{\sign}{sign}
+\begin{document}
+\title{Spring 2016 Complex Analysis HW6}
+\author{Sandeep Koranne}
+\date{May 13, 2016}
+\maketitle
+
+
+\section*{Problem 1}
+Compute the three non-zero lowest order terms Laurent expansion for the following functions at the given point $z_0$.
+
+\begin{enumerate}
+\item{}$f(z)=\frac{z}{(z+1)^3}$, $z_0=-1$
+\begin{proof}
+Let $z+1=u$, then $z=u-1, f(z)=\frac{u-1}{u^3}$, which can be
+written as
+\[
+\frac{1}{u^2}-\frac{1}{u^3} = \frac{1}{(z+1)^2} - \frac{1}{(z+1)^3}
+\]
+\end{proof}
+\item{}$f(z)=\frac{z}{(z-1)(z-3)(z-4)}$, $z_0=3$
+\begin{proof}
+Let $z-3=u$, then $z=u+3$, and $f(z)$ is as
+\[
+f(z) = \frac{u+3}{(u+2)u(u-1)} = -\frac{u+3}{u\cdot 2(1+u/2)\cdot (1-u)}=
+-\frac{(u+3)(1+u+u^2+u^3+\cdots+)}{u\cdot 2(1- (-u/2))} 
+\]
+\[
+-\frac{(u+3)(1+u+u^2+u^3+\cdots+)(1-u/2+u^2/4-u^3/8+\cdots+)}{2u}
+\]
+Now we can collect terms of $u$
+\[
+-\frac{3}{2u} -\frac{5}{4} - \frac{11}{8}u + \cdots+
+\]
+Now substitute back $u=z-3$ to get the terms of the Laurent expansion
+\[
+-\frac{3}{2(z-3)} - \frac{5}{4} - \frac{11}{8}(z-3)
+\]
+\end{proof}
+\item{}$f(z)=\coth(z)$, $z_0=0$
+\begin{proof}
+We begin by noting
+$\coth(z)=\frac{\cosh(z)}{\sinh(z)}$, which can be expanded using
+series expansion as
+\[
+\coth(z) = \frac{1+1/2z^2+1/24z^4+1/720z^6+1/40320z^8+O(z^{10})}
+{z+z^3/6+z^5/120+z^7/5040+O(z^{9})}
+\]
+%\polylongdiv{1+1/2x^2+1/24x^4+1/720x^6}{x+1/6x^3+1/120x^5+1/5040x^7}
+\[
+\polylongdiv{1+1/2*x^2+1/24*x^4+1/720*x^6+1/40320*x^8}{x+1/6*x^3+1/120*x^5}
+\]
+But this does not account for the infinite terms, thus, doing
+calculation by hand (doing long division)
+we get the Laurent expansion of $\coth(z)$ around
+$z_0=0$ as
+\[
+\frac{1}{z}+\frac{z}{3}-\frac{z^3}{45}
+\]
+NB: there is a formula for this series using the Bernoulli numbers.
+\end{proof}
+
+\end{enumerate}
+
+\section*{Problem 2}Compute the residue at the given point $z_0$
+\begin{enumerate}
+\item{}$f(z)=\frac{z^2+1}{z(z+3)^2}$, $z_0=-3$
+\begin{proof}
+The function has a pole of order 2 at $z_0=-3$, thus we compute the
+residue as
+\[
+\lim_{z\to -3} \frac{d}{dz}\left( (z+3)^2 f(z)\right)=
+\lim_{z\to -3} \frac{d}{dz}\left(z+\frac{1}{z}\right)=
+\lim_{z\to -3}  1 - \frac{1}{z^2} = 8/9
+\]
+\end{proof}
+
+\item{}$f(z)=\frac{e^z}{(z-i-1)^2}$, $z_0=1+i$
+\begin{proof}
+Function has a simple pole of second order, thus using the
+Residue formula, we get $\frac{d}{dz}e^z=e^z$, at $z_0$, thus
+the residue is $e^{1+i}$.
+\end{proof}
+
+
+\item{}$f(z)=\frac{\sin z}{z^3(z-2)(z+1)}$, $z_0=0$
+\begin{proof}
+Function has pole of order 3, thus using the Residue formula
+we have
+\[
+\lim_{z\to 0} \frac{1}{2} \frac{d^2}{dz^2} \left( z^3 f(z)\right) =
+\lim_{z\to 0} \frac{1}{2} \frac{d^2}{dz^2} \frac{\sin z}{(z-2)(z+1)}
+\]
+\[
+\frac{1}{2}\lim_{z\to 0} -\frac{2\cos z}{(z-2)^2(z+1)} - \frac{2\cos z}{(z-2)(z+1)^2}=\frac{1}{2}(\frac{-2}{4}+1)=\frac{1}{4}
+\]
+\end{proof}
+
+
+\item{}$f(z)=exp(z+z^{-1})$, $z_0=0$
+\begin{proof}
+The function has an essential singularity at $z=0$.
+We cannot write the Laurent expansion of $f(z)$ directly, so
+we need to use the Cauchy formula to compute the coefficients.
+\[
+f(z) = exp(z+z^{-1}) = \sum_{n=-\infty}^\infty a_nz^n
+\]
+And we know $a_n=\frac{1}{2\pi i}\int_C \frac{f(s)}{s^{n+1}}ds$.
+Let us use the unit circle as the contour of integration, then
+$|z|=1$, and we use the parameterization $z=e^{i\theta}$, and thus
+calculate $a_n$ as
+\[
+a_n = \int_0^{2\pi} \frac{e^{e^{i\theta}+e^{-i\theta}}}{e^{i(n+1)\theta}}ie^{i\theta}d\theta
+\]
+We know that $\cos z = \frac{e^{iz}+e^{-iz}}{2}$, thus the numerator
+of the integral can be simplified using this identity as
+\[
+a_n = i \int_0^{2\pi} e^{2\cos \theta-n\theta}d\theta
+\]
+Since we are only interested in the residue, let us put $n=-1$
+and simplify even further to get
+\[
+a_{-1} = i\int_0^{2\pi} e^{2\cos \theta + \theta}d\theta
+\]
+%Let $y=2\cos\theta + \theta$, then $\frac{dy}{d\theta}=-2\sin\theta+1$.
+%Substituting above
+%\[
+%\int \frac{e^y}{1-2\sin\theta}dy 
+%\]
+This integral should be zero, thus $a_{-1}=0$, and the residue is zero.
+\end{proof}
+
+\end{enumerate}
+
+\section*{Problem 3 (Simon p.~131, Problem 1)}
+Let $f(z)=P(z)/Q(z)$ be a rational function. Show that it has
+finitely many poles.
+\begin{proof}
+We are assuming from the notation that $P(z)$ and $Q(z)$ are
+polynomials with no common factor 
+(as thats what a rational function for complex is
+understood to be), therefore we can write the function $P(z)$
+as
+\[
+P(z)=a_0(z-\alpha_1)(z-\alpha_2)\ldots(z-\alpha_m)
+\]
+where $P(z)$ has degree $m$. Similarly for $Q(z)$ we write it as
+\[
+Q(z)=b_0(z-\beta_1)(z-\beta_2)\ldots(z-\beta_n)
+\]
+where $Q$ has degree $n$, and moreover $\alpha_i\ne\beta_j$ (since
+$P$ and $Q$ have no common factor).
+Therefore, $Q$ has finitely many zeros, and these are the poles
+of $f$. We can therefore write $R(z)$ as
+\begin{equation}
+f(z) = \frac{a_0(z-\alpha_1)(z-\alpha_2)\ldots(z-\alpha_m)}
+{b_0(z-\beta_1)(z-\beta_2)\ldots(z-\beta_n)}z^{m-n} \label{eqn:3a}
+\end{equation}
+We consider the three cases corresponding to $m>n$, $m<n$ and $m=n$,
+and in each case we can easily conclude that the number of poles
+of $f(z)$ is finite.
+\end{proof}
+
+\subsection*{Problem 3(b)}
+Let $p_1,p_2,\ldots,p_l$ be the poles and $p_1(z),p_2(z),\ldots,p_l(z)$
+be the principal parts. Show that
+\[
+f(z) = \sum_{j=1}^l p_j(z) + R(z)
+\]
+where $R$ is a polynomial of degree exactly $\mbox{deg}(P)-\mbox{deg}(Q)$
+(with the convention that $R=0$, if this difference is negative).
+In particular, if $\mbox{deg}(P) < \mbox{deg}(Q)$, then 
+$f=\sum_{j=1}^l p_j$.
+\begin{proof}
+Based on the Hint, we use Theorem 3.1.9, which states that
+if $f$ is an entire function and for some $\alpha \ge 0$ and
+$C<\infty$, we have that for all $z\in\CC$, $|f(z)| \le C(|z|+1)^\alpha$,
+then $f$ is a polynomial of degree at most $[\alpha]$, the largest
+integer less than $\alpha$.
+As we have written $f(z)$ in Equation~\ref{eqn:3a}, we see that when
+$m\le n$, then $R(z)=0$. If $m>n$, then $f(z)$ has a pole at $\infty$,
+and using the division algorithm we can write $f(z)=\sum_{j=1}^l p_j(z)+R(z)$
+and the degree of $R(z)$ has to be less than $n$ and moreover
+$R(z)$ is finite at $\infty$.
+\end{proof}
+
+\section*{Problem 4 (Simon p.~215, Problem 1 c,e,f)}
+\subsection*{Problem (c)}Evaluate
+\[
+\int_0^{2\pi} \frac{\cos \theta}{a+\cos \theta} dx\qquad \mbox{for}\ a>1
+\]
+\begin{proof}
+Looks like a trick question or misprint, as the measure is $dx$, so
+$\frac{\cos \theta}{a+\cos\theta}$ are independent of $x$, therefore
+can be moved out of the intergral, to get 
+\[
+\frac{\cos \theta}{a+\cos\theta} \int_0^{2\pi} dx = 2\pi\frac{\cos \theta}{a+\cos\theta}
+\]
+\end{proof}
+
+\subsection*{Problem (e)}Evaluate
+\[
+\int_{-\pi}^{\pi} \frac{x\sin x}{1-2a\cos x+a^2} dx\qquad \mbox{for}\ 0<a<1
+\]
+\begin{proof}
+
+\end{proof}
+
+\subsection*{Problem (f)}Evaluate
+\[
+\int_{0}^{2\pi} \frac{\cos mx}{1-2a\cos x+a^2} dx\qquad \mbox{for}\ 0<a<1
+\]
+\begin{proof}
+
+\end{proof}
+
+
+
+\section*{Problem 3 (Simon p.~131, Problem 5 a,b,d)}
+Evaluate the following assuming
+\[
+0 < \alpha < \beta, 0 < \alpha = \beta, \mbox{and}\ 0 < \beta < \alpha
+\]
+\subsection*{Problem (a)}Evaluate
+\[
+\int_{-\infty}^{\infty} \frac{\sin \alpha x\cos \beta x}{x} dx
+\]
+\begin{proof}
+
+\end{proof}
+
+\subsection*{Problem (b)}Evaluate
+\[
+\int_{-\infty}^{\infty} \frac{\sin^2 x}{x^2} dx
+\]
+\begin{proof}
+
+\end{proof}
+
+\subsection*{Problem (d)}Evaluate
+\[
+\int_{-\infty}^{\infty} \frac{\sin x}{x(x^2-\pi^2)} dx
+\]
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+\end{document}

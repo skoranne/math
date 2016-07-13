@@ -1,0 +1,230 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File   : skoranne_complex_hw8.tex
+%% Author : Sandeep Koranne
+%% Purpose: HW8 for complex analysis, good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[12pt]
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{a4wide}
+\usepackage{polynom}
+\usepackage{tikz}
+
+%\usepackage[margin=1.5in]{geometry}
+\newtheorem{lem}{Lemma}
+\def\RR{\mathbb R}
+\def\QQ{\mathbb Q}
+\def\DD{\mathbb D}
+\def\Aut{\mathrm{Aut}}
+\def\Inn{\mathrm{Inn}}
+\def\Out{\mathrm{Out}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\Fix{\mathrm{Fix}}
+\def\Spec{\mathrm{Spec}}
+\def\D{\mathrm{d}}
+\def\nsub{{\trianglelefteq}}
+\DeclareMathOperator{\sign}{sign}
+\begin{document}
+\title{Spring 2016 Complex Analysis HW8}
+\author{Sandeep Koranne}
+\date{June 3, 2016}
+\maketitle
+
+
+\section*{Problem 1}Using the linear fractional transform and powers,
+construct a conformal map from the upper half disk to the upper
+half plane.
+\begin{proof}
+The map $f(z)\to z^2$ maps the first quadrant to the upper half plane
+with $\mbox{Im}z>0$. Thus if we can map the upper half disk to the
+first quadrant, and compose with $z^2$, we will be done.
+
+Since we know that the map $\frac{1+z}{1-z}$ maps the unit disk to the
+right half plan, the behaviour of this map on the semi-disk can be
+inferred as below.
+The M\"obius map:
+\[
+f(z) = \frac{1+z}{1-z}
+\]
+maps the upper half disk to the first quadrant, with $-1<\mbox{Re}z<1$ mapping
+to the positive $X$ axis, and the image of the semicircular disk
+mapping to the positive $Y$ axis. Therefore the required transform
+to construct a conformal map from the upper half disk to the upper
+half plane is:
+\[
+f(z) = \left(\frac{1+z}{1-z}\right)^2
+\]
+\end{proof}
+
+\section*{Problem 2}
+Let $\Gamma$ a circle contained inside the unit circle with center
+$\sigma$ and radius $\rho$. The aim of this problem is to construct
+a M\"obius transformation $T$ which takes the unit circle to itself
+and $\Gamma$ to a circle centered at the origin. By a rotation in $z$
+we may suppose that $\sigma$ satisfies $0\le \sigma < 1$. The transformation
+sought must have the form $z\to \gamma\frac{a-z}{1-\overline{a}z}$ for
+some $a$ of modulus less than 1 and $\gamma$ with $|\gamma|=1$.
+Since the $\gamma$ factor maps circles centered at origin to
+themselves, it may be omitted.
+
+\subsection*{Problem 2(a)}Using the symmetry of $\sigma$
+and $\infty$ with respect to $\Gamma$, and properties of M\"obius
+maps, derive an equation relating $a,\sigma$ and the radius $R$,
+of the image circle which shows that $a$ must be real.
+\begin{proof}
+Let $\Gamma'$ denote the transformed $\Gamma$ with radius $R$.
+We know that for the circle $\Gamma'$, we have $\Gamma'=\{z:|z|=R\}$,
+and the symmetry condition for $\Gamma'$ gives the map
+\[
+S(z) = \left\{ \begin{array}{cc}
+                \frac{R^2}{\overline{z}} & \mbox{if}\ z\ne 0 \\
+                \infty & \mbox{if}\ z=0 \\
+                0 & \mbox{if}\ z=\infty \end{array}\right.
+\]
+From the properties of M\"obius maps, we know that these maps
+transform a pair of symmetric points with respect to $\Gamma$ into
+a pair of symmetric points with respect to $\Gamma'$. Thus $\sigma$
+and $\infty$ were symmetric with respect to $\Gamma$, thus they
+remain symmetric with respect to $\Gamma'$ defined through
+$z\to \frac{a-z}{1-\overline{a}z}$. We know that $\sigma$ is mapped
+to the origin, substituting above we get $a=\sigma$, and thus $S(a)$
+is defined as $R^2/\bar{a}$, but symmetric lines have same arg, thus
+$S(a)$ is real, $R^2$ is real, therefore $\bar{a}$ has to be real,
+therefore $a$ is real.
+\end{proof}
+
+\subsection*{Problem 2(b)}Show that that $T$ must take the points
+$1,a,-1$ to $-1,0,1$ respectively, and so the images of
+$\sigma \pm \rho$ are $\pm R$.
+\begin{proof}
+By direct substitution in the map, we see that $T(a)=\frac{a-a}{1-\bar{a}a}=0$.
+Similarly, for $T(1)=\frac{a-1}{1-\bar{a}}=-1$ (since $a$ is real).
+Similarly, for $T(-1)=\frac{a+1}{1+\bar{a}}=1$ (since $a$ is real).
+Therefore, since $\rho<1$, and $T(\sigma)=0$, the images of
+$\sigma\pm\rho$ are $0\pm R$.
+\end{proof}
+
+\subsection*{Problem 2(c)}Use this to solve for $a$ in terms of
+$\sigma$ and $\rho$
+\begin{proof}
+We have shown that $T(\sigma)=0$, thus $a=\sigma$. The scaling
+can be provided by $\rho$ using $R$.
+\end{proof}
+
+
+\section*{Problem 3} Suppose that $f$ is holomorphic in $D$
+(the unir disk), injective, $f(0)=0$, $|f'(0)|\le 1$,
+and $D\subseteq f(D)$. Prove that $f(z)=cz$ for some
+$c$ of modulus one.
+\begin{proof}
+Using problem 2 above we know there exist a M\"obius map which
+maps the unit circle to itself. Consider the M\"obius map
+\[
+M(z) = \frac{z_1-z}{1-\bar{z_1}z}
+\]
+and the associated function  for a fixed $z_1$
+\[
+\phi(z)=\frac{f(z_1)-z}{1-\overline{f(z_1)}z}
+\]
+Since $M(z_1)=0$, and the map is invertible, $f$ is injective, we have
+the composed map $\phi(f(M^{-1}(z)))$ maps 0 to 0, and $D$ to itself
+and moreover $|\phi(f(M^{-1}(z)))|\le |z|$.
+Thus we can apply Schwarz-Pick Lemma, and have $f(z)=\phi^{-1} \circ I_c
+\circ \phi \in \mbox{Aut}(D)$.
+But this implies that $|c|=1$, and thus $f(z)=cz$ with $|c|=1$.
+\end{proof}
+
+
+
+\section*{Problem 4}Let $C$ be a circle in $\CC$ and
+$w_1,w_2$ two (distinct) points in the complement of $C$.
+Prove that there is a fractional linear transformation which takes
+$C$ to itself and takes $w_1$ to $w_2$.
+\begin{proof}
+Without loss of generality (or by appropriate translation) assume that
+$C$ is centered at the origin. Since both $w_1$ and $w_2$ are in the complement
+we have $|w_1|>R$ and $|w_2|>R$, where $R$ is the radius of $C$.
+Perform a scaling transformation such that $K_1=|w_1|/R$.
+Now $w_1$ is on the circle of radius $K_1R$, and we construct
+a M\"obius map such that $0,\infty,w_1$ are mapped to $0,\infty,K_1w_2$.
+Thereafter we construct the reverse scaling map $1/K_1$.
+Composing these maps 
+\[
+(1/K_1) \circ (w,0,\infty,K_1w_2)=(z,0,\infty,w_1) \circ K_1
+\]
+gives a map which takes $C$ to itself, and $w_1$ to $w_2$, where
+the notation $(w,0,\infty,K_1w_2)=(z,0,\infty,w_1)$ is a FLT map.
+\end{proof}
+
+\section*{Problem 5}Suppose that $f$ is analytic and non-constant on the
+unit disk $D$ and satisfies $\mbox{Re}\ f(z)\ge 0$ there.
+By the open mapping theorem then actually 
+$\mbox{Re}\ f(z)> 0$ on the disk.
+
+
+\subsection*{Problem 5(a)} By using an appropriate M\"obius map and
+the Schwarz lemma, prove that if $f(0) = 1$, then
+\[
+|f(z)| \le \frac{1+|z|}{1-|z|}
+\]
+on $D$. What holds if $f(0)\ne 1$ ?
+\begin{proof}
+We note that $\mbox{Re}\ f(z) > 0$ on the unit disk by the 
+open mapping theorem. Consider the M\"obius map 
+\[
+\phi(w) = \frac{w-1}{w+1}
+\]
+Then $\phi$ maps the positive half plane conformally onto the
+unit disk, and therefore $g=\phi \circ f$ maps $D$ conformally
+onto itself with $g(0)=0$. Now using Schwarz lemma we have
+\[
+|\phi(f(z))|=|g(z)| \le |z|
+\] 
+for all $z\in D$.
+Moreover, 
+\[
+|\phi'(f(0))f'(0)| = |g'(0)| \le 1
+\]
+Substituting with the definition of $\phi$ we have
+\begin{equation}
+\frac{|f(z)|-1}{|f(z)|+1} \le |\frac{f(z)-1}{f(z)+1}| \le |z| \label{eqn:5a}
+\end{equation}
+Simplifying we have
+\[
+\frac{|f(z)|-1}{|f(z)|+1} \le |z| \implies 
+\frac{-2}{|f(z)|+1} \le |z|-1 \implies 
+\frac{2}{|f(z)|+1} \ge 1-|z| \implies 
+\frac{2}{1-|z|} \ge 1+|f(z)| \implies 
+|f(z)| \le \frac{1+|z|}{1-|z|}
+\]
+If $f(0)\ne 1$, we still have
+\[
+|\phi'(f(0))f'(0)| = |g'(0)| \le 1
+\]
+from Schwarz lemma.
+\end{proof}
+
+\subsection*{Problem 5(b)}Show also that if $f(0)=1$ then f also
+satisfies
+\[
+|f(z)| \ge \frac{1-|z|}{1+|z|}
+\]
+\begin{proof}
+Consider Equation~\ref{eqn:5a}, we simplify it with 
+\[
+\frac{1-|f(z)|}{1+|f(z)|} \le |z|
+\]
+\[
+\frac{2}{1+|f(z)|} \le |z|+1 \implies 1+|f(z)| \ge \frac{2}{1+|z|}
+\]
+which implies
+\[
+|f(z)| \ge \frac{1-|z|}{1+|z|}
+\]
+\end{proof}
+
+\end{document}

@@ -1,0 +1,268 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File   : skoranne_complex_hw3.tex
+%% Author : Sandeep Koranne
+%% Purpose: HW4 for complex analysis, good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[12pt]
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{a4wide}
+%\usepackage[margin=1.5in]{geometry}
+\usepackage{tikz}
+\newtheorem{lem}{Lemma}
+\def\RR{\mathbb R}
+\def\QQ{\mathbb Q}
+\def\Aut{\mathrm{Aut}}
+\def\Inn{\mathrm{Inn}}
+\def\Out{\mathrm{Out}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\Fix{\mathrm{Fix}}
+\def\Spec{\mathrm{Spec}}
+\def\D{\mathrm{d}}
+\def\nsub{{\trianglelefteq}}
+\DeclareMathOperator{\sign}{sign}
+\begin{document}
+\title{Spring 2016 Complex Analysis HW4}
+\author{Sandeep Koranne}
+\date{April 27, 2016}
+\maketitle
+
+
+\section*{Problem 1}
+Use Cauchy's integral formula to evaluate the following contour integrals:
+
+\subsection*{Problem 1(a)}
+\[
+\frac{1}{2\pi i} \int_{C_r} \frac{e^z}{z^2+iz+6}\,\D z
+\]
+where $C_r$ is the circle of radius $r$ centered at the origin oriented
+counterclockwise, for both $r=1$ and $r=4$.
+\begin{proof}
+Using partial fraction decomposition we can write:
+\[
+\frac{1}{z^2+iz+6} = \frac{i}{5(z+3i)} - \frac{i}{5(z-2i)}
+\]
+thus the above integral can be written as:
+\[
+\frac{1}{2\pi i} \int_{C_r} \frac{e^z}{z^2+iz+6}\,\D z = 
+\frac{1}{2\pi i} \int_{C_r} \frac{ie^z}{5(z+3i)}\,\D z -
+\frac{1}{2\pi i} \int_{C_r} \frac{ie^z}{5(z-2i)} \,\D z
+\]
+Now we consider $r=1$, in this disk, $z+3i$ does not have any zeros,
+and neither does $z-2i$, thus the integral is zero (using Cauchy's integral
+theorem), since the functions are analytic, without singularities, and
+contour is closed.
+
+For $r=4$, the contour now encloses both the singularities (at $2i$ and
+$-3i$) and thus using Cauchy's integral formula, we have
+\[
+\frac{1}{2\pi i} \int_{C_4} \frac{e^z}{z^2+iz+6}\,\D z = 
+\frac{1}{2\pi i} \int_{C_4} \frac{ie^z}{5(z+3i)}\,\D z -
+\frac{1}{2\pi i} \int_{C_4} \frac{ie^z}{5(z-2i)} \,\D z =
+f(-3i)-f(2i)
+\]
+where $f(z)=\frac{ie^z}{5}$, substituting, we 
+have $I=\frac{i}{5}[e^{-3i}-e^{2i}]$.
+\end{proof}
+
+\subsection*{Problem 1(b)}
+\[
+\frac{1}{2\pi i} \int_{C_r} \frac{e^z}{(z-i)^4} dz
+\]
+where $C_r$ is the circle of radius $r$ centered at the origin oriented
+counterclockwise, for both $r=2$.
+
+\begin{proof}
+We first note that with $r=2$, the disk does not pass through
+any singularity of the integrand function. And moreover, the disk
+contains the obvious singularity at $z=i$.
+Using Cauchy's differentiation formula we have
+\begin{equation}
+f^{(n)}(a) = \frac{n!}{2\pi i} \int_C \frac{f(z)}{(z-a)^{n+1}}\, \D z \label{eqn:1b}
+\end{equation}
+Using Equation~\ref{eqn:1b}, with $n=3$, we have the integral equal to
+\[
+I = \frac{f^{(3)}e^z}{3!}|_{z=i} = \frac{-ie^i}{6}
+\]
+\end{proof}
+
+\section*{Problem 2} Prove that $\sum_{n=1}^\infty \frac{1}{z^2+n^2}$ is
+holomorphic on $\CC\setminus \pm i\NN$, by proving that
+the partial sums converge uniformly on compact subsets.
+\begin{proof}
+We begin by noting that on the domain $\CC\setminus \pm i\NN$, the 
+general term of the series $\frac{1}{z^2+n^2}$ is well defined and
+bounded on the domain (since $\frac{1}{n^2}$ is bounded). By the
+limit comparison test (LCT), we have
+\[
+\lim_{n\to\infty} \frac{|1/n^2|}{|1/(z^2+n^2)|} = \frac{|z^2+n^2|}{|n^2|}
+= 1 + |(\frac{z}{n})^2| = 1
+\]
+thus the series $1/n^2$ and $1/(z^2+n^2)$, have the same disposition with
+respect to convergence. But we know that the series $1/n^2$ converges, thus
+we can conclude that the series $1/(z^2+n^2)$ also converges
+uniformly and absolutely. Therefore for all $\epsilon>0$ there exists
+$N(\epsilon)$ such that
+\begin{equation}
+\sum_{N(\epsilon)}^\infty \frac{1}{|(z_0)^2+n^2|} < \epsilon \label{eqn:2a}
+\end{equation}
+
+On any compact subset $A\subseteq \CC\setminus \pm\NN$, there exists
+$z_0$ such that $|z_0|$ is minimal. This follows from the maximum modulus
+principle, which has a corrolary to this effect. Therefore, on $A$, we have
+$|z|\ge |z_0|$ for all $z\in A$. Now using Equation~\ref{eqn:2a} we have
+\[
+\sum_{N(\epsilon)}^\infty \frac{1}{|z^2+n^2|} < \sum_{N(\epsilon)}^\infty \frac{1}{|(z_0)^2+n^2|} < \epsilon \label{eqn:2b}
+\]
+Thus, the series converges on compact subsets, thus $f(z)$ represented
+by this series represents a holomorphic function on this domain.
+\end{proof}
+
+
+\section*{Problem 3}
+Let $\Omega$ be a region in $\CC$ and let $f$ be a holomorphic mapping
+from $\Omega$ to itself. 
+Let $f_1=f, f_2=f\circ f, f_2 = f\circ f_1,\ldots,f_{j+1}=f\circ f_j$ for
+all $j\in \NN$, and suppose that the sequence $f_j$ converges
+uniformly on compact subsets of $\Omega$. Let $g=\lim f_j$.
+
+\subsection*{Problem 3(a)}
+Prove that $g\circ g=g$.
+\begin{proof}
+Since $g=\lim f_j$, and it is given that the sequence of functions 
+converges, therefore it is a Cauchy sequence using the uniform convergence
+metric. Thus for all $\epsilon>0$, there exists $N(\epsilon)$ such that
+$|g-f_j|<\epsilon, j>N(\epsilon)$, and in particular this is true for
+all $z\in\Omega$ (by uniform convergence). This implies that
+$|g\circ g - f_i \circ f_j| < \epsilon$, for $i,j > N(\epsilon)$.
+Now let $\lim i,j\to\infty$, we have $|g\circ g-g|<\epsilon$.
+This is in the uniform convergence norm, and now expanding $g$ using
+power series around $z_0$ we can show 
+that $|(g\circ g)(z_0)-g(z_0)|<\epsilon/n$.
+Since $\epsilon$ is arbitrary, we have $g\circ g=g$.
+\end{proof}
+
+\subsection*{Problem 3(b)}
+Prove then that either $g=\mathrm{constant}$ or $g=\mathrm{id}$.
+\begin{proof}
+We write $g(z)$ as a power series around $z_0$:
+\[
+g(z) = g(z_0) + a_1(z-z_0)+a_2(z-z_0)^2 + \cdots + 
+\]
+Composing the above with $g$ we have $(g\circ g)(z)$
+\[
+(g\circ g)(z) = g(z_0) + a_1( g(z_0) + a_1(z-z_0)+a_2(z-z_0)^2 + \cdots -z_0 ) 
++ a_2(g(z_0) + a_1(z-z_0)+a_2(z-z_0)^2 + \cdots -z_0)^2 + \cdots
+\]
+but we have shown above that $(g\circ g)(z)=g(z)$. Thus
+\begin{eqnarray}
+g(z_0) + a_1(z-z_0)+a_2(z-z_0)^2 + \cdots + & = & g(z_0) + a_1( g(z_0) + a_1(z-z_0) +a_2(z-z_0)^2 + \cdots -z_0 ) \nonumber \\  
+& & + a_2(g(z_0) + a_1(z-z_0)+a_2(z-z_0)^2 + \cdots -z_0)^2 + \cdots \nonumber
+\end{eqnarray}
+Comparing the left hand side series and right hand series for powers of
+$(z-z_0)$ we have that either $a_1=a_2=\cdots=a_n=0$, and then 
+$g(z)=g(z_0)=\mathrm{constant}$. Or, $g(z_0)=0$, and of all the coefficients
+$a_1=$, and all other $a_j=0,j>1$.
+These correspond to the conditions that either $g(z)$ is a constant
+function or $g(z)=z$, the identity function.
+\end{proof}
+
+\section*{Problem 4} Let $\Omega$ be a bounded region, $f$
+a holomorphic mapping from $\Omega$ to itself, and assume that
+there exists $a\in\Omega$ which is a fixed point for $f$.
+Prove that $|f'(a)|\le 1$.
+\begin{proof}
+Using the hint, we first show that for $h(z)\in H(\Omega)$ 
+(holomorphic on $\Omega$), we have $|h'(a)|\le M$, where $M$
+depends on $\Omega$. If $\sup |f(z)| \le M_1$
+for all $z \in \Omega$, and this is true, since $f:\Omega\to\Omega$, and
+$\Omega$ is a bounded domain, then using Cauchy estimate we have:
+\begin{eqnarray}
+f^{(n)}(a) & = & \frac{n!}{2\pi i}\int_\Omega \frac{f(z)}{(z-a)^{n+1}}\, \D z \nonumber \\
+|f^{(n)}(a)| & = & \frac{n!}{2\pi }|\int_\Omega \frac{f(z)}{(z-a)^{n+1}}\, \D z |\nonumber \\
+& \le & \frac{n!}{2\pi }\int_\Omega \frac{|f(z)|}{(|z-a|)^{n+1}}\, \D z |\nonumber \\
+& \le & \frac{n!M_1}{2\pi} |\int_\Omega \frac{1}{(|z-a|)^{n+1}}\, \D z |\nonumber \\
+& \le & \frac{n!M_1}{2\pi} |\int_\Omega \frac{1}{(R)^{n+1}}\, \D z |\nonumber \\ 
+& \le & \frac{n!M_1}{2\pi R^{n+1}} |\int_\Omega \, \D z |\nonumber \\ 
+& \le & \frac{n!M_1}{R^{n+1}} \nonumber \\ 
+\end{eqnarray}
+where $R$ denotes the distance between $a$ and $\Omega$. Therefore we now have
+a bound on $|f^{(n)}(a)|$ dependent only on the region $\Omega$.
+
+Next consider the identity for the nth-derivative of $f$ at a fixed point $a$
+\[
+f^{(n)}(a) = (f'(a))^n
+\]
+this can be proven using the chain rule and the fact that $f(a)=a$.
+Using the chain rule 
+\[
+(f\circ f)'(a) = (f'\circ f(a))\cdot f'(a)=f'(a)\cdot f'(a) = (f'(a))^2
+\]
+Using induction, we have
+\[
+(f_k)^{(k)}(a) = (f'(a))^k
+\]
+composing and differentiating once more, we have
+\[
+(f\circ f_k)^{(k+1)}(a) = f'\circ (f'(a))^k f'(a) = (f'(a))^{k+1}
+\]
+Thus, we have $f^{(n)}(a)=(f'(a))^n$.
+
+Now, since on $\Omega$ we have shown that $f^{(n)}(a) \le M$, this
+implies that $(f'(a))^n \le M$, and from geometric power series, we know
+that this convergence (for arbitrary $n$) 
+happens only when $|f'(a)|\le 1$, thus we have
+the result.
+\end{proof}
+
+\section*{Problem 5} Continuing with the hypothesis of the
+preceding problem, assume now that $f'(a)=1$. Consider the
+Taylor expansion of $f$ at $a$, $f(z)=a+(z-a)+b_n(z-a)^n + o((z-a)^n)$
+where $b_n$ denotes the first non-zero coefficient of index greater than one.
+Prove that the Taylor expansion of $f_k$ is $f_k(z)=a+(z-a)+kb_n(z-a)^n + o(z^n)$
+and conclude, using the Cauchy estimates, that in fact $b_n=0$ and that
+$f$ is the identity map.
+\begin{proof}
+We write the Taylor series as given:
+\[
+f(z) = a + (z-a) + b_n(z-a)^n + o((z-a)^n)
+\]
+composing with $f$ we have
+\[
+(f\circ f)(z) = a + ( a + (z-a) + b_n(z-a)^n + o((z-a)^n) -a) + b_n( a + (z-a) + b_n(z-a)^n + o((z-a)^n) -a)^n + o(z^n)
+\]
+Simplifying the above:
+\[
+(f\circ f)(z) = a + (z-a) + b_n(z-a)^n + b_n(z-a)^n + o(z^n)
+\]
+Using induction, let the hypothesis be true for $k$, then
+\[
+f_k(z) = a + (z-a) + kb_n(z-a)^n + o(z^n)
+\]
+composing again with $f$, we have:
+\[
+(f \circ f_k)(z) = f_{k+1}(z) = a + (a + (z-a) + kb_n(z-a)^n + o(z^n)-a) +
+kb_n(a + (z-a) + kb_n(z-a)^n + o(z^n) -a)^n + o(z^n)
+\]
+Simplifying:
+\begin{eqnarray}
+f_{k+1}(z) & = & a + (z-a) + kb_n(z-a)^n + b_n(z-a)^n + o(z^n) \nonumber \\
+          & = & a + (z-a) + (k+1)b_n(z-a)^n + o(z^n)
+\end{eqnarray}
+Thus we have verified the expansion for all $\NN$.
+
+Using the Cauchy estimate we have:
+\[
+f^{(n)}_k(z) = n!kb_m + n!\cdot o(z)
+\]
+At $z=a$, the Cauchy estimate for $f^{(n)}(a)$ is bounded,
+we have $n!kb_n\le M$, this implies that $b_n=0$, and that $f$
+is given as $f(z)=z$, the identity map.
+\end{proof}
+
+
+\end{document}

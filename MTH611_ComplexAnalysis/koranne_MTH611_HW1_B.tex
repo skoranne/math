@@ -1,0 +1,380 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MTH611 Complex Analysis HW1 TeX source
+%% Author : Sandeep Koranne
+%% Good luck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}[12pt]
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{breqn}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+%\usepackage{graphicx}
+\usepackage[mathscr]{euscript}
+\usepackage{enumerate}
+%% \setlength{\textwidth}{16.5cm}
+%% \setlength{\oddsidemargin}{-0.1cm}
+%% \setlength{\evensidemargin}{-0.1cm}
+%% \setlength{\textheight}{23cm}
+%% \setlength{\topmargin}{-1.3cm}
+\newtheorem{lem}{Lemma}
+\newtheorem{proof}{Proof}
+% Some handy shortcuts. 
+\def\ge{\geqslant}
+\def\le{\leqslant}
+\def\phi{\varphi}
+\def\to{\rightarrow}
+\def\mapsto{\longmapsto}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\Aut{\operatorname{Aut}}
+\def\diam{\operatorname{diam}}
+\def\Image{\operatorname{Image}}
+\def\Ker{\operatorname{Ker}}
+\def\GL{\operatorname{GL}}
+\def\SL{\operatorname{SL}}
+\def\Perm{\operatorname{Perm}}
+\def\nor{\vartriangleleft}
+\def\nnor{\vartriangleright}
+\def\lcm{\operatorname{lcm}}
+\def\gcd{\operatorname{gcd}}
+\def\li{\operatorname{li}}
+\def\min{\operatorname{min}}
+\def\max{\operatorname{max}}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\CC{\mathbb C}
+\def\FF{\mathbb F}
+\def\NN{\mathbb N}
+\def\QQ{\mathbb Q}
+\def\RR{\mathbb R}
+\def\ZZ{\mathbb Z}
+
+\pagestyle{myheadings}
+\begin{document}
+
+\title{Complex Analysis Spring 2016 Homework 1}
+\author{Sandeep Koranne}
+\date{}
+\maketitle
+
+\section{Problem 1}
+\subsection{Problem 1(a)}
+Prove that
+\[
+1-\left|\frac{z-w}{1-z\bar{w}}\right|^2 = 
+\frac{(1-|z|^2)(1-|w|^2)}{|1-\bar{z}w|^2}
+\]
+provided $1-\bar{z}w\ne 0$.
+\begin{proof}
+Expand $\left|\frac{z-w}{1-z\bar{w}}\right|^2$ using the identity
+$|z|^2=z\bar{z}$, to get:
+\[
+\left|\frac{z-w}{1-z\bar{w}}\right|^2 = 
+\frac{z-w}{1-z\bar{w}}\overline{\left(\frac{z-w}{1-z\bar{w}}\right)} =
+\frac{z-w}{1-z\bar{w}}\frac{\overline{z-w}}{\overline{1-z\bar{w}}} =
+\frac{z-w}{1-z\bar{w}}\frac{\bar{z}-\bar{w}}{1-\bar{z}w} = 
+\frac{|z|^2-z\bar{w}-w\bar{z}+|w|^2}{1-\bar{z}w-z\bar{w}+|z|^2|w|^2}
+\]
+Thus the left-hand side of the expression to be proved can now be written as:
+\[
+\frac{1-\bar{z}w-z\bar{w}+|z|^2|w|^2-(|z|^2-z\bar{w}-w\bar{z}+|w|^2)}
+{1-\bar{z}w-z\bar{w}+|z|^2|w|^2}
+\]
+Simplifying the numerator:
+\[
+\frac{1+|z|^2|w|^2-|z|^2-|w|^2}
+{1-\bar{z}w-z\bar{w}+|z|^2|w|^2}
+\]
+Also the denominator can be written as $|1-\bar{z}w|^2$, thus we get
+\[
+\frac{(1-|z|^2)(1-|w|^2)}{|1-\bar{z}w|^2}
+\]
+As required.
+\end{proof}
+
+\subsection{Problem 1(b)}
+Prove that for fixed $W$ with $|w|<1$, the mapping
+\begin{equation}
+z\to \frac{z-w}{1-\bar{w}z} \label{eqn:1b1}
+\end{equation}
+maps the unit disk into the unit disk, taking the unit circle to
+the unit circle.
+\begin{proof}
+First consider the unit circle case, then $|z|=1$, and we can write
+Equation~\ref{eqn:1b1} as
+\[
+|z|^2=|\frac{z-w}{1-\bar{w}z}|^2 = \left(\frac{z-w}{1-\bar{w}z}\right)
+\left(\frac{\bar{z}-\bar{w}}{1-\bar{z}w}\right) =
+\frac{|z|^2-z\bar{w}-w\bar{z}+|w|^2}{1-w\bar{z}-\bar{w}z+|w|^2|z|^2}=1
+\]
+As $|z|^2=1$. Thus the unit circle is mapped to the unit circle.
+For the unit disk, we have $|z|<1$, then using the relation
+$A+B < 1+AB$, for $A,B < 1$, we have
+\[
+|z|^2+|w|^2 < 1 + |z|^2|w|^2
+\]
+Using this in the above equation we see that $|z|^2<1$, which
+proves that the unit disk is mapped into the unit disk, as required.
+\end{proof}
+
+
+\section{Problem 2}
+The following questions pertain to the correspondence between the unit
+sphere in $\RR^3$ and the extended complex plane given by stereographic
+projection.
+\subsection{Problem 2(a)}
+Find the mapping of the sphere to itself induced by the following two
+mappings of the (extended) complex plane to itself. 
+
+Rather than give detailed algebraic manipulations we give an 
+geometric interpretation of the inversion and unit circle inversion
+mapping. And moreover, we first consider the case of simple conjugation
+mapping $z\to\bar{z}$. %As can be seen in Figure~\ref{fig:1}, the 
+In the complex plane, the mapping is equivalent to $y=-y$, and thus
+even in the Riemann sphere, the coordinates of $\Sigma_y$ only are
+modified, it changes from $\frac{2y}{1+|z|^2}$ to $\frac{-2y}{1+|z|^2}$.
+Thus conjugation introduces a reflection across the vertical plane 
+passing through the
+real axis. We shall need this below.
+
+
+\subsubsection{Inversion in the Unit Circle Mapping}
+Given $z\to \frac{1}{\bar{z}}$ for $z\ne 0$, with the usual mapping of
+$\infty\to 0$ and $0\to\infty$.
+Since $z\to \frac{1}{\bar{z}}$, we have $z\to \frac{\bar\bar{z}}{|z|^2}$.
+Thus points which are inside
+the unit circle are mapped outside (with the same arg), and points
+which are outside are mapped inside the circle. In the Riemann sphere,
+inversion in the unit circle maps to a reflection in the equatorial
+plane $\CC$, as can be seen in Figure~\ref{fig:equator}.
+
+\begin{figure}
+\vspace{5cm}
+\caption{Inversion Mapping}
+\label{fig:equator}
+\end{figure}
+
+\subsubsection{Inversion Mapping}
+Given $z\to \frac{1}{z}$ for $z\ne 0$, with the usual mapping of
+$\infty\to 0$ and $0\to\infty$.
+We know that inversion mappings can be thought of as composition
+of inversion in unit circle with conjugation (in that order) since
+$z\to \frac{1}{z}$ implies $z\to \frac{\bar{z}}{z\bar{z}}$, which is
+same as $z\to\frac{\bar{z}}{|z|^2}$. Thus in the Riemann sphere
+inversion mapping is a reflection across the equatorial plane $\CC$, followed
+by a reflection across the vertical plane on the real axis. It is therefore
+the composition of reflections across orthogonal axis, and moreover
+can be combined into a single rotation of $\Sigma$ by $\pi$. It should
+be noted that this rotation is performed by an unitary matrix.
+
+
+\subsection{Problem 2(b)} Show that the two mappings above are 
+isometries with respect to the chordal distance.
+\begin{proof}
+We showed above that both mappings are equivalent to unitary
+transformations (reflections). We know that unitary transforms preserve
+lengths, thus the mappings are isometric with respect to the Euclidean
+chordal distance.
+\end{proof}
+
+\subsection{Problem 2(c)}
+Show that non-zero complex numbers $z$ and $w$ correspond to 
+diametrically opposed points on the sphere if and only if $z\bar{w}=-1$.
+\begin{proof}
+The first thing to notice is that the unit circle of $\CC$ is a great
+circle on $\Sigma$, the Riemann sphere. On the unit circle, the
+condition $z\bar{w}=\frac{z}{w}$, and using the polar representation
+we have $cos(z_\theta-w_\theta)=-1$, where $z=e^{iz_\theta}$ and
+$w=e^{iw_\theta}$, and $z_\theta,w_\theta$ are the angles. Thus we note
+that $z_\theta-w_\theta = \cos^{-1}(-1)=\pi$. Thus, the points are
+diametrically opposite on the unit circle, when the condition
+$z\bar{w}=-1$ is met.
+
+Since the unit circle and Riemann sphere can be rotated while
+preserving distance, without loss of generality we can fix one
+of the points, say $z$ to a fixed coordinate on the unit sphere.
+Let $z=(1,0)\in \CC$, and in $\Sigma$, this maps to $\hat{z}=(1,0,0)\in \Sigma$.
+We first show that when $z\bar{w}=-1$, then distance between 
+$\hat{z}$ and $\hat{w}$ is maximal. Since the sphere has diameter 2, we
+need to show that the distance is exactly 2. Let $z\bar{w}=-1$, this
+implies that $\bar{w}=-1/z$. But since $z=(1,0)$ (in particular $z$ is real),
+we get $w=-1$. On the sphere $\hat{w}=(-1,0,0)$ using the stereographic
+projection formulas. Thus we can see that distance between $\hat{z}$ and
+$\hat{w}$ is indeed 2, as required.
+
+To show the other direction, we again fix $\hat{z}=(1,0,0)\in \Sigma$.
+Since the sphere can be rotated, this is without any loss of generality.
+The diameterically opposed point of $\hat{z}$ can be calculated without
+problem since $\hat{z}$ lies in the equatorial plane $\CC$, and indeed
+it is denoted $\hat{w}=(-1,0,0)$. It is a simple check to calculate
+$w=(-1,0)$ and check that $z\bar{w}=-1$, as required.
+
+If there were other points (say $z',w'$)
+for which the chordal distance was 2, but
+the condition $z'\bar{w'}=-1$ was not met,
+then rotating $\Sigma$ to bring the great circle between $z',w'$ to lie
+in $\CC$ we see that $z'_\theta-w'_\theta \ne \pi$, would imply that
+the angle subtended between $\hat{z'}$ and $\hat{w'}$ in $\Sigma$
+is not the same as the angle between $z'$ and $w'$ in $\CC$, and
+this is a contradiction. Thus $z\bar{w}=-1$ is necessary and sufficient
+condition for the points to be diameterically opposed on $\Sigma$.
+\end{proof}
+\section{Problem 3} 
+Show that three distinct points $z_1,z_2,z_3$ in the complex plane
+are the vertices of an equilateral triangle if and only if they
+satisfy the equation:
+\begin{equation}
+z_1^2 + z_2^2 + z_3^2 = z_1z_2 + z_2z_3 + z_3z_1 \label{eqn:tri}
+\end{equation}
+To do this, first show that Equation~\ref{eqn:tri} is equivalent to
+\begin{equation}
+(z_1-z_2)^2 + (z_2-z_3)^2 + (z_3-z_1)^2 = 0 \label{eqn:tri2}
+\end{equation}
+\begin{proof}
+We expand Equation~\ref{eqn:tri2} to get:
+\[
+2(z_1^2 + z_2^2 + z_3^2) - 2(z_1z_2 + z_2z_3 + z_3z_1)=0 \label{eqn:tri3}
+\]
+Thus Equation~\ref{eqn:tri2} is clearly equal to Equation~\ref{eqn:tri}.
+Let the three sides of the triangle formed by the points be
+represented by the complex numbers $z=z_1-z_2$, $w=z_2-z_3$, and
+$\gamma=z_3-z_1$. Written in order, as they close the boundary of
+a triangle we get:
+\[
+z+w+\gamma=0 \implies \gamma= -(z+w) \implies \gamma^2 = z^2+w^2+2zw
+\]
+Substituting from Equation~\ref{eqn:tri2}, we get
+\begin{eqnarray}
+z^2 + w^2 + \gamma^2 & = & 0  \\
+z^2 + w^2 + z^2 + w^2 + 2zw & = & 0 \\
+z^2 + w^2 + zw & = & 0 \\
+\frac{z}{w} + \frac{w}{z} + 1 & = & 0 \label{eqn:tri4}
+\end{eqnarray}
+Let $x=\frac{z}{w}$, then Equation~\ref{eqn:tri4} is $x+\frac{1}{x}+1=0$,
+which we rewrite as $x^2+x+1=0$. This quadratic can be solved to get
+$\alpha_{1,2}=\frac{-1\pm i\sqrt{3}}{2}$. Specifically we get
+$\alpha_1=e^{i\frac{2\pi}{3}}$. 
+This is a cube-root of identity,
+distinct from 1, since it is conjugate complex. We also note that
+$|\alpha_1|=|\alpha_2|=\sqrt{\alpha_1\alpha_2}$. We compute this as:
+\[
+|\alpha_1| = (\frac{-1+i\sqrt{3}}{2})(\frac{-1-i\sqrt{3}}{2})
+= \frac{1+3}{4} = 1
+\]
+Therefore $|\frac{z}{w}|=1$, and thus $|z|=|w|$.
+In the above equation, we could also eliminate $z$ instead of $\gamma$, thus
+by symmetry, we have $|z|=|w|=|\gamma|$. Next, we consider the angle between
+$z$ and $w$. Since $\frac{z}{w}=\alpha_1$, writing it in polar complex form
+we have $\arg(\frac{z}{w})=\frac{\pi}{3}$. Similarly, the angle between
+$w$ and $\gamma$ is $2\frac{\pi}{3}$ and also for $z$ and $\gamma$. Thus, 
+the angle between the sides of the triangle must have angle equal to 
+$2\frac{\pi}{6}$. Now we have proven that the triangle has equal sides (in
+fact that would have been sufficient), and also the angles are appropriate,
+as required.
+\end{proof}
+
+\section{Problem 4}
+Suppose that $f$ is holomorphic on an open set $U$ and non-vanishing there.
+Find (and prove) formulas for $\frac{\partial |f|}{\partial z}$ and
+$\frac{\partial |f|}{\partial \bar{z}}$.
+\begin{proof}
+We begin by noting the definition for $\frac{\partial f}{\partial z}$
+and $\frac{\partial f}{\partial \bar{z}}$:
+\begin{eqnarray}
+\frac{\partial f}{\partial z} & = & \frac{1}{2} 
+\left(\frac{\partial f}{\partial x} -
+i\frac{\partial f}{\partial y}
+\right) \\ \label{eqn:del1}
+\frac{\partial f}{\partial \bar{z}} & = & \frac{1}{2} 
+\left(\frac{\partial f}{\partial x} +
+i\frac{\partial f}{\partial y}
+\right) \label{eqn:del2}
+\end{eqnarray}
+Using the cotangent expansion formula given in the textbook we have
+\[
+\langle dz,\bar{\partial} \rangle = \langle d\bar{z}, \partial \rangle
+\]
+Using the above we have
+\begin{equation}
+\frac{\partial \bar{f}}{\partial z} = \frac{\partial f}{\partial \bar{z}}
+\label{eqn:del_main}
+\end{equation}
+
+Next we write $|f|=\sqrt{f\bar{f}}$ and use the product chain rule
+to differentiate $|f|$ with respect to $z$. We get:
+\[
+\frac{\partial |f|}{\partial z} = \frac{1}{2|f|} 
+\frac{\partial f\bar{f}}{\partial z} = \frac{1}{2|f|} \left[
+\frac{\partial f}{\partial z}\bar{f} + \frac{\partial \bar{f}}{\partial z}f
+\right]
+\]
+We subsitute from Equation~\ref{eqn:del1} and Equation~\ref{eqn:del_main}
+to get:
+\[
+\frac{\partial |f|}{\partial z} = \frac{1}{2|f|} \left[
+\frac{\bar{f}}{2}\left( \frac{\partial f}{\partial x} 
+-i \frac{\partial f}{\partial y}\right) +
+\frac{f}{2}\left( \frac{\partial f}{\partial x} +i\frac{\partial f}{\partial y}
+\right)
+\right]
+\]
+Almost by symmetry we get the following:
+\[
+\frac{\partial |f|}{\partial \bar{z}} = \frac{1}{2|f|} \left[
+\frac{\bar{f}}{2}\left( \frac{\partial f}{\partial x} 
++i \frac{\partial f}{\partial y}\right) +
+\frac{f}{2}\left( \frac{\partial f}{\partial x} -i\frac{\partial f}{\partial y}
+\right)
+\right]
+\]
+
+\end{proof}
+\section{Problem 5}
+Given $f=u+iv$ is holomorphic on an open connected set $U\subseteq \CC$ and 
+satisfies the given conditions, we have to prove the following.
+\subsection{Prove $f$ is constant on $U$}
+Since $f$ is holomorphic (analytical) on $U$, the Cauchy-Riemann
+equations are satisfied, in particular, we have
+$u_x=v_y$ and $v_x=-u_y$, and if $f'(z)=0$ everywhere in $U$, then
+in addition we have $f'(z)=u_x+iv_x = v_y-iu_y=0$.
+Thus all partials ($u_x,u_y,v_x,v_y$) are zero on $U$.
+Consider $z_0=(x_0+iy_0)\in U$, then in particular $u_x(z_0)=0$.
+Consider a horizontal line $L=\{x+iy_0:a<x<b\}$, for $a,b\in\RR$ and
+consider the part of $L$ inside $U$. Then we can construct a function
+$\phi(x)=u(x,y_0)$, which represents the traversal on the line $L$. And
+on the line $L$, we have $\phi'(x)=u_x(x,y_0)=0$. Now since $u$ is a real
+valued function with zero derivative, we have $u$ is constant on $L$.
+Since $y_0$ was arbitrary, we can conclude that $u$ is constant on each
+horizontal line in $L$. Similarly, $u$ is constant for each vertical line
+in $U$. And similarly, $v$ is also constant for horizontal and vertical lines.
+But $U$ is open and connected, thus every pair of points in $U$ can be
+path connected by series of horizontal and vertical lin segments lying
+inside $U$. Thus we conclude that $f=u+iv$ is constant inside $U$.
+
+Next consider a Lemma:
+\begin{lem}
+If a function $f$ and its conjugate $\bar{f}$ are both analytical
+on $U$, then $f$ is constant on $U$.
+\end{lem}
+\begin{proof}
+Let $f(z)=u(x,y)+iv(x,y)$ and $\overline{f(z)}=u(x,y)-iv(x,y)$. 
+Due to the Cauchy-Riemann
+equations we have: $u_x=v_y, u_y=-v_x$ for $f$ and
+$u_x=-v_y$ and $u_y=v_x$ for $\bar{f}$. Together these imply that
+$u_x=u_y=v_x=v_y=0$. Thus, we can use the previous part of the
+problem and conclude that $f$ is constant on $U$.
+\end{proof}
+\subsection{Conclude as special case $f$ is real-valued}
+Using the previous lemma we see that $f$ and $\bar{f}$ are both
+analytical, hence $f$ must be constant.
+
+\subsection{If the modulus of $f$ is constant}
+We can write $|f(z)|=c$, and then $f(z)\overline{f(z)}=c^2$, but
+this implies that $\overline{f(z)}=\frac{c^2}{f(z)}$. Since $f(z)$
+is analytical, this implies that $\overline{f(z)}$ is also analytical, and
+thus again using the previous lemma, we conclude that $f$ is constant.
+
+
+
+\end{document}  
